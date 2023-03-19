@@ -1,42 +1,91 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+    --color-palette-1: #00E7D4;
+    --color-palette-2: #00CEDD;
+    --color-palette-3: #00B9E5;
+    --color-palette-4: #27272A;
+    --color-palette-5: #F9FAFB;
+    --transition-1: all 200ms ease-in-out;
+}
+
+
+/*------------Top Nav------------*/
+/*Logo*/
+.logName {
+    font-family: 'Caveat', cursive;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+    height: 80px;
+    transition: all 200ms ease-in-out;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+    transform: scale(1.05, 1.05);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logName {
+    transition: all 200ms ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.logName:hover {
+    color: var(--color-palette-3) !important;
 }
 
-.card {
-  padding: 2em;
+/*Search Form*/
+.buttonSearchForm:hover {
+    transition: all 200ms ease-in-out;
 }
 
-.read-the-docs {
-  color: #888;
+.buttonSearchForm:hover {
+    background: var(--color-palette-2) !important;
+}
+
+/*Icon Section*/
+.icon{
+    fill: var(--color-palette-5);
+    transition: all 150ms ease-in-out;
+}
+
+.icon:hover{
+    fill: var(--color-palette-2);
+}
+
+/*Burger Menu*/
+.burgerMenu{
+    transition: all 150ms ease-in-out;
+}
+
+.burgerMenu:hover{
+    background: var(--color-palette-2);
+    border: 2px solid var(--color-palette-5);
+}
+
+.burgerMenuSVG{
+    fill: var(--color-palette-5);
+    transition: all 150ms ease-in-out;
+}
+
+.burgerMenu:hover .burgerMenuSVG{
+    fill: var(--color-palette-4);
+}
+
+.burgerMenu:focus{
+    background: var(--color-palette-4);
+    border: 2px solid var(--color-palette-5);
+}
+
+.burgerMenu:focus .burgerMenuSVG{
+    fill: var(--color-palette-5);
+}
+
+/*------------Bottom Nav------------*/
+
+
+/*--------------------------------------------------------------------------*/
+
+@media(max-width: 390px) {
+    .logo {
+        height: 55px;
+        padding-left: 8%;
+    }
 }
