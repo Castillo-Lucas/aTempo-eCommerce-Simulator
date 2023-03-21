@@ -47,7 +47,7 @@
 }
 
 .icon:hover{
-    fill: var(--color-palette-2);
+    fill: var(--color-palette-3);
 }
 
 /*Burger Menu*/
@@ -56,8 +56,8 @@
 }
 
 .burgerMenu:hover{
-    background: var(--color-palette-2);
-    border: 2px solid var(--color-palette-5);
+    background: var(--color-palette-4);
+    border: 1px solid var(--color-palette-5);
 }
 
 .burgerMenuSVG{
@@ -66,19 +66,37 @@
 }
 
 .burgerMenu:hover .burgerMenuSVG{
-    fill: var(--color-palette-4);
+    fill: var(--color-palette-5);
 }
 
 .burgerMenu:focus{
     background: var(--color-palette-4);
-    border: 2px solid var(--color-palette-5);
+    border: 1px solid var(--color-palette-5);
 }
 
 .burgerMenu:focus .burgerMenuSVG{
     fill: var(--color-palette-5);
 }
 
+.burgerMenu:active{
+    background: var(--color-palette-2);
+    border: 1px solid var(--color-palette-5);
+}
+
+.burgerMenu:active .burgerMenuSVG{
+    fill: var(--color-palette-4);
+}
+
 /*------------Bottom Nav------------*/
+
+.bottomNavList{
+    color: var(--color-palette-5);
+    transition: all 150ms ease-in-out;
+}
+
+.bottomNavList:hover{
+    color: var(--color-palette-3);
+}
 
 
 /*--------------------------------------------------------------------------*/
@@ -86,6 +104,17 @@
 @media(max-width: 390px) {
     .logo {
         height: 55px;
-        padding-left: 8%;
     }
+
+    .logName {
+        font-size: 30px !important;
+        padding-top: 5px !important;
+    }
+
+    .cartIcon{
+        height: 28px;
+    }
+
+
+
 }
