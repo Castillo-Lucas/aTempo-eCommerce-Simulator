@@ -99,6 +99,27 @@
 }
 
 
+
+.tittleFooter{
+    color: var(--color-palette-3);
+}
+
+
+.textFooter{
+    color: var(--color-palette-5);
+}
+
+.footerIcon{
+    fill: var(--color-palette-5);
+    transition: all 150ms ease-in-out;
+}
+
+.footerIcon:hover{
+    fill: var(--color-palette-3);
+    transform: scale(1.1, 1.1);
+}
+
+
 /*--------------------------------------------------------------------------*/
 
 @media(max-width: 390px) {
