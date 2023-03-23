@@ -1,4 +1,5 @@
 import React from "react";
+import "../../App.css";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,7 +15,8 @@ import { EffectFade, Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const HeroImage = () => {
   return (
-    <div className="mb-5">
+    <div>
+      {/*Desktop*/}
       <Swiper
         spaceBetween={30}
         effect={"fade"}
@@ -27,13 +29,13 @@ const HeroImage = () => {
           enabled: true,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
-        className="mySwiper"
+        className="mySwiper hidden md:block"
       >
-        <SwiperSlide>
+        <SwiperSlide className="hidden md:block">
           {" "}
           <div>
             <a href="">
@@ -45,7 +47,7 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide>
+        <SwiperSlide className="hidden md:block">
           {" "}
           <div>
             <a href="">
@@ -57,7 +59,7 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide>
+        <SwiperSlide className="hidden md:block">
           {" "}
           <div>
             <a href="">
@@ -69,7 +71,7 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide>
+        <SwiperSlide className="hidden md:block">
           {" "}
           <div>
             <a href="">
@@ -81,7 +83,80 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+
+      {/*Mobile*/}
+      <Swiper
+        spaceBetween={30}
+        effect={"fade"}
+        loop={true}
+        navigation={true}
+        pagination={{
+          clickable: true,
+        }}
+        keyboard={{
+          enabled: true,
+        }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
+        className="mySwiper block md:hidden"
+      >
+        <SwiperSlide className="block md:hidden">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/1_qwystt.png"
+                alt=""
+                className="w-full"
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="block md:hidden">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/2_hmfgsr.png"
+                alt=""
+                className="w-full"
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="block md:hidden">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/3_fkpldp.png"
+                alt=""
+                className="w-full"
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="block md:hidden">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/4_bzwqj3.png"
+                alt=""
+                className="w-full"
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </div>
+    
   );
 };
 

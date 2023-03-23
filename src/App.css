@@ -7,7 +7,7 @@
     --transition-1: all 200ms ease-in-out;
 }
 
-body{
+body {
     background-color: #F9FAFB;
 }
 
@@ -45,83 +45,127 @@ body{
 }
 
 /*Icon Section*/
-.icon{
+.icon {
     fill: var(--color-palette-5);
     transition: all 150ms ease-in-out;
 }
 
-.icon:hover{
+.icon:hover {
     fill: var(--color-palette-3);
 }
 
 /*Burger Menu*/
-.burgerMenu{
+.burgerMenu {
     transition: all 150ms ease-in-out;
 }
 
-.burgerMenu:hover{
+.burgerMenu:hover {
     background: var(--color-palette-4);
     border: 1px solid var(--color-palette-5);
 }
 
-.burgerMenuSVG{
+.burgerMenuSVG {
     fill: var(--color-palette-5);
     transition: all 150ms ease-in-out;
 }
 
-.burgerMenu:hover .burgerMenuSVG{
+.burgerMenu:hover .burgerMenuSVG {
     fill: var(--color-palette-5);
 }
 
-.burgerMenu:focus{
+.burgerMenu:focus {
     background: var(--color-palette-4);
     border: 1px solid var(--color-palette-5);
 }
 
-.burgerMenu:focus .burgerMenuSVG{
+.burgerMenu:focus .burgerMenuSVG {
     fill: var(--color-palette-5);
 }
 
-.burgerMenu:active{
+.burgerMenu:active {
     background: var(--color-palette-2);
     border: 1px solid var(--color-palette-5);
 }
 
-.burgerMenu:active .burgerMenuSVG{
+.burgerMenu:active .burgerMenuSVG {
     fill: var(--color-palette-4);
 }
 
 /*------------Bottom Nav------------*/
 
-.bottomNavList{
+.bottomNavList {
     color: var(--color-palette-5);
     transition: all 150ms ease-in-out;
 }
 
-.bottomNavList:hover{
+.bottomNavList:hover {
+    color: var(--color-palette-3);
+}
+
+/*------------Footer------------*/
+
+.tittleFooter {
     color: var(--color-palette-3);
 }
 
 
-
-.tittleFooter{
-    color: var(--color-palette-3);
-}
-
-
-.textFooter{
+.textFooter {
     color: var(--color-palette-5);
 }
 
-.footerIcon{
+.footerIcon {
     fill: var(--color-palette-5);
     transition: all 150ms ease-in-out;
 }
 
-.footerIcon:hover{
+.footerIcon:hover {
     fill: var(--color-palette-3);
     transform: scale(1.1, 1.1);
 }
+
+
+/*------------Swippers------------*/
+
+
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    cursor: pointer !important;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--color-palette-2)!important;
+    width: 10px !important;
+    height: 10px !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--color-palette-3) !important;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+    top: var(--swiper-navigation-top-offset, 48%) !important;
+    background-color: rgba(255, 255, 255, 0.327) !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 2px;
+    border-radius: 20px;
+    --swiper-navigation-size: 15px !important;
+    --swiper-theme-color: rgb(255, 255, 255) !important;
+    transition: all 300ms !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: var(--color-palette-3) !important;
+}
+
+.swiper-button-next:active,
+.swiper-button-prev:active {
+    background-color: rgba(87, 85, 85, 0.951) !important;
+}
+
+
 
 
 /*--------------------------------------------------------------------------*/
@@ -136,7 +180,7 @@ body{
         padding-top: 5px !important;
     }
 
-    .cartIcon{
+    .cartIcon {
         height: 28px;
     }
 
