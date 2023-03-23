@@ -27,7 +27,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-zinc-800 mb-10">
+    <div className="bg-zinc-800">
       <div className="container mx-auto bg-zinc-800 xl:px-44 py-2.5">
         {/*Top Nav*/}
         <div className="grid grid-cols-12 px-5 m-0 w-full">

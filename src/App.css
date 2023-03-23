@@ -7,6 +7,10 @@
     --transition-1: all 200ms ease-in-out;
 }
 
+body{
+    background-color: #F9FAFB;
+}
+
 
 /*------------Top Nav------------*/
 /*Logo*/
@@ -119,7 +123,16 @@
     transform: scale(1.1, 1.1);
 }
 
+/*----------Body-----------------------*/
+.banner{
+    height: 500px;
+    overflow: hidden !important;
+}
 
+.imgBanner{
+    max-width: 100%;
+    width: 100%;
+}
 /*--------------------------------------------------------------------------*/
 
 @media(max-width: 390px) {
