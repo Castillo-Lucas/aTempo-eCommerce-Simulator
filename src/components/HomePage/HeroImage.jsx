@@ -16,74 +16,6 @@ import { EffectFade, Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 const HeroImage = () => {
   return (
     <div>
-      {/*Desktop*/}
-      <Swiper
-        spaceBetween={30}
-        effect={"fade"}
-        loop={true}
-        navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        keyboard={{
-          enabled: true,
-        }}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
-        className="mySwiper hidden md:block"
-      >
-        <SwiperSlide className="hidden md:block">
-          {" "}
-          <div>
-            <a href="">
-              <img
-                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner1_hfsgvo.png"
-                alt=""
-              />
-            </a>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="hidden md:block">
-          {" "}
-          <div>
-            <a href="">
-              <img
-                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner2_akcxu4.png"
-                alt=""
-              />
-            </a>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="hidden md:block">
-          {" "}
-          <div>
-            <a href="">
-              <img
-                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner3_wcijkg.png"
-                alt=""
-              />
-            </a>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="hidden md:block">
-          {" "}
-          <div>
-            <a href="">
-              <img
-                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner4_zn8vdt.png"
-                alt=""
-              />
-            </a>
-          </div>
-        </SwiperSlide>
-      </Swiper>
-
       {/*Mobile*/}
       <Swiper
         spaceBetween={30}
@@ -155,8 +87,75 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+      
+      {/*Desktop*/}
+      <Swiper
+        spaceBetween={30}
+        effect={"fade"}
+        loop={true}
+        navigation={true}
+        pagination={{
+          clickable: true,
+        }}
+        keyboard={{
+          enabled: true,
+        }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
+        className="mySwiper hidden md:block"
+      >
+        <SwiperSlide className="hidden md:block">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner1_hfsgvo.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="hidden md:block">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner2_akcxu4.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="hidden md:block">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner3_wcijkg.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide className="hidden md:block">
+          {" "}
+          <div>
+            <a href="">
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner4_zn8vdt.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </div>
-    
   );
 };
 

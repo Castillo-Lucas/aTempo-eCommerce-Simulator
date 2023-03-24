@@ -13,23 +13,23 @@ body {
 
 
 /*-------------Scrollbar ----------------------*/
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 10px;
 }
 
-::-webkit-scrollbar-track{
-  background-color: #b4b4b8;    
+::-webkit-scrollbar-track {
+    background-color: #b4b4b8;
 }
 
-::-webkit-scrollbar-thumb{
-  background-color: #36373e;
-  transition: all 3000;
-  border-radius: 4px;
+::-webkit-scrollbar-thumb {
+    background-color: #36373e;
+    transition: all 3000;
+    border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover{
-  background-color: #43444b;
-  width: 40px;
+::-webkit-scrollbar-thumb:hover {
+    background-color: #43444b;
+    width: 40px;
 }
 
 
@@ -142,7 +142,42 @@ body {
     transform: scale(1.1, 1.1);
 }
 
+
+/*------------Cards------------*/
+.cardCarousel {
+    width: 250px !important;
+    height: 448px !important;
+    transition: all 150ms ease-in-out;
+}
+
+.cardCarousel:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.buttonCard {
+    transition: all 150ms ease-in-out;
+}
+
+.buttonCard:hover {
+    background-color: var(--color-palette-4);
+    color: var(--color-palette-5);
+}
+
+.buttonCard:active {
+    background-color: var(--color-palette-3);
+    color: var(--color-palette-4);
+}
+
 /*------------Swippers------------*/
+
+
+.swiper-slide {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+
 .swiper-pagination-clickable .swiper-pagination-bullet {
     cursor: pointer !important;
 }
@@ -160,7 +195,7 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
     top: var(--swiper-navigation-top-offset, 48%) !important;
-    background-color: rgba(255, 255, 255, 0.327) !important;
+    background-color: var(--color-palette-3) !important;
     width: 30px !important;
     height: 30px !important;
     padding: 2px;
@@ -172,7 +207,7 @@ body {
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    background-color: var(--color-palette-3) !important;
+    background-color: var(--color-palette-2) !important;
 }
 
 .swiper-button-next:active,
