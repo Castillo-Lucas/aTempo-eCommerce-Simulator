@@ -14,14 +14,10 @@ import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const CarouselOne = () => {
   return (
-    <div className="lg:container lg:px-48 mx-auto mt-8">
-
-      {/*Desktop*/}
+    <div className="lg:container lg:px-48 mx-auto py-4 mb-2">
       <Swiper
-        
         loop={true}
         navigation={true}
-        centered-slides={true}
         keyboard={{
           enabled: true,
         }}
@@ -48,9 +44,9 @@ const CarouselOne = () => {
           },
         }}
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
-        className="mySwiper w-full py-1  mb-8"
+        className="mySwiper w-full py-1"
       >
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -82,7 +78,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -114,7 +110,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -146,7 +142,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -178,7 +174,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -210,7 +206,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -242,7 +238,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -274,7 +270,7 @@ const CarouselOne = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="">
+        <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel bg-transparent border-2 border-gray-200 rounded-lg shadow p-1">
             <img
               className="rounded-t-lg"
@@ -305,7 +301,6 @@ const CarouselOne = () => {
             </div>
           </div>
         </SwiperSlide>
-
       </Swiper>
     </div>
   );

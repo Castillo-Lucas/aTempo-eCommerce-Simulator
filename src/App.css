@@ -171,7 +171,7 @@ body {
 /*------------Swippers------------*/
 
 
-.swiper-slide {
+.centeredCarousel{
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -195,7 +195,7 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
     top: var(--swiper-navigation-top-offset, 48%) !important;
-    background-color: var(--color-palette-3) !important;
+    background-color: rgba(87, 85, 85, 0.951) !important;
     width: 30px !important;
     height: 30px !important;
     padding: 2px;

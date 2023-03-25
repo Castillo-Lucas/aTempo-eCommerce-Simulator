@@ -33,9 +33,9 @@ const HeroImage = () => {
           disableOnInteraction: false,
         }}
         modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
-        className="mySwiper block md:hidden"
+        className="mySwiper block md:hidden w-full"
       >
-        <SwiperSlide className="block md:hidden">
+        <SwiperSlide className="block md:hidden w-96">
           {" "}
           <div>
             <a href="">
@@ -74,7 +74,7 @@ const HeroImage = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="block md:hidden">
+        <SwiperSlide className="block prueba md:hidden">
           {" "}
           <div>
             <a href="">
