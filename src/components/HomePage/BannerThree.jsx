@@ -4,7 +4,7 @@ const BannerThree = () => {
   return (
     <div>
       {/*Mobile*/}
-      <div className="w-full flex justify-center md:hidden bg-zinc-800 mx-auto  mb-8">
+      <div className="w-full flex justify-center md:hidden bg-zinc-800 mx-auto">
         <div>
           <a href="">
             <img
@@ -16,7 +16,7 @@ const BannerThree = () => {
       </div>
 
       {/*Desktop*/}
-      <div className="w-full hidden md:flex justify-center bg-zinc-800 mx-auto  mb-8">
+      <div className="w-full hidden md:flex justify-center bg-zinc-800 mx-auto">
         <div>
           <a href="">
             <img

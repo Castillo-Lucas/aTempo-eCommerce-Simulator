@@ -215,6 +215,11 @@ body {
     background-color: rgba(87, 85, 85, 0.951) !important;
 }
 
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+    background-color: rgba(87, 85, 85, 0.951) !important;
+}
+
 /*--------------------------------------------------------------------------*/
 @media(max-width: 390px) {
     .logo {
