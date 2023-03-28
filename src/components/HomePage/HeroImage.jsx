@@ -36,7 +36,7 @@ const HeroImage = () => {
           modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide className="block md:hidden w-96">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
@@ -49,7 +49,7 @@ const HeroImage = () => {
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="block md:hidden">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
@@ -62,7 +62,7 @@ const HeroImage = () => {
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="block md:hidden">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
@@ -75,7 +75,7 @@ const HeroImage = () => {
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="block prueba md:hidden">
+          <SwiperSlide className="prueba">
             {" "}
             <div>
               <a href="">
@@ -111,43 +111,43 @@ const HeroImage = () => {
           modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide className="hidden md:block">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner1_hfsgvo.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner1_onzrbw.png"
                   alt=""
                 />
               </a>
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="hidden md:block">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner2_akcxu4.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner3_rqnynv.png"
                   alt=""
                 />
               </a>
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="hidden md:block">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner3_wcijkg.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610381/aTempo/Assets/homepage/Desktop/banner4_h6ucfj.png"
                   alt=""
                 />
               </a>
             </div>
           </SwiperSlide>
 
-          <SwiperSlide className="hidden md:block">
+          <SwiperSlide>
             {" "}
             <div>
               <a href="">
