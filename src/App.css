@@ -168,8 +168,6 @@ body {
 }
 
 /*------------Filter Section------------*/
-
-
 input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -208,11 +206,20 @@ input[type="checkbox"]:checked::before {
     border: 2px solid var(--color-palette-4);
 }
 
+.btnPrice{
+    transition: all 150ms ease-in-out;
+}
 
+.btnPrice:hover{
+    background-color: var(--color-palette-3);
+}
+
+.btnPrice:active{
+    background-color: var(--color-palette-4);
+    color: var(--color-palette-5);
+}
 
 /*------------Swippers------------*/
-
-
 .centeredCarousel {
     display: flex !important;
     justify-content: center !important;

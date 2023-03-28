@@ -7,7 +7,7 @@ const ProductPage = () => {
     <div>
       <BannerFive />
 
-      <div className="container mx-auto px-32 grid grid-cols-12 w-full border-4 my-8">
+      <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 my-4">
 
         <FilterSection/>
 
