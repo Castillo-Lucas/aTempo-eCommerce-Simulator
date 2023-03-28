@@ -152,7 +152,7 @@ const HeroImage = () => {
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679596627/aTempo/Assets/homepage/banner4_zn8vdt.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610381/aTempo/Assets/homepage/Desktop/banner4_h6ucfj.png"
                   alt=""
                 />
               </a>
