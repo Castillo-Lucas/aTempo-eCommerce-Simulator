@@ -11,7 +11,6 @@ body {
     background-color: #F9FAFB;
 }
 
-
 /*-------------Scrollbar ----------------------*/
 ::-webkit-scrollbar {
     width: 10px;
@@ -168,10 +167,53 @@ body {
     color: var(--color-palette-4);
 }
 
+/*------------Filter Section------------*/
+
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    border-radius: 1px;
+    border: 2px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked::before {
+    background-color: var(--color-palette-4);
+    content: "\2713";
+    font-size: 12px;
+    text-align: center;
+    line-height: 9px;
+    color: var(--color-palette-3);
+    font-weight: bold;
+    border: 2px solid var(--color-palette-4);
+}
+
+
+
 /*------------Swippers------------*/
 
 
-.centeredCarousel{
+.centeredCarousel {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
