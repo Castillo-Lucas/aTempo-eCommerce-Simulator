@@ -128,7 +128,7 @@ const HeroImage = () => {
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner3_rqnynv.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner2_nazbs1.png"
                   alt=""
                 />
               </a>
@@ -140,7 +140,7 @@ const HeroImage = () => {
             <div>
               <a href="">
                 <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610381/aTempo/Assets/homepage/Desktop/banner4_h6ucfj.png"
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner3_rqnynv.png"
                   alt=""
                 />
               </a>
