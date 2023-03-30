@@ -27,15 +27,15 @@ const Filters = () => {
 
 
   return (
-    <div className="h-screen overflow-auto">
+    <div className="">
       <h1 className="font-medium text-lg  p-4 border-b">
         Filtros
       </h1>
 
       <div>
         {/*Ordenar Por*/}
-        <div className="mb-2">
-          {/*Tittle*/}
+        <div className="mb-2 accordion">
+          
           <h2 id="accordion-collapse-heading-1">
             <button
               type="button"

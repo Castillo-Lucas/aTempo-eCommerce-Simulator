@@ -286,9 +286,13 @@ input[type="checkbox"]:checked::before {
         opacity: 1;
     }
 }
-.scroll{
-    overflow-y: scroll;
+
+
+
+.bannerFive{
+    background-color: #222224;
 }
+
 /*------------Swippers------------*/
 .centeredCarousel {
     display: flex !important;

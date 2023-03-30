@@ -10,7 +10,7 @@ const ProductPage = ({ drawer, handleDrawer }) => {
     <div>
       <BannerFive />
 
-      <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 mb-3">
+      <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-8 mb-3">
         <FilterSection drawer={drawer} handleDrawer={handleDrawer} />
 
         <div className="col-span-12 lg:col-span-10">
