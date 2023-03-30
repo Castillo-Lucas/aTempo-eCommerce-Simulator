@@ -5,7 +5,7 @@ import FilterSection from "./FilterSection";
 import "../../App.css";
 import Pagination from "./Pagination";
 
-const ProductPage = ({ drawer, handleDrawer }) => {
+const ItemListContainer = ({ drawer, handleDrawer }) => {
   return (
     <div>
       <BannerFive />
@@ -36,4 +36,4 @@ const ProductPage = ({ drawer, handleDrawer }) => {
   );
 };
 
-export default ProductPage;
+export default ItemListContainer;

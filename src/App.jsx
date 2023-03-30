@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/HomePage/Home";
-import ProductPage from "./components/ProductPage/ProductPage";
 import Layer from "./components/Layer";
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./components/HomePage/Home";
+import ItemListContainer from "./components/ItemList/ItemListContainer";
+import Footer from "./components/Footer";
+
 
 function App() {
   const [drawer, setDrawer] = useState(false);
@@ -19,10 +20,10 @@ function App() {
     <div className="">
       <Layer drawer={drawer} handleDrawer={handleDrawer} />
 
-      <Header />
+      <NavBar />
       {/*<Home />*/}
 
-      <ProductPage drawer={drawer} handleDrawer={handleDrawer} />
+      <ItemListContainer drawer={drawer} handleDrawer={handleDrawer} />
       <Footer />
     </div>
   );
