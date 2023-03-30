@@ -143,11 +143,11 @@ body {
 
 
 /*------------Cards------------*/
-.cards{
+.cards {
     transition: all 150ms ease-in-out;
 }
 
-.cards:hover{
+.cards:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -214,47 +214,79 @@ input[type="checkbox"]:checked::before {
     border: 2px solid var(--color-palette-4);
 }
 
-.btnPrice{
+.btnPrice {
     transition: all 150ms ease-in-out;
 }
 
-.btnPrice:hover{
+.btnPrice:hover {
     background-color: var(--color-palette-3);
 }
 
-.btnPrice:active{
+.btnPrice:active {
     background-color: var(--color-palette-4);
     color: var(--color-palette-5);
 }
 
-.btnPaginationPrevNext{
+.btnPaginationPrevNext {
     padding-top: 8.5px !important;
     padding-bottom: 8.5px !important;
     transition: all 150ms ease-in-out;
 }
 
-.btnPaginationPrevNext:hover{
+.btnPaginationPrevNext:hover {
     background-color: var(--color-palette-3);
     color: var(--color-palette-4);
 }
 
-.btnPaginationPrevNext:active{
+.btnPaginationPrevNext:active {
     background-color: var(--color-palette-4);
     color: var(--color-palette-5);
 }
 
-.btnPagination{
+.btnPagination {
     transition: all 150ms ease-in-out;
 }
 
-.btnPagination:hover{
+.btnPagination:hover {
     background-color: var(--color-palette-3);
     color: var(--color-palette-4);
 }
 
-.btnPagination:active{
+.btnPagination:active {
     background-color: var(--color-palette-4);
     color: var(--color-palette-5);
+}
+
+.drawerIn {
+    animation: moveIn 0.5s forwards;
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateX(-200%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+}
+
+.drawerOut {
+    animation: moveOut 5s forwards;
+}
+
+@keyframes moveOut {
+    from {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-150%);
+        opacity: 0;
+    }
 }
 
 /*------------Swippers------------*/
