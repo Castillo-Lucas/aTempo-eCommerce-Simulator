@@ -26,7 +26,7 @@ const NavBar = () => {
 
   const handleBurger = () => {
     setBurgerState(!burgerState);
-  };
+  }
 
   return (
     <div className="bg-zinc-800">
