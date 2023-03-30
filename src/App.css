@@ -273,22 +273,22 @@ input[type="checkbox"]:checked::before {
     }
 }
 
-.drawerOut {
-    animation: moveOut 5s forwards;
+.drawerEffect {
+    animation: moveOut 0.5s forwards;
 }
 
 @keyframes moveOut {
     from {
-        transform: translateX(-100%);
-        opacity: 1;
+        opacity: 0;
     }
 
     to {
-        transform: translateX(-150%);
-        opacity: 0;
+        opacity: 1;
     }
 }
-
+.scroll{
+    overflow-y: scroll;
+}
 /*------------Swippers------------*/
 .centeredCarousel {
     display: flex !important;

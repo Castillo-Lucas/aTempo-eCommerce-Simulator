@@ -4,8 +4,8 @@ import "../../App.css";
 const Filters = () => {
 
     const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
-    const [acordionOne, setAcordionOne] = useState(false);
-    const [acordionTwo, setAcordionTwo] = useState(true);
+    const [acordionOne, setAcordionOne] = useState(true);
+    const [acordionTwo, setAcordionTwo] = useState(false);
     const [acordionThree, setAcordionThree] = useState(false);
     const [filtroMobile, setFiltroMobile] = useState(false);
   
@@ -27,12 +27,12 @@ const Filters = () => {
 
 
   return (
-    <div>
-      <h1 className="font-medium text-lg text-zinc-800 p-4 border-b">
+    <div className="h-screen overflow-auto">
+      <h1 className="font-medium text-lg  p-4 border-b">
         Filtros
       </h1>
 
-      <div id="accordion-collapse" data-accordion="collapse">
+      <div>
         {/*Ordenar Por*/}
         <div className="mb-2">
           {/*Tittle*/}
@@ -51,7 +51,7 @@ const Filters = () => {
                 handleAcordion(e, "OrdenarPor");
               }}
             >
-              <span className="font-normal text-lg text-zinc-800 text-left">
+              <span className="font-normal text-lg  text-left">
                 Ordenar por
               </span>
               <svg
@@ -91,7 +91,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Precio: Menor a Mayor
               </label>
@@ -106,7 +106,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Precio: Mayor a Menor
               </label>
@@ -121,7 +121,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 A - Z
               </label>
@@ -136,7 +136,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Z - A
               </label>
@@ -151,7 +151,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Más Vendidos
               </label>
@@ -166,7 +166,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Ultimos Ingresos
               </label>
@@ -192,7 +192,7 @@ const Filters = () => {
                 handleAcordion(e, "Categories");
               }}
             >
-              <span className="font-normal text-lg text-zinc-800 text-left">
+              <span className="font-normal text-lg  text-left">
                 Categorías
               </span>
               <svg
@@ -232,7 +232,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Guitarras
               </label>
@@ -247,7 +247,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Bajos
               </label>
@@ -262,7 +262,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Baterías
               </label>
@@ -277,7 +277,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Pianos
               </label>
@@ -292,7 +292,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Amplificadores
               </label>
@@ -307,7 +307,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Efectos
               </label>
@@ -322,7 +322,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 MIDI
               </label>
@@ -337,7 +337,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Home Studio
               </label>
@@ -352,7 +352,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 DJ
               </label>
@@ -367,7 +367,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Accesorios
               </label>
@@ -393,7 +393,7 @@ const Filters = () => {
                 handleAcordion(e, "Brand");
               }}
             >
-              <span className="font-normal text-lg text-zinc-800 text-left">
+              <span className="font-normal text-lg  text-left">
                 Marca
               </span>
               <svg
@@ -433,7 +433,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Fender
               </label>
@@ -448,7 +448,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Ibanez
               </label>
@@ -463,7 +463,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Ernie Ball
               </label>
@@ -478,7 +478,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 DW
               </label>
@@ -493,7 +493,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Ludwig
               </label>
@@ -508,7 +508,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Nektar
               </label>
@@ -523,7 +523,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Gemini
               </label>
@@ -538,7 +538,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 Boss
               </label>
@@ -553,7 +553,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 M-Audio
               </label>
@@ -568,7 +568,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  text-zinc-800"
+                className="ml-1 text-base font-normal  "
               >
                 PreSonus
               </label>
@@ -594,7 +594,7 @@ const Filters = () => {
                 handleAcordion(e, "Price");
               }}
             >
-              <span className="font-normal text-lg text-zinc-800 text-left">
+              <span className="font-normal text-lg  text-left">
                 Precio
               </span>
               <svg
@@ -631,14 +631,14 @@ const Filters = () => {
                   <div>
                     <label
                       htmlFor="from"
-                      className="block mb-2 text-sm font-medium text-zinc-800/80"
+                      className="block mb-2 text-sm font-medium /80"
                     >
                       Desde
                     </label>
                     <input
                       type="text"
                       id="from"
-                      className="bg-gray-50 border border-gray-300 text-zinc-800/80 text-sm rounded-lg block w-11/12 p-2"
+                      className="bg-gray-50 border border-gray-300 /80 text-sm rounded-lg block w-11/12 p-2"
                       placeholder="$"
                       required
                     />
@@ -646,14 +646,14 @@ const Filters = () => {
                   <div>
                     <label
                       htmlFor="to"
-                      className="block mb-2 text-sm font-medium text-zinc-800/80"
+                      className="block mb-2 text-sm font-medium /80"
                     >
                       Hasta
                     </label>
                     <input
                       type="text"
                       id="to"
-                      className="bg-gray-50 border border-gray-300 text-zinc-800/80 text-sm rounded-lg block w-11/12 p-2"
+                      className="bg-gray-50 border border-gray-300 /80 text-sm rounded-lg block w-11/12 p-2"
                       placeholder="$"
                       required
                     />
@@ -661,7 +661,7 @@ const Filters = () => {
                 </div>
                 <button
                   type="submit"
-                  className="text-sm font-medium text-zinc-800 border rounded-lg w-full sm:w-auto px-4 py-2 text-center btnPrice"
+                  className="text-sm font-medium  border rounded-lg w-full sm:w-auto px-4 py-2 text-center btnPrice"
                 >
                   Filtrar
                 </button>

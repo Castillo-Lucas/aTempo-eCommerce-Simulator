@@ -2,29 +2,7 @@ import React, { useState } from "react";
 import "../../App.css";
 import Filters from "./Filters";
 
-const FilterSection = () => {
-  const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
-  const [acordionOne, setAcordionOne] = useState(false);
-  const [acordionTwo, setAcordionTwo] = useState(true);
-  const [acordionThree, setAcordionThree] = useState(false);
-  const [filtroMobile, setFiltroMobile] = useState(false);
-
-  const handleAcordion = (e, data) => {
-    e.preventDefault(e);
-
-    if (data === "OrdenarPor") {
-      setAcordionOrdenarPor(!acordionOrdenarPor);
-    } else if (data === "Categories") {
-      setAcordionOne(!acordionOne);
-    } else if (data === "Brand") {
-      setAcordionTwo(!acordionTwo);
-    } else if (data === "Price") {
-      setAcordionThree(!acordionThree);
-    } else if (data === "FiltroMobile") {
-      setFiltroMobile(!filtroMobile);
-    }
-  };
-
+const FilterSection = ({drawer, handleDrawer}) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
       {/*Mobile*/}
@@ -32,7 +10,7 @@ const FilterSection = () => {
         <button
           className="font-medium text-xl text-zinc-800 py-2"
           onClick={(e) => {
-            handleAcordion(e, "FiltroMobile");
+            handleDrawer(e);
           }}
         >
           Filtros
@@ -40,17 +18,16 @@ const FilterSection = () => {
 
         {/*Drawer Component */}
         <div
-          id="drawer-example"
-          className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-white w-80 
-            ${filtroMobile ? "left-80 drawerIn" : "left-0 moveOut"}`}
+          className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-zinc-50  w-80 
+            ${drawer ? "left-80 drawerIn" : "left-0 moveOut"}`}
         >
           <button
             type="button"
             data-drawer-hide="drawer-example"
             aria-controls="drawer-example"
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            className="text-gray-400 mr-4 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center"
             onClick={(e) => {
-              handleAcordion(e, "FiltroMobile");
+              handleDrawer(e);
             }}
           >
             <svg
@@ -69,7 +46,7 @@ const FilterSection = () => {
             <span className="sr-only">Close menu</span>
           </button>
 
-          <div>
+          <div className="">
             <Filters />
           </div>
         </div>
