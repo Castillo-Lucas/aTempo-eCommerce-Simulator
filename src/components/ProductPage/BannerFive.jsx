@@ -16,7 +16,7 @@ const BannerFive = () => {
       </div>
 
       {/*Tablet*/}
-      <div className="w-full hidden md:flex justify-center lg:hidden bannerFive mx-auto">
+      <div className="w-full hidden sm:flex justify-center lg:hidden bannerFive mx-auto">
         <div>
           <a href="">
             <img
