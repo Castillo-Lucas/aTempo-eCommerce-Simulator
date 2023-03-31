@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import CartWidget from "./CartWidget";
 
 
-const NavBar = () => {
+
+
+const NavBar = ({handleDrawerTwo}) => {
   const [burgerState, setBurgerState] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -29,7 +31,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className="bg-zinc-800">
+    <div className="bg-zinc-800 sticky top-0 z-30">
       <div className="container mx-auto bg-zinc-800 xl:px-44 py-2.5">
         {/*Top Nav*/}
         <div className="grid grid-cols-12 px-5 m-0 w-full">
@@ -110,7 +112,7 @@ const NavBar = () => {
               </svg>
 
               {/*Cart Icon*/}
-              <CartWidget />
+              <CartWidget handleDrawerTwo={handleDrawerTwo} />
             </div>
           </div>
           {/*Burger Menu */}

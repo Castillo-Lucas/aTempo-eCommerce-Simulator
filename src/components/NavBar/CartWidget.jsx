@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavBarStyles.css";
 
-const CartWidget = () => {
+const CartWidget = ({handleDrawerTwo}) => {
   return (
     <div>
       <div className="w-5 h-5 ml-6 -mt-2 p-0 rounded-3xl bg-red-600 absolute counterWidget flex justify-center content-center">
@@ -14,6 +14,9 @@ const CartWidget = () => {
         fill="#ffff"
         xmlns="http://www.w3.org/2000/svg"
         className="icon cartIcon hover:cursor-pointer"
+        onClick={(e) => {
+          handleDrawerTwo(e);
+        }}
       >
         <path
           fillRule="evenodd"
