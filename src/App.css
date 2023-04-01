@@ -293,6 +293,87 @@ input[type="checkbox"]:checked::before {
     background-color: #222224;
 }
 
+
+
+/*------------Drawer Rigth------------*/
+
+.DrawerRightIn{
+    animation: in 0.5s forwards;
+}
+
+@keyframes in {
+    from {
+        transform: translateX(200%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+}
+
+.fullCart{
+    height: 90% !important; 
+}
+
+.detailProduct{
+    height: 133px;
+}
+
+
+.btnCounter{
+    transition: all 150ms ease-in-out;
+}
+
+.btnCounter:hover {
+    background-color: var(--color-palette-4) !important;    
+}
+
+.btnCounter:active {
+    background-color: var(--color-palette-3) !important;
+}
+
+.btnCounterText {
+    transition: all 150ms ease-in-out;
+}
+
+.btnCounter:hover .btnCounterText {
+    color: var(--color-palette-5) !important;
+}
+
+.btnCounter:active .btnCounterText {    
+    color: var(--color-palette-4) !important;
+}
+
+.trashIcon{
+    fill: var(--color-palette-4);
+    transition: all 150ms ease-in-out;
+}
+
+.trashIcon:hover{
+    fill: rgb(237, 6, 6);
+    transform: scale(1.1, 1.1);
+}
+
+.trashIcon:active{
+    fill: var(--color-palette-4);
+}
+
+.btnFinCompr{
+    transition: all 150ms ease-in-out;
+}
+
+.btnFinCompr:hover {
+    background-color: var(--color-palette-4) !important;
+    color: var(--color-palette-5) !important;
+}
+
+.btnFinCompr:active {
+    background-color: var(--color-palette-3) !important;
+    color: var(--color-palette-4) !important;
+}
+
 /*------------Swippers------------*/
 .centeredCarousel {
     display: flex !important;

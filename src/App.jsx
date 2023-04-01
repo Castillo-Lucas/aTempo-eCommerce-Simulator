@@ -3,7 +3,7 @@ import "./App.css";
 import Layer from "./components/Layer";
 import LayerTwo from "./components/LayerTwo";
 import NavBar from "./components/NavBar/NavBar";
-import CartResume from "./components/NavBar/CartResume";
+import DrawerRight from "./components/NavBar/DrawerRight";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import Footer from "./components/Footer";
@@ -32,7 +32,7 @@ function App() {
       <NavBar handleDrawerTwo={handleDrawerTwo} />
       {/*<Home />*/}
             
-      <CartResume drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
+      <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
 
       <ItemListContainer drawer={drawer} handleDrawer={handleDrawer} />
       <Footer />

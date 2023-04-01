@@ -1,15 +1,2 @@
-.cartResumenIn{
-    animation: moveIn 0.5s forwards;
-}
 
-@keyframes moveIn {
-    from {
-        transform: translateX(200%);
-        opacity: 0;
-    }
 
-    to {
-        transform: translateX(-100%);
-        opacity: 1;
-    }
-}
