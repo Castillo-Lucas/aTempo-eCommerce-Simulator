@@ -16,7 +16,7 @@ const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu }) => {
         {/*Dropdown menu*/}
         <div
           id="dropdown"
-          className="z-10 w-60 border-r border-zinc-700"
+          className="z-10 w-60 border-r border-zinc-700 shadow"
         >
           <ul className="py-2">
             <li className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu">

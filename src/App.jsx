@@ -16,8 +16,6 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
 
-  console.log(layerTwo);
-
   const handleDrawer = (e) => {
     e.preventDefault(e);
 

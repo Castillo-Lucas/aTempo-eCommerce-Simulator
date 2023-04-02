@@ -5,7 +5,7 @@ import ProductDetail from "./ProductDetail";
 const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
   return (
     <div
-      className={`fixed -right-96 top-0 z-20 h-screen p-4  bg-zinc-50 md:pt-36 ${
+      className={`fixed -right-96 top-0 z-10 h-screen p-4  bg-zinc-50 md:pt-36 ${
         drawerTwo ? "fixed DrawerRightIn" : "hidden"
       }`}
     >

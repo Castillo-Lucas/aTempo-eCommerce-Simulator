@@ -29,12 +29,8 @@ const NavBar = ({ selectMegaMenu, handleDrawerTwo, handleSelectMegaMenu }) => {
     setBurgerState(!burgerState);
   };
 
-  const handleCategory = () => {
-    handleDrawerTwo;
-  };
-
   return (
-    <div className="bg-zinc-800 sticky top-0 z-30">
+    <div className="bg-zinc-800 sticky top-0 z-20">
       <div className="container mx-auto bg-zinc-800 xl:px-44 py-2.5">
         {/*Top NavBar*/}
         <TopNavBar
