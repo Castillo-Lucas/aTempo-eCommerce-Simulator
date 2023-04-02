@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Layer from "./components/Layer";
 import LayerTwo from "./components/LayerTwo";
+import LayerThree from "./components/LayerThree";
 import NavBar from "./components/NavBar/NavBar";
 import DrawerRight from "./components/NavBar/DrawerRight";
 import Home from "./components/HomePage/Home";
@@ -11,6 +12,11 @@ import Footer from "./components/Footer";
 function App() {
   const [drawer, setDrawer] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
+  const [layerTwo, setLayerTwo] = useState(false);
+  const [layerThree, setLayerThree] = useState(false);
+  const [selectMegaMenu, setSelectMegaMenu] = useState(false);
+
+  console.log(layerTwo);
 
   const handleDrawer = (e) => {
     e.preventDefault(e);
@@ -22,16 +28,33 @@ function App() {
     e.preventDefault(e);
 
     setDrawerTwo(!drawerTwo);
+    setLayerTwo(!layerTwo);
+  };
+
+  const handleSelectMegaMenu = (e) => {
+    e.preventDefault(e);
+
+    setSelectMegaMenu(!selectMegaMenu);
+    setLayerThree(!layerThree);
   };
 
   return (
     <div className="App p-0 m-0">
       <Layer drawer={drawer} handleDrawer={handleDrawer} />
-      <LayerTwo drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
+      <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
 
-      <NavBar handleDrawerTwo={handleDrawerTwo} />
+      <LayerThree
+        layerThree={layerThree}
+        handleSelectMegaMenu={handleSelectMegaMenu}
+      />
+
+      <NavBar
+        selectMegaMenu={selectMegaMenu}
+        handleDrawerTwo={handleDrawerTwo}
+        handleSelectMegaMenu={handleSelectMegaMenu}
+      />
       {/*<Home />*/}
-            
+
       <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
 
       <ItemListContainer drawer={drawer} handleDrawer={handleDrawer} />

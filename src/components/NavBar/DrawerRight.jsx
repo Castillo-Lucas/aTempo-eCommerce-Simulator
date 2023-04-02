@@ -5,7 +5,7 @@ import ProductDetail from "./ProductDetail";
 const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
   return (
     <div
-      className={`fixed -right-80 top-0 z-20 h-screen p-4 transition-transform -translate-x-full bg-zinc-50 w-80 pt-20 md:pt-36 ${
+      className={`fixed -right-96 top-0 z-20 h-screen p-4  bg-zinc-50 md:pt-36 ${
         drawerTwo ? "fixed DrawerRightIn" : "hidden"
       }`}
     >
@@ -64,7 +64,7 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
         {/*Purchase Detail*/}
         <div className="fullCart">
           {/*Product Detail*/}
-          <div className="w-full h-2/4 md:h-4/6 overflow-auto">
+          <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
             <ProductDetail />
             <ProductDetail />
             <ProductDetail />
@@ -74,7 +74,7 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
           </div>
 
           {/*Price Detail*/}
-          <div className="w-full md:h-1/6 mb-4 md:mb-0 pt-4">
+          <div className="w-full flex flex-col justify-end md:h-1/6 mb-4 md:mb-0 pb-2">
             <div className="w-full flex justify-between pl-2 pr-4">
               <p className="font-normal text-lg text-zinc-60">Subtotal</p>
               <p className="font-normal text-lg text-zinc-800">$1500</p>
@@ -86,7 +86,7 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
           </div>
 
           {/*Finalize Purchase*/}
-          <div className="w-full md:h-1/6">
+          <div className="w-full md:h-fit">
             <div className="w-full flex justify-between pl-2 pr-4">
               <button
                 type="button"

@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductDetail = () => {
   return (
-    <div className="w-full detailProduct grid grid-rows-3 grid-flow-col border-b border-t">
+    <div className="w-full detailProduct grid grid-rows-3 grid-flow-col border-b border-t pt1">
       {/*Image and Counter*/}
       <div className="row-span-3 w-20">
         <div className="h-20 flex justify-center py-2 ">
@@ -13,7 +13,7 @@ const ProductDetail = () => {
           />
         </div>
 
-        <div className="w-1 px-0.5 py-4 flex">
+        <div className="w-1 px-0.5 py-3 flex">
           <button
             type="button"
             className="px-1.5 bg-zinc-50 border border-zinc-200/70 rounded-l-md btnCounter"
