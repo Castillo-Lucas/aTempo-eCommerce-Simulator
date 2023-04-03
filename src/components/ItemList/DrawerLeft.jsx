@@ -1,7 +1,7 @@
 import React from "react";
 import Filters from "./Filters";
 
-const Drawer = ({ drawer, handleDrawer }) => {
+const DrawerLeft = ({ drawer, handleDrawer }) => {
   return (
     <div
       className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-zinc-50  w-80 
@@ -40,4 +40,4 @@ const Drawer = ({ drawer, handleDrawer }) => {
   );
 };
 
-export default Drawer;
+export default DrawerLeft;

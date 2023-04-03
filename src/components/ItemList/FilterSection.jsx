@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../App.css";
-import Drawer from "./Drawer";
+import DrawerLeft from "./DrawerLeft";
 import Filters from "./Filters";
 
 const FilterSection = ({ drawer, handleDrawer }) => {
@@ -19,7 +19,7 @@ const FilterSection = ({ drawer, handleDrawer }) => {
         </button>
 
         {/*Drawer Component */}
-        <Drawer drawer={drawer} handleDrawer={handleDrawer} />
+        <DrawerLeft drawer={drawer} handleDrawer={handleDrawer} />
       </div>
 
       {/*Desktop*/}
