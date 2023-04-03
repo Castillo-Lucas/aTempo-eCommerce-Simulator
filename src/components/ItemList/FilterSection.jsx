@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../../App.css";
-import DrawerLeft from "./DrawerLeft";
 import Filters from "./Filters";
 
-const FilterSection = ({ drawer, handleDrawer }) => {
+const FilterSection = ({ drawerOne, handleDrawerOne }) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
       
@@ -12,14 +11,11 @@ const FilterSection = ({ drawer, handleDrawer }) => {
         <button
           className="font-medium text-xl text-zinc-800 py-2"
           onClick={(e) => {
-            handleDrawer(e);
+            handleDrawerOne(e, 'Filter');
           }}
         >
           Filtros
         </button>
-
-        {/*Drawer Component */}
-        <DrawerLeft drawer={drawer} handleDrawer={handleDrawer} />
       </div>
 
       {/*Desktop*/}

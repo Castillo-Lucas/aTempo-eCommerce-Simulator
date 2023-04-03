@@ -232,7 +232,7 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
+                className="ml-1 text-base font-normal"
               >
                 Guitarras
               </label>

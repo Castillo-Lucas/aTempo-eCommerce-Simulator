@@ -1,11 +1,13 @@
 import React from "react";
 import Filters from "./Filters";
+import DownNavBar from "../NavBar/DownNavBar";
 
-const DrawerLeft = ({ drawer, handleDrawer }) => {
+const DrawerLeft = ({ drawerOne, drawerOneContent, handleDrawerOne }) => {
   return (
     <div
       className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-zinc-50  w-80 
-            ${drawer ? "left-80 drawerIn" : "left-0 moveOut"}`}
+      ${drawerOneContent === "Filter" ? "bg-zinc-50" : drawerOneContent === "Categories" ? "bg-zinc-800" : ""}
+            ${drawerOne ? "left-80 drawerIn" : "left-0 moveOut"}`}
     >
       <button
         type="button"
@@ -14,7 +16,7 @@ const DrawerLeft = ({ drawer, handleDrawer }) => {
         className="text-gray-400 ml-64 btnCloseDrawer bg-transparent hover:bg-gray-200
              hover:text-gray-900 rounded-lg text-sm p-1.5  inline-flex items-center"
         onClick={(e) => {
-          handleDrawer(e);
+          handleDrawerOne(e);
         }}
       >
         <svg
@@ -34,7 +36,11 @@ const DrawerLeft = ({ drawer, handleDrawer }) => {
       </button>
 
       <div className="h-screen overflow-auto">
-        <Filters />
+        {drawerOneContent === "Filter" ? (
+          <Filters />
+        ) : drawerOneContent === "Categories" ? (
+          <DownNavBar />
+        ) : null}
       </div>
     </div>
   );

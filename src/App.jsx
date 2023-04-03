@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import "./App.css";
-import Layer from "./components/Layer";
+import LayerOne from "./components/LayerOne";
 import LayerTwo from "./components/LayerTwo";
 import LayerThree from "./components/LayerThree";
 import NavBar from "./components/NavBar/NavBar";
 import DrawerRight from "./components/NavBar/DrawerRight";
+import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
+
 import Footer from "./components/Footer";
 
 function App() {
-  const [drawer, setDrawer] = useState(false);
+  const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
+  const [drawerOneContent, setDrawerOneContent] = useState("Filter");
   const [layerTwo, setLayerTwo] = useState(false);
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
 
-  const handleDrawer = (e) => {
+  const handleDrawerOne = (e, Data) => {
     e.preventDefault(e);
 
-    setDrawer(!drawer);
+    setDrawerOne(!drawerOne);
+    setDrawerOneContent(Data);
   };
 
   const handleDrawerTwo = (e) => {
@@ -38,24 +42,32 @@ function App() {
 
   return (
     <div className="App p-0 m-0">
-      <Layer drawer={drawer} handleDrawer={handleDrawer} />
+      <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
       <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
-
       <LayerThree
         layerThree={layerThree}
         handleSelectMegaMenu={handleSelectMegaMenu}
       />
+      <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
+      <DrawerLeft
+        drawerOne={drawerOne}
+        drawerOneContent={drawerOneContent}
+        handleDrawerOne={handleDrawerOne}
+      />
 
       <NavBar
         selectMegaMenu={selectMegaMenu}
+        handleDrawerOne={handleDrawerOne}
         handleDrawerTwo={handleDrawerTwo}
         handleSelectMegaMenu={handleSelectMegaMenu}
       />
       {/*<Home />*/}
 
-      <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
-
-      <ItemListContainer drawer={drawer} handleDrawer={handleDrawer} />
+      <ItemListContainer
+        drawerOne={drawerOne}
+        drawerOneContent={drawerOneContent}
+        handleDrawerOne={handleDrawerOne}
+      />
       <Footer />
     </div>
   );
