@@ -11,7 +11,10 @@ const ItemListContainer = ({ drawerOne, handleDrawerOne }) => {
       <BannerFive />
 
       <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-8 mb-3">
-        <FilterSection drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
+        <FilterSection
+          drawerOne={drawerOne}
+          handleDrawerOne={handleDrawerOne}
+        />
 
         <div className="col-span-12 lg:col-span-10">
           <div className="grid grid-cols-12 gap-4 md:gap-6 px-4">
