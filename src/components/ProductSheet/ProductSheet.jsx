@@ -68,7 +68,7 @@ const ProductSheet = () => {
 
         <div className="grid grid-cols-12 grid-rows-12 grid-flow-row md:grid-flow-col lg:grid-flow-row gap-4">
           {/*Main Slider*/}
-          <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border boximg">
+          <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border">
           <MainSlider />
           </div>
 
