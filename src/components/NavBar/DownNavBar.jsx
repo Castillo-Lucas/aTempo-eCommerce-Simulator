@@ -4,7 +4,6 @@ import SearchForm from "./SearchForm";
 const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
   return (
     <div className={windowWidth <= 767 ? "hidden" : "px-5 z-40 py-2"}>
-
       {/* Logo and Search Form*/}
       <div className="md:hidden">
         <div className="mb-4">

@@ -27,7 +27,7 @@ const Filters = () => {
 
 
   return (
-    <div className="">
+    <div>
       <h1 className="font-medium text-lg  p-4 border-b">
         Filtros
       </h1>
@@ -577,7 +577,7 @@ const Filters = () => {
         </div>
 
         {/*Price*/}
-        <div className="mb-2">
+        <div className="mb-2 pb-14">
           {/*Tittle*/}
           <h2 id="accordion-collapse-heading-1">
             <button

@@ -8,8 +8,11 @@ import DrawerRight from "./components/NavBar/DrawerRight";
 import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
+import ProductSheet from "./components/ProductSheet/ProductSheet";
+
 
 import Footer from "./components/Footer";
+
 
 function App() {
   const [drawerOne, setDrawerOne] = useState(false);
@@ -63,11 +66,13 @@ function App() {
       />
       {/*<Home />*/}
 
-      <ItemListContainer
+      {/*<ItemListContainer
         drawerOne={drawerOne}
         drawerOneContent={drawerOneContent}
         handleDrawerOne={handleDrawerOne}
-      />
+      />*/}
+
+      <ProductSheet />
       <Footer />
     </div>
   );
