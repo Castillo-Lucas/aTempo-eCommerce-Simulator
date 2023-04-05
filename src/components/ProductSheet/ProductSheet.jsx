@@ -2,6 +2,7 @@ import React from "react";
 import "../../App.css";
 import BannerFive from "../ItemList/BannerFive";
 import MainSlider from "./MainSlider";
+import SecondarySlider from "./SecondarySlider";
 
 const ProductSheet = () => {
   return (
@@ -68,14 +69,11 @@ const ProductSheet = () => {
 
         <div className="grid grid-cols-12 grid-rows-12 grid-flow-row md:grid-flow-col lg:grid-flow-row gap-4">
           {/*Main Slider*/}
-          <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border">
           <MainSlider />
-          </div>
-
+          
           {/*Secondary Slider*/}
-          <div className="col-span-12 md:row-span-2 md:col-span-6 lg:row-span-1 lg:col-span-2 lg:order-first bg-blue-400 ">
-            <p className="text-center">slider secundario </p>
-          </div>
+          <SecondarySlider />
+
 
           {/*Product Price*/}
           <div className="col-span-12 md:row-span-6 md:col-span-6 lg:row-span-1 lg:col-span-5 bg-red-400">

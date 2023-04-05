@@ -458,10 +458,11 @@ input[type="checkbox"]:checked::before {
     background-color: rgba(87, 85, 85, 0.951) !important;
 }
 
-/*--------------------------------------------------------------------------*/
+.secondaySlider{
+    height: 532px !important;
+}
 
-
-
+/*---------------------- Media Querys----------------------------------------------------*/
 
 
 @media(max-width: 639px) {

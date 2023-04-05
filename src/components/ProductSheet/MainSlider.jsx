@@ -17,7 +17,7 @@ const MainSlider = () => {
   return (
     <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border boximg">
       {/*Desktop*/}
-      <div className="">
+      <div className="px-8">
         <Swiper
           spaceBetween={30}
           effect={"fade"}
@@ -33,10 +33,9 @@ const MainSlider = () => {
             disableOnInteraction: false,
           }}
           modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
-          className="mySwiper pb-8"
+          className="mySwiper pb-8 "
         >
           <SwiperSlide>
-            {" "}
             <div className="bg-zinc-50">
               <a href="">
                 <img
@@ -48,8 +47,7 @@ const MainSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            {" "}
-            <div className="bg-zinc-50">
+            <div className=" bg-zinc-50">
               <a href="">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS2_lboifk.png"
@@ -60,7 +58,6 @@ const MainSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            {" "}
             <div className="bg-zinc-50">
               <a href="">
                 <img
@@ -72,7 +69,6 @@ const MainSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            {" "}
             <div className="bg-zinc-50">
               <a href="">
                 <img
@@ -84,7 +80,6 @@ const MainSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            {" "}
             <div className="bg-zinc-50">
               <a href="">
                 <img
@@ -96,7 +91,6 @@ const MainSlider = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            {" "}
             <div className="bg-zinc-50">
               <a href="">
                 <img
@@ -107,8 +101,6 @@ const MainSlider = () => {
             </div>
           </SwiperSlide>
         </Swiper>
-
-        
       </div>
     </div>
   );
