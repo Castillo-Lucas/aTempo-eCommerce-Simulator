@@ -123,7 +123,7 @@ body {
 }
 
 /*------------Mega Menu------------*/
-.megaMenu{
+.megaMenu {
     height: 460px;
     width: 480px;
     animation: megaMenuIn 0.5s forwards;
@@ -147,7 +147,7 @@ body {
 }
 
 
-.listMegaMenu:hover  .aMegaMenu{
+.listMegaMenu:hover .aMegaMenu {
     overflow: hidden;
     color: var(--color-palette-3);
 }
@@ -321,7 +321,7 @@ input[type="checkbox"]:checked::before {
 
 
 
-.bannerFive{
+.bannerFive {
     background-color: #222224;
 }
 
@@ -329,7 +329,7 @@ input[type="checkbox"]:checked::before {
 
 /*------------Drawer Rigth------------*/
 
-.DrawerRightIn{
+.DrawerRightIn {
     width: 400px !important;
     animation: in 0.5s forwards;
     right: -400px !important;
@@ -347,21 +347,21 @@ input[type="checkbox"]:checked::before {
     }
 }
 
-.fullCart{
-    height: 90% !important; 
+.fullCart {
+    height: 90% !important;
 }
 
-.detailProduct{
+.detailProduct {
     height: 133px;
 }
 
 
-.btnCounter{
+.btnCounter {
     transition: all 150ms ease-in-out;
 }
 
 .btnCounter:hover {
-    background-color: var(--color-palette-4) !important;    
+    background-color: var(--color-palette-4) !important;
 }
 
 .btnCounter:active {
@@ -376,25 +376,25 @@ input[type="checkbox"]:checked::before {
     color: var(--color-palette-5) !important;
 }
 
-.btnCounter:active .btnCounterText {    
+.btnCounter:active .btnCounterText {
     color: var(--color-palette-4) !important;
 }
 
-.trashIcon{
+.trashIcon {
     fill: var(--color-palette-4);
     transition: all 150ms ease-in-out;
 }
 
-.trashIcon:hover{
+.trashIcon:hover {
     fill: rgb(237, 6, 6);
     transform: scale(1.1, 1.1);
 }
 
-.trashIcon:active{
+.trashIcon:active {
     fill: var(--color-palette-4);
 }
 
-.btnFinCompr{
+.btnFinCompr {
     transition: all 150ms ease-in-out;
 }
 
@@ -406,6 +406,15 @@ input[type="checkbox"]:checked::before {
 .btnFinCompr:active {
     background-color: var(--color-palette-3) !important;
     color: var(--color-palette-4) !important;
+}
+
+/*------------Product Sheet------------*/
+.mainSlider {
+    height: 524px !important;
+}
+
+.secondaySlider {
+    height: 524px !important;
 }
 
 /*------------Swippers------------*/
@@ -458,19 +467,32 @@ input[type="checkbox"]:checked::before {
     background-color: rgba(87, 85, 85, 0.951) !important;
 }
 
-.secondaySlider{
-    height: 532px !important;
-}
+
 
 /*---------------------- Media Querys----------------------------------------------------*/
+@media(max-width: 1023px) {
+    .mainSlider {
+        height: 415px !important;
+    }
+
+    .secondaySlider {
+        height: 110px !important;
+    }
+}
 
 
 @media(max-width: 639px) {
-    .DrawerRightIn{
+
+    .mainSlider {
+        height: 380px !important;
+    }
+
+    .DrawerRightIn {
         padding-top: 110px !important;
     }
 
 }
+
 @media(max-width: 390px) {
     .logo {
         height: 55px;
@@ -485,21 +507,27 @@ input[type="checkbox"]:checked::before {
         height: 28px;
     }
 
-    .DrawerRightIn{
+    .DrawerRightIn {
         width: 385px !important;
         right: -397px !important;
         padding-top: 90px !important;
+    }
+
+    .mainSlider {
+        height: 350px !important;
     }
 
 }
 
 @media(max-width: 350px) {
 
-    .DrawerRightIn{
+    .DrawerRightIn {
         width: 340px !important;
         right: -350px !important;
         padding-top: 90px !important;
     }
+    .mainSlider {
+        height: 310px !important;
+    }
 
 }
-

@@ -38,7 +38,7 @@ const Card = () => {
           <div className="flex justify-center">
             <button
               type="button"
-              className="buttonCard py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border border-gray-200"
+              className="buttonCard py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
             >
               Ver producto
             </button>

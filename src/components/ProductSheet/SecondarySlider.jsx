@@ -35,10 +35,10 @@ const SecondarySlider = () => {
           enabled: true,
         }}
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
-        className="mySwiper secondaySlider"
+        className="mySwiper lg:pt-2 secondaySlider"
       >
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className="bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className="bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS1_fahhlc.png"
@@ -48,8 +48,8 @@ const SecondarySlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className=" bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className=" bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS2_lboifk.png"
@@ -59,8 +59,8 @@ const SecondarySlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className="bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className="bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS3_rcjjyd.png"
@@ -70,8 +70,8 @@ const SecondarySlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className="bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className="bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS4_bik5xf.png"
@@ -81,8 +81,8 @@ const SecondarySlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className="bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className="bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS5_duhu6f.png"
@@ -92,8 +92,8 @@ const SecondarySlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide className="w-28 lg:-my-2 2xl:-my-1">
-          <div className="bg-zinc-50 border">
+        <SwiperSlide className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1">
+          <div className="bg-zinc-50 border border-zinc-300/80">
             <a href="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS6_ugnlsz.png"

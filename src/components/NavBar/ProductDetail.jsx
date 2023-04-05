@@ -1,4 +1,5 @@
 import React from "react";
+import ItemCount from "./ItemCount";
 
 const ProductDetail = () => {
   return (
@@ -13,30 +14,7 @@ const ProductDetail = () => {
           />
         </div>
 
-        <div className="w-1 px-0.5 py-3 flex">
-          <button
-            type="button"
-            className="px-1.5 bg-zinc-50 border border-zinc-200/70 rounded-l-md btnCounter"
-          >
-            <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
-              +
-            </p>
-          </button>
-          <button
-            type="button"
-            className="px-2 bg-zinc-50 border border-zinc-200/70"
-          >
-            <p className=" text-xs text-zinc-600 text-center">1</p>
-          </button>
-          <button
-            type="button"
-            className="px-2 bg-zinc-50 border border-zinc-200/70 rounded-r-md btnCounter"
-          >
-            <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
-              -
-            </p>
-          </button>
-        </div>
+        <ItemCount />
       </div>
 
       {/*Product Name and Detail*/}

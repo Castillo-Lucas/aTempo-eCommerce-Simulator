@@ -15,9 +15,9 @@ import { EffectFade, Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const MainSlider = () => {
   return (
-    <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border boximg">
+    <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80">
       {/*Desktop*/}
-      <div className="px-8">
+      <div >
         <Swiper
           spaceBetween={30}
           effect={"fade"}
@@ -33,7 +33,7 @@ const MainSlider = () => {
             disableOnInteraction: false,
           }}
           modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
-          className="mySwiper pb-8 "
+          className="mySwiper -pb-20 mainSlider"
         >
           <SwiperSlide>
             <div className="bg-zinc-50">
