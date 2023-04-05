@@ -73,7 +73,7 @@ const ProductSheet = () => {
           </div>
 
           {/*Secondary Slider*/}
-          <div className="col-span-12 md:row-span-2 md:col-span-6 lg:row-span-1 lg:col-span-2 lg:order-first bg-blue-400">
+          <div className="col-span-12 md:row-span-2 md:col-span-6 lg:row-span-1 lg:col-span-2 lg:order-first bg-blue-400 ">
             <p className="text-center">slider secundario </p>
           </div>
 
