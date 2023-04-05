@@ -9,7 +9,7 @@ const ProductSheet = () => {
       <BannerFive />
 
       <div className="lg:container mx-auto px-4 2xl:px-20 mt-4 lg:mt-6 mb-2">
-        {/*Breadcrumb*/}
+        {/*Breadcrumb */}
         <nav className="flex" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3 mb-2 pl-1">
             <li className="inline-flex items-center">
