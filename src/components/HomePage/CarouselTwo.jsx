@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
-const CarouselOne = () => {
+const CarouselTwo = () => {
   return (
     <div className="lg:container lg:px-48 mx-auto py-4">
       <Swiper
@@ -76,11 +76,9 @@ const CarouselOne = () => {
             <Card />
           </div>
         </SwiperSlide>
-
-
       </Swiper>
     </div>
   );
 };
 
-export default CarouselOne;
+export default CarouselTwo;

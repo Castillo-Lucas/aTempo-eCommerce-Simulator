@@ -185,7 +185,6 @@ body {
 
 .cardCarousel {
     width: 250px !important;
-    height: 448px !important;
     transition: all 150ms ease-in-out;
 }
 
@@ -430,7 +429,8 @@ input[type="checkbox"]:checked::before {
 }
 
 .swiper-pagination-bullet {
-    background-color: var(--color-palette-2) !important;
+    background-color: rgba(87, 85, 85, 0.951) !important;
+    border: 1px solid white;
     width: 10px !important;
     height: 10px !important;
 }

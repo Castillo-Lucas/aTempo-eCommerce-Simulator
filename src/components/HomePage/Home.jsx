@@ -4,6 +4,7 @@ import BannerOne from "./BannerOne";
 import BannerThree from "./BannerThree";
 import BannerTwo from "./BannerTwo";
 import CarouselOne from "./CarouselOne";
+import CarouselTwo from "./CarouselTwo";
 import Categories from "./Categories";
 import HeroImage from "./HeroImage";
 
@@ -25,7 +26,7 @@ const Home = () => {
 
       <BannerTwo />
 
-      <CarouselOne />
+      <CarouselTwo />
 
       <BannerFour />
 

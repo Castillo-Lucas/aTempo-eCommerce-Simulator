@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductDescription = () => {
   return (
-    <div className="w-full h-fit -mt-2 lg:mt-2 py-8 px-2 lg:px-10 xl:pl-12">
+    <div className="h-fit -mt-2 lg:mt-2 pt-8 pb-4 px-2 lg:px-10 xl:pl-12 md:border-b md:mb-4 border-zinc-300">
       <h2 className="w-fit text-xl font-medium border-b border-b-zinc-400 mb-3">
         Descripción
       </h2>

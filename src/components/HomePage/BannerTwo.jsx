@@ -16,7 +16,7 @@ const BannerTwo = () => {
       </div>
 
       {/*Desktop*/}
-      <div className="w-full hidden md:flex justify-center bg-zinc-800 mx-auto  mb-8">
+      <div className="w-full hidden md:flex justify-center bg-zinc-800 mx-auto">
         <div>
           <a href="">
             <img

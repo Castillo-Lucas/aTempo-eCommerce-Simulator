@@ -20,7 +20,6 @@ const MainSlider = () => {
       <div >
         <Swiper
           spaceBetween={30}
-          effect={"fade"}
           loop={true}
           pagination={{
             clickable: true,

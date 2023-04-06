@@ -10,9 +10,7 @@ import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ProductSheet from "./components/ProductSheet/ProductSheet";
 
-
 import Footer from "./components/Footer";
-
 
 function App() {
   const [drawerOne, setDrawerOne] = useState(false);
@@ -70,7 +68,7 @@ function App() {
         drawerOne={drawerOne}
         drawerOneContent={drawerOneContent}
         handleDrawerOne={handleDrawerOne}
-      />*/}
+       />*/}
 
       <ProductSheet />
       <Footer />

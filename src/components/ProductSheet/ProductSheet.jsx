@@ -5,7 +5,9 @@ import MainSlider from "./MainSlider";
 import SecondarySlider from "./SecondarySlider";
 import ProductInfo from "./ProductInfo";
 import ProductDescription from "./ProductDescription";
-
+import CarouselOne from "../HomePage/CarouselOne";
+import CarouselTwo from "../HomePage/CarouselTwo";
+import BannerTwo from "../HomePage/BannerTwo";
 
 const ProductSheet = () => {
   return (
@@ -73,21 +75,30 @@ const ProductSheet = () => {
         <div className="grid grid-cols-12 grid-rows-12 grid-flow-row md:grid-flow-col lg:grid-flow-row gap-4 ">
           {/*Main Slider*/}
           <MainSlider />
-          
+
           {/*Secondary Slider*/}
           <SecondarySlider />
 
-
           {/*Product Info*/}
           <ProductInfo />
-
         </div>
 
         {/*Product Description*/}
         <ProductDescription />
+      </div>
 
+      <div className="h-fit w-full">
+        
+        <div className="md:container mx-auto mt-4 py-2 md:py-0 bg-zinc-800 md:bg-transparent">
+          <p className="text-center font-bold text-lg md:text-2xl lg:text-4xl text-zinc-200 md:text-zinc-800">
+            RECOMENDADOS
+          </p>
+        </div>
+        <CarouselOne />
 
+        <BannerTwo />
 
+        <CarouselTwo />
       </div>
     </div>
   );
