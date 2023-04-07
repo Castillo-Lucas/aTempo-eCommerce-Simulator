@@ -94,11 +94,11 @@ const ProductSheet = () => {
             RECOMENDADOS
           </p>
         </div>
-        <CarouselOne />
+        {/*<CarouselOne />*/}
 
         <BannerTwo />
 
-        <CarouselTwo />
+        {/*<CarouselTwo />*/}
       </div>
     </div>
   );

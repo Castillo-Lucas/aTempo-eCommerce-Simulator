@@ -9,6 +9,8 @@ import Categories from "./Categories";
 import HeroImage from "./HeroImage";
 
 const Home = () => {
+
+
   return (
     <div className="h-fit w-full">
       <HeroImage />
@@ -22,11 +24,11 @@ const Home = () => {
         </p>
       </div>
 
-      <CarouselOne />
+      {/*{<CarouselOne/>}*/}
 
       <BannerTwo />
 
-      <CarouselTwo />
+      {/*<CarouselTwo />*/}
 
       <BannerFour />
 

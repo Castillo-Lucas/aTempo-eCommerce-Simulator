@@ -14,6 +14,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const CarouselOne = () => {
+
+
   return (
     <div className="lg:container lg:px-48 mx-auto py-4">
       <Swiper
@@ -47,6 +49,7 @@ const CarouselOne = () => {
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
         className="mySwiper w-full py-5"
       >
+        
         <SwiperSlide className="centeredCarousel">
           <div className="cardCarousel">
             <Card />
