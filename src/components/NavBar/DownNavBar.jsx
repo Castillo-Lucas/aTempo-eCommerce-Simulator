@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
 
 const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
@@ -56,23 +57,34 @@ const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
         </li>
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
-          <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
-            OFERTAS
-          </a>
+          <Link
+            to="/itemList"
+            className="bottomNavList aMegaMenu text-sm md:text-base"
+          >
+            CATÁLOGO
+          </Link>
         </li>
+
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
-          <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
+          <Link
+            to="/itemList"
+            className="bottomNavList aMegaMenu text-sm md:text-base"
+          >
+            OFERTAS
+          </Link>
+        </li>
+
+        <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
+          <Link
+            to="/itemList"
+            className="bottomNavList aMegaMenu text-sm md:text-base"
+          >
             NUEVOS INGRESOS
-          </a>
+          </Link>
         </li>
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
             SUCURSALES
-          </a>
-        </li>
-        <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
-          <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
-            NOSOTROS
           </a>
         </li>
       </ul>

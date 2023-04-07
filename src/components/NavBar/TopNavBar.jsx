@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import SearchForm from "./SearchForm";
+
 
 const TopNavBar = ({
   handleDrawerOne, 
@@ -12,7 +14,7 @@ const TopNavBar = ({
     <div className="grid grid-cols-12 px-5 m-0 w-full">
       {/*Logo*/}
       <div className="my-auto col-span-8 md:col-span-4 lg:col-span-3">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679173118/aTempo/logo_o2vgxx.png"
             className="mr-3 logo"
@@ -21,7 +23,7 @@ const TopNavBar = ({
           <span className="logName self-center pb-3  text-5xl  whitespace-nowrap text-white">
             aTempo
           </span>
-        </a>
+        </Link>
       </div>
 
       {/*Search Form*/}

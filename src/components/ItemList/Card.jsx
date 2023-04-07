@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   return (
     <div className="col-span-6 md:col-span-3 relative">
-
       <div className="absolute border px-3 py-1 mt-4 bg-zinc-700 rounded-r-xl">
         <p className="text-sm font-medium text-zinc-100">NUEVO</p>
       </div>
@@ -36,12 +36,12 @@ const Card = () => {
           </p>
 
           <div className="flex justify-center">
-            <button
-              type="button"
-              className="buttonCard py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
+            <Link
+              to="/product-sheet/:productId"
+              className="buttonCard text-center py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
             >
               Ver producto
-            </button>
+            </Link>
           </div>
         </div>
       </div>

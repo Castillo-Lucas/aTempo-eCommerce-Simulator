@@ -324,10 +324,7 @@ input[type="checkbox"]:checked::before {
     background-color: #222224;
 }
 
-
-
 /*------------Drawer Rigth------------*/
-
 .DrawerRightIn {
     width: 400px !important;
     animation: in 0.5s forwards;
@@ -416,6 +413,12 @@ input[type="checkbox"]:checked::before {
     height: 524px !important;
 }
 
+
+/*------------Not Found---------------*/
+.notFound{
+    width: 500px !important;
+}
+
 /*------------Swippers------------*/
 .centeredCarousel {
     display: flex !important;
@@ -478,6 +481,10 @@ input[type="checkbox"]:checked::before {
     .secondaySlider {
         height: 110px !important;
     }
+
+    .notFound{
+        width: 650px !important;
+    }
 }
 
 
@@ -489,6 +496,10 @@ input[type="checkbox"]:checked::before {
 
     .DrawerRightIn {
         padding-top: 110px !important;
+    }
+
+    .notFound{
+        width: 350px !important;
     }
 
 }
@@ -514,9 +525,20 @@ input[type="checkbox"]:checked::before {
     }
 
     .mainSlider {
-        height: 350px !important;
+        height: 370px !important;
     }
 
+    .notFound{
+        width: 300px !important;
+    }
+}
+
+
+@media(max-width: 370px) {
+
+    .mainSlider {
+        height: 340px !important;
+    }
 }
 
 @media(max-width: 350px) {

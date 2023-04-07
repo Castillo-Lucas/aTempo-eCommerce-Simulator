@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../App.css";
 
 // Import Swiper React components
@@ -39,52 +40,52 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/1_qwystt.png"
                   alt=""
                   className="w-full"
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/2_hmfgsr.png"
                   alt=""
                   className="w-full"
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/3_fkpldp.png"
                   alt=""
                   className="w-full"
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide className="prueba">
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/4_bzwqj3.png"
                   alt=""
                   className="w-full"
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
         </Swiper>
@@ -114,48 +115,48 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner1_onzrbw.png"
                   alt=""
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner2_nazbs1.png"
                   alt=""
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner3_rqnynv.png"
                   alt=""
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
 
           <SwiperSlide>
             {" "}
             <div>
-              <a href="">
+              <Link to="/itemList">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610381/aTempo/Assets/homepage/Desktop/banner4_h6ucfj.png"
                   alt=""
                 />
-              </a>
+              </Link>
             </div>
           </SwiperSlide>
         </Swiper>
