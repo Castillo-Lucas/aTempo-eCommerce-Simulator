@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BannerFour from "./BannerFour";
 import BannerOne from "./BannerOne";
 import BannerThree from "./BannerThree";
@@ -8,9 +8,7 @@ import CarouselTwo from "./CarouselTwo";
 import Categories from "./Categories";
 import HeroImage from "./HeroImage";
 
-const Home = () => {
-
-
+const Home = ({ bestSellers, newProducts }) => {
   return (
     <div className="h-fit w-full">
       <HeroImage />
@@ -24,11 +22,11 @@ const Home = () => {
         </p>
       </div>
 
-      {/*{<CarouselOne/>}*/}
+      <CarouselOne bestSellers={bestSellers} />
 
       <BannerTwo />
 
-      {/*<CarouselTwo />*/}
+      <CarouselTwo newProducts={newProducts} />
 
       <BannerFour />
 

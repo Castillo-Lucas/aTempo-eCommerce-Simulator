@@ -15,9 +15,9 @@ import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ProductSheet from "./components/ProductSheet/ProductSheet";
-
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
+import Nosotros from "./components/Nosotros";
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -31,12 +31,36 @@ function ScrollToTop({ children }) {
 }
 
 function App() {
+  const [productList, setProductList] = useState([]);
+  const [bestSellers, setBestSellers] = useState([]);
+  const [newProducts, setNewProducts] = useState([]);
   const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
   const [drawerOneContent, setDrawerOneContent] = useState("Filter");
   const [layerTwo, setLayerTwo] = useState(false);
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
+
+  /*Get Items*/
+  useEffect(() => {
+    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1680903467/aTempo/Assets/productList_p1hhov.json`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setProductList(data));
+  }, []);
+
+  /*Separate items for carousels*/
+  useEffect(() => {
+    const bestSeller = productList.filter(
+      (producto) => producto.bestSeller.length > 1
+    );
+    const newProduct = productList.filter(
+      (producto) => producto.newEntry.length > 1
+    );
+
+    setBestSellers(bestSeller);
+    setNewProducts(newProduct);
+  }, [productList]);
 
   /*Function to opern Drawer Left*/
   const handleDrawerOne = (e, Data) => {
@@ -86,7 +110,12 @@ function App() {
         />
         <ScrollToTop>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home bestSellers={bestSellers} newProducts={newProducts} />
+              }
+            />
             <Route
               path="/itemList"
               element={
@@ -94,14 +123,22 @@ function App() {
                   drawerOne={drawerOne}
                   drawerOneContent={drawerOneContent}
                   handleDrawerOne={handleDrawerOne}
+                  productList={productList}
                 />
               }
             />
             <Route
               path="/product-sheet/:productId"
-              element={<ProductSheet />}
+              element={
+                <ProductSheet
+                  productList={productList}
+                  bestSellers={bestSellers}
+                  newProducts={newProducts}
+                />
+              }
             />
             <Route path="*" element={<NotFound />} />
+            <Route path="/nosotros" element={<Nosotros />} />
           </Routes>
         </ScrollToTop>
 

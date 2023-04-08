@@ -2,16 +2,13 @@ import React from "react";
 
 const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu }) => {
   return (
-
-
-
     /*Insertar luego despues del primer operador ternario: onMouseLeave={handleSelectMegaMenu}*/
     <div>
       <div
-        className={`flex fixed bg-zinc-800 ml-4 megaMenu ${
+        className={`flex fixed bg-zinc-800 ml-4 h-fit megaMenu ${
           selectMegaMenu ? "flex fixed" : "hidden"
-        }`}  
-        onMouseLeave={handleSelectMegaMenu}      
+        }`}
+        onMouseLeave={handleSelectMegaMenu}
       >
         {/*Dropdown menu*/}
         <div
@@ -32,9 +29,7 @@ const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu }) => {
               <a className="aMegaMenu pl-4">Pianos</a>
             </li>
             <li className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu">
-              <a className="aMegaMenu pl-4">
-                Amplificadores
-              </a>
+              <a className="aMegaMenu pl-4">Amplificadores</a>
             </li>
             <li className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu">
               <a className="aMegaMenu pl-4">Efectos</a>

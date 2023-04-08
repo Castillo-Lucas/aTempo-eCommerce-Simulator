@@ -13,9 +13,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
-const CarouselOne = () => {
-
-
+const CarouselOne = ({ bestSellers }) => {
   return (
     <div className="lg:container lg:px-48 mx-auto py-4">
       <Swiper
@@ -49,38 +47,13 @@ const CarouselOne = () => {
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
         className="mySwiper w-full py-5"
       >
-        
-        <SwiperSlide className="centeredCarousel">
-          <div className="cardCarousel">
-            <Card />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="centeredCarousel">
-          <div className="cardCarousel">
-            <Card />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="centeredCarousel">
-          <div className="cardCarousel">
-            <Card />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="centeredCarousel">
-          <div className="cardCarousel">
-            <Card />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="centeredCarousel">
-          <div className="cardCarousel">
-            <Card />
-          </div>
-        </SwiperSlide>
-
-
+        {bestSellers.map((products) => (
+          <SwiperSlide key={products.id} className="centeredCarousel">
+            <div className="cardCarousel">
+              <Card key={products.id} products={products} />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

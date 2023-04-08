@@ -8,31 +8,10 @@ import Pagination from "./Pagination";
 const ItemListContainer = ({
   drawerOne,
   handleDrawerOne,
+  productList
 }) => {
 
-  const [productList, setProductList] = useState([]);
-  const [newProducts, setNewProducts] = useState([]);
-  const [bestSellers, setBestSellers] = useState([]);
-
-  console.log(newProducts);
-
-  useEffect(() => {
-    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1680903467/aTempo/Assets/productList_p1hhov.json`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setProductList(data));
-  }, []);
-
-  useEffect(() => {
-    const newProduct = productList.filter(
-      (producto) => producto.bestSeller.length > 1
-    );
-    const bestSeller = productList.filter(
-      (producto) => producto.bestSeller.length > 1
-    );
-    setNewProducts(newProduct);
-    setBestSellers(bestSeller);
-  }, [productList]);
+  console.log(productList);
 
   return (
     <div>

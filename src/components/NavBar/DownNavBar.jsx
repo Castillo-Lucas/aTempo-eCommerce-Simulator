@@ -83,9 +83,9 @@ const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
           </Link>
         </li>
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
-          <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
-            SUCURSALES
-          </a>
+          <Link to="/nosotros" className="bottomNavList aMegaMenu text-sm md:text-base">
+            NOSOTROS
+          </Link>
         </li>
       </ul>
     </div>

@@ -9,7 +9,8 @@ import CarouselOne from "../HomePage/CarouselOne";
 import CarouselTwo from "../HomePage/CarouselTwo";
 import BannerTwo from "../HomePage/BannerTwo";
 
-const ProductSheet = () => {
+const ProductSheet = ({ productList, bestSellers, newProducts }) => {
+  console.log(productList);
   return (
     <div>
       <BannerSix />
@@ -88,17 +89,16 @@ const ProductSheet = () => {
       </div>
 
       <div className="h-fit w-full">
-        
         <div className="md:container mx-auto mt-4 py-2 md:py-0 bg-zinc-800 md:bg-transparent">
           <p className="text-center font-bold text-lg md:text-2xl lg:text-4xl text-zinc-200 md:text-zinc-800">
             RECOMENDADOS
           </p>
         </div>
-        {/*<CarouselOne />*/}
+        <CarouselOne bestSellers={bestSellers} />
 
         <BannerTwo />
 
-        {/*<CarouselTwo />*/}
+        <CarouselTwo newProducts={newProducts} />
       </div>
     </div>
   );

@@ -124,7 +124,7 @@ body {
 
 /*------------Mega Menu------------*/
 .megaMenu {
-    height: 460px;
+    
     width: 480px;
     animation: megaMenuIn 0.5s forwards;
 }
@@ -419,6 +419,7 @@ input[type="checkbox"]:checked::before {
 .notFound{
     width: 500px !important;
 }
+
 
 /*------------Swippers------------*/
 .centeredCarousel {
