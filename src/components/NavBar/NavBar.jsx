@@ -8,8 +8,10 @@ const NavBar = ({
   handleDrawerOne,
   handleDrawerTwo,
   handleSelectMegaMenu,
-  handleBurgerState
-}) => {  
+  handleBurgerState,
+  productList,
+  generarID,
+}) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -21,8 +23,6 @@ const NavBar = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-
 
   return (
     <div className="bg-zinc-800 sticky top-0 z-20">
@@ -39,11 +39,16 @@ const NavBar = ({
         <DownNavBar
           handleSelectMegaMenu={handleSelectMegaMenu}
           windowWidth={windowWidth}
+          productList={productList}
+          generarID={generarID}
         />
 
         <MegaMenu
           selectMegaMenu={selectMegaMenu}
           handleSelectMegaMenu={handleSelectMegaMenu}
+          productList={productList}
+          generarID={generarID}
+          windowWidth={windowWidth}
         />
       </div>
     </div>

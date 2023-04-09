@@ -11,7 +11,6 @@ const ItemListContainer = ({
   productList
 }) => {
 
-  console.log(productList);
 
   return (
     <div>

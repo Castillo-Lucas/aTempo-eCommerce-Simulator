@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
+import MegaMenu from "./MegaMenu";
 
-const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
+const DownNavBar = ({
+  handleSelectMegaMenu,
+  windowWidth,
+  productList,
+  generarID,
+}) => {
   return (
     <div className={windowWidth <= 767 ? "hidden" : "px-5 z-40 py-2"}>
       {/* Logo and Search Form*/}
@@ -83,7 +89,10 @@ const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
           </Link>
         </li>
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
-          <Link to="/nosotros" className="bottomNavList aMegaMenu text-sm md:text-base">
+          <Link
+            to="/nosotros"
+            className="bottomNavList aMegaMenu text-sm md:text-base"
+          >
             NOSOTROS
           </Link>
         </li>

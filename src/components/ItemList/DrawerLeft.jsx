@@ -1,12 +1,26 @@
 import React from "react";
 import Filters from "./Filters";
 import DownNavBar from "../NavBar/DownNavBar";
+import { Link } from "react-router-dom";
+import MegaMenu from "../NavBar/MegaMenu";
 
-const DrawerLeft = ({ drawerOne, drawerOneContent, handleDrawerOne }) => {
+const DrawerLeft = ({
+  drawerOne,
+  drawerOneContent,
+  handleDrawerOne,
+  productList,
+  generarID,
+}) => {
   return (
     <div
       className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-zinc-50  w-80 
-      ${drawerOneContent === "Filter" ? "bg-zinc-50" : drawerOneContent === "Categories" ? "bg-zinc-800" : ""}
+      ${
+        drawerOneContent === "Filter"
+          ? "bg-zinc-50"
+          : drawerOneContent === "Categories"
+          ? "bg-zinc-800"
+          : ""
+      }
             ${drawerOne ? "left-80 drawerIn" : "left-0 moveOut"}`}
     >
       <button
@@ -39,7 +53,10 @@ const DrawerLeft = ({ drawerOne, drawerOneContent, handleDrawerOne }) => {
         {drawerOneContent === "Filter" ? (
           <Filters />
         ) : drawerOneContent === "Categories" ? (
-          <DownNavBar />
+          <div>
+            <DownNavBar />
+            <MegaMenu productList={productList} generarID={generarID} />
+          </div>
         ) : null}
       </div>
     </div>

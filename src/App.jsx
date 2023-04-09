@@ -41,6 +41,8 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
 
+  console.log(drawerOneContent);
+
   /*Get Items*/
   useEffect(() => {
     const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1680903467/aTempo/Assets/productList_p1hhov.json`;
@@ -86,27 +88,37 @@ function App() {
     setLayerThree(!layerThree);
   };
 
+  /*ID Generator*/
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
+  };
+
   return (
     <div className="App p-0 m-0">
-      <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
-      <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
-      <LayerThree
-        layerThree={layerThree}
-        handleSelectMegaMenu={handleSelectMegaMenu}
-      />
-      <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
-      <DrawerLeft
-        drawerOne={drawerOne}
-        drawerOneContent={drawerOneContent}
-        handleDrawerOne={handleDrawerOne}
-      />
-
       <Router>
+        <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
+        <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
+        <LayerThree
+          layerThree={layerThree}
+          handleSelectMegaMenu={handleSelectMegaMenu}
+        />
+        <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
+        <DrawerLeft
+          drawerOne={drawerOne}
+          drawerOneContent={drawerOneContent}
+          handleDrawerOne={handleDrawerOne}
+          productList={productList}
+          generarID={generarID}
+        />
         <NavBar
           selectMegaMenu={selectMegaMenu}
           handleDrawerOne={handleDrawerOne}
           handleDrawerTwo={handleDrawerTwo}
           handleSelectMegaMenu={handleSelectMegaMenu}
+          productList={productList}
+          generarID={generarID}
         />
         <ScrollToTop>
           <Routes>
@@ -121,7 +133,6 @@ function App() {
               element={
                 <ItemListContainer
                   drawerOne={drawerOne}
-                  drawerOneContent={drawerOneContent}
                   handleDrawerOne={handleDrawerOne}
                   productList={productList}
                 />
