@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchForm from "./SearchForm";
-import MegaMenu from "./MegaMenu";
+import Logo from "../Logo";
 
 const DownNavBar = ({
   handleSelectMegaMenu,
@@ -10,28 +10,10 @@ const DownNavBar = ({
   generarID,
 }) => {
   return (
-    <div className={windowWidth <= 767 ? "hidden" : "px-5 z-40 py-2"}>
-      {/* Logo and Search Form*/}
-      <div className="md:hidden">
-        <div className="mb-4">
-          <a href="#" className="flex items-center">
-            <img
-              src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679173118/aTempo/logo_o2vgxx.png"
-              className="mr-3 logo"
-              alt="Logo"
-            />
-            <span className="logName self-center pb-3  text-5xl  whitespace-nowrap text-white">
-              aTempo
-            </span>
-          </a>
-        </div>
-
-        <SearchForm />
-      </div>
-
+    <div className={windowWidth <= 767 ? "hidden" : "px-5 z-40 pb-2"}>
       {/* List*/}
       <ul className="flex flex-col md:flex-row justify-between text-base font-normal">
-        <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 md:hidden hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent mt-4">
+        <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 md:hidden hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <a
             href="#"
             className="bottomNavList aMegaMenu md:hidden text-sm md:text-base"

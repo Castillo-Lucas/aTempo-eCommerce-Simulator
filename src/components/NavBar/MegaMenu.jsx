@@ -77,9 +77,18 @@ const MegaMenu = ({
       </div>
 
       <div
-        className={windowWidth <= 767 ? "hidden" : "px-5 z-40 py-2 md:hidden"}
+        className={windowWidth <= 767 ? "hidden" : "px-5 z-40 pt-2 md:hidden"}
       >
-        <p className="text-white">probando Mega Menu</p>
+        <ul className="flex flex-col md:flex-row justify-between text-base font-normal border-b border-zinc-600 mb-1.5 pb-2">
+          {categories.map((catg) => (
+            <li
+              key={generarID()}
+              className="listMegaMenu py-2.5 md:py-0 md:mt-0 md:hidden hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent"
+            >
+              <a className="bottomNavList aMegaMenu">{catg}</a>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

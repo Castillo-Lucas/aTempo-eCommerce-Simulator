@@ -41,8 +41,6 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
 
-  console.log(drawerOneContent);
-
   /*Get Items*/
   useEffect(() => {
     const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1680903467/aTempo/Assets/productList_p1hhov.json`;

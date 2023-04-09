@@ -2,28 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import SearchForm from "./SearchForm";
-
+import Logo from "../Logo";
 
 const TopNavBar = ({
-  handleDrawerOne, 
+  handleDrawerOne,
   handleDrawerTwo,
   windowWidth,
-  handleBurgerState
+  handleBurgerState,
 }) => {
   return (
     <div className="grid grid-cols-12 px-5 m-0 w-full">
       {/*Logo*/}
       <div className="my-auto col-span-8 md:col-span-4 lg:col-span-3">
-        <Link to="/" className="flex items-center">
-          <img
-            src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679173118/aTempo/logo_o2vgxx.png"
-            className="mr-3 logo"
-            alt="Logo"
-          />
-          <span className="logName self-center pb-3  text-5xl  whitespace-nowrap text-white">
-            aTempo
-          </span>
-        </Link>
+        <Logo />
       </div>
 
       {/*Search Form*/}
@@ -60,7 +51,7 @@ const TopNavBar = ({
           aria-controls="mega-menu"
           aria-expanded="false"
           onClick={(e) => {
-            handleDrawerOne(e, 'Categories');
+            handleDrawerOne(e, "Categories");
           }}
         >
           <span className="sr-only">Open main menu</span>

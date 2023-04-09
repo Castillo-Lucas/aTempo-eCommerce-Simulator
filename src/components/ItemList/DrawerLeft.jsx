@@ -3,6 +3,8 @@ import Filters from "./Filters";
 import DownNavBar from "../NavBar/DownNavBar";
 import { Link } from "react-router-dom";
 import MegaMenu from "../NavBar/MegaMenu";
+import Logo from "../Logo";
+import SearchForm from "../NavBar/SearchForm";
 
 const DrawerLeft = ({
   drawerOne,
@@ -54,8 +56,16 @@ const DrawerLeft = ({
           <Filters />
         ) : drawerOneContent === "Categories" ? (
           <div>
-            <DownNavBar />
+            <div className="px-8">
+              <Logo />
+            </div>
+
+            <div className="px-4">
+              <SearchForm />
+            </div>
+
             <MegaMenu productList={productList} generarID={generarID} />
+            <DownNavBar />
           </div>
         ) : null}
       </div>
