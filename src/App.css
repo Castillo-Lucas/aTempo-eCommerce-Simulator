@@ -56,6 +56,9 @@ body {
 }
 
 /*Search Form*/
+.searchFormBox{
+    height: 70px;
+}
 .buttonSearchForm:hover {
     transition: all 200ms ease-in-out;
 }
@@ -66,8 +69,7 @@ body {
 
 .searchResult{
     background-color: var(--color-palette-5);
-    width: 35%;
-    left: 5%;
+    width: 100%;
 }
 
 /*Icon Section*/
@@ -491,6 +493,10 @@ input[type="checkbox"]:checked::before {
 
     .notFound{
         width: 650px !important;
+    }
+
+    .searchResult{
+        width: 95%;
     }
 }
 
