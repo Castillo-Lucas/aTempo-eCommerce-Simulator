@@ -56,12 +56,8 @@ const DrawerLeft = ({
           <Filters />
         ) : drawerOneContent === "Categories" ? (
           <div>
-            <div className="px-8">
-              <Logo />
-            </div>
-
             <div className="px-4">
-              <SearchForm />
+              <Logo />
             </div>
 
             <MegaMenu productList={productList} generarID={generarID} />

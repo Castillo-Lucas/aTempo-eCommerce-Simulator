@@ -34,6 +34,7 @@ const NavBar = ({
           windowWidth={windowWidth}
           handleBurgerState={handleBurgerState}
         />
+        
 
         {/*Down NavBar*/}
         <DownNavBar
@@ -51,6 +52,8 @@ const NavBar = ({
           windowWidth={windowWidth}
         />
       </div>
+
+      
     </div>
   );
 };

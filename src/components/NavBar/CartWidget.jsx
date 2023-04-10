@@ -3,7 +3,7 @@ import "./NavBarStyles.css";
 
 const CartWidget = ({handleDrawerTwo}) => {
   return (
-    <div>
+    <div className="pl-3 md:pl-0">
       <div className="w-5 h-5 ml-6 -mt-2 p-0 rounded-3xl bg-red-600 absolute counterWidget flex justify-center content-center">
         <div className="text-zinc-300 font-medium text-sm">0</div>
       </div>

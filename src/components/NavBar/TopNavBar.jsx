@@ -18,10 +18,10 @@ const TopNavBar = ({
       </div>
 
       {/*Search Form*/}
-      {windowWidth >= 768 && <SearchForm />}
+      <SearchForm />
 
       {/*Icons Section*/}
-      <div className="my-auto col-span-3 md:col-span-2 ">
+      <div className="my-auto col-span-2 md:col-span-2 ">
         <div className="flex justify-around">
           {/*User Icon*/}
           <svg

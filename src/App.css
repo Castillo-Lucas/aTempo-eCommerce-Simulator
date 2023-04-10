@@ -64,6 +64,12 @@ body {
     background: var(--color-palette-2) !important;
 }
 
+.searchResult{
+    background-color: var(--color-palette-5);
+    width: 35%;
+    left: 5%;
+}
+
 /*Icon Section*/
 .icon {
     fill: var(--color-palette-5);
