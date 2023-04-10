@@ -9,6 +9,7 @@ const TopNavBar = ({
   handleDrawerTwo,
   windowWidth,
   handleBurgerState,
+  productList
 }) => {
   return (
     <div className="grid grid-cols-12 px-5 m-0 w-full">
@@ -18,7 +19,7 @@ const TopNavBar = ({
       </div>
 
       {/*Search Form*/}
-      <SearchForm />
+      <SearchForm productList={productList}/>
 
       {/*Icons Section*/}
       <div className="my-auto col-span-2 md:col-span-2 ">

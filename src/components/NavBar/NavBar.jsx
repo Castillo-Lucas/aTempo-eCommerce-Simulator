@@ -33,6 +33,7 @@ const NavBar = ({
           handleDrawerTwo={handleDrawerTwo}
           windowWidth={windowWidth}
           handleBurgerState={handleBurgerState}
+          productList={productList}
         />
         
 

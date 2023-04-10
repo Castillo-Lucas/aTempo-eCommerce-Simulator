@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const SearchForm = () => {
+const SearchForm = ({ productList }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+
+  
+  useEffect(() => {
+    setProducts(productList);
+  }, [productList]);
+
+  const filtering = products.filter((product) => {
+    const name = product.name.toLowerCase();
+    const category = product.category.toLowerCase();
+    const productos = product.product.toLowerCase();
+    const searchWords = searchTerm.toLowerCase().split(" ");
+    return searchWords.every(
+      (word) =>
+        name.includes(word) ||
+        category.includes(word) ||
+        productos.includes(word)
+    );
+  });
+
+  useEffect(() => {
+    setFilteredProducts(filtering);
+  }, [searchTerm]);
+
   return (
     <div className="my-auto col-span-1 md:col-span-6 lg:col-span-7">
       {/*Search Button Mobile and Tablet */}
@@ -36,7 +63,8 @@ const SearchForm = () => {
                 id="search-dropdown"
                 className="block p-1.5 md:p-2.5 w-full z-20 text-sm text-gray-500 rounded-lg  md:bg-gray-50  border-l-gray-50 border-l-2 border"
                 placeholder="Busca lo que mas te gusta..."
-                required
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
               <button
                 type="submit"
@@ -64,8 +92,20 @@ const SearchForm = () => {
         </form>
 
 
-          <div className="absolute right-0 mx-auto z-40 h-96 p-4 mt-1 mr-2 md:mr-5 lg:mr-0 rounded-lg border-2 border-zinc-300 shadow-xl searchResult"></div>
 
+        <div className={`absolute overflow-hidden overflow-y-auto right-0 mx-auto z-40 h-fit max-h-96 p-4 mt-1 mr-2 md:mr-5 lg:mr-0 rounded-lg border-2 border-zinc-300 shadow-xl searchResult ${searchTerm.length >=1 ? 'absolute': 'hidden' }`}>
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="flex h-12 mb-3 pb-1.5 hover:bg-zinc-300 hover:cursor-pointer">
+              <img className="h-10" src={product.img1} alt="" />
+              <div className="w-4/5 overflow-hidden pt-3 ">
+                <p className=" text-zinc-800 ml-4">{product.name}</p>
+              </div>
+              <div className="pt-3">
+                <p className="text-zinc-800 pl-4 ">${product.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
