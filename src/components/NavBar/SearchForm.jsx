@@ -4,7 +4,9 @@ const SearchForm = ({ productList }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [magnifyingGlass, setMagnifyingGlass] = useState(false)
 
+  console.log(magnifyingGlass)
 
   
   useEffect(() => {
@@ -27,6 +29,10 @@ const SearchForm = ({ productList }) => {
   useEffect(() => {
     setFilteredProducts(filtering);
   }, [searchTerm]);
+  
+  const handleOpenSearchField = () => {
+    setMagnifyingGlass(!magnifyingGlass)
+  }
 
   return (
     <div className="my-auto col-span-1 md:col-span-6 lg:col-span-7">
@@ -35,6 +41,7 @@ const SearchForm = ({ productList }) => {
         <button
           type="submit"
           className=" absolute top-0 right-0 p-1.5 md:p-2.5 text-sm font-medium"
+          onClick={handleOpenSearchField}
         >
           <svg
             aria-hidden="true"
@@ -54,7 +61,8 @@ const SearchForm = ({ productList }) => {
           <span className="sr-only">Search</span>
         </button>
       </div>
-      <div className="absolute lg:relative  w-full right-0 top-22 mx-auto px-4 md:px-10 lg:px-0 pt-4 z-40 bg-zinc-800 searchFormBox">
+      
+      <div className={`${magnifyingGlass ? 'absolute':'hidden'} lg:inline lg:relative  w-full right-0 top-22 mx-auto px-4 md:px-10 lg:px-0 pt-4 z-40 bg-zinc-800 searchFormBox`}>
         <form>
           <div className="flex">
             <div className="relative w-full">
