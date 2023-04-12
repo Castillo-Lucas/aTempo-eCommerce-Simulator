@@ -56,20 +56,30 @@ body {
 }
 
 /*Search Form*/
-.searchFormBox{
+.searchFormBox {
     height: 70px;
 }
-.buttonSearchForm:hover {
-    transition: all 200ms ease-in-out;
+
+#search-dropdown{
+    outline: none;
 }
 
-.buttonSearchForm:hover {
-    background: var(--color-palette-2) !important;
-}
-
-.searchResult{
+.searchResult {
     background-color: var(--color-palette-5);
     width: 100%;
+    animation: searchResultIn 0.5s forwards;
+}
+
+@keyframes searchResultIn {
+    from {
+        transform: translateY(0%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(1%);
+        opacity: 1;
+    }
 }
 
 /*Icon Section*/
@@ -132,7 +142,7 @@ body {
 
 /*------------Mega Menu------------*/
 .megaMenu {
-    
+
     width: 480px;
     animation: megaMenuIn 0.5s forwards;
 }
@@ -424,7 +434,7 @@ input[type="checkbox"]:checked::before {
 
 
 /*------------Not Found---------------*/
-.notFound{
+.notFound {
     width: 500px !important;
 }
 
@@ -491,12 +501,29 @@ input[type="checkbox"]:checked::before {
         height: 110px !important;
     }
 
-    .notFound{
+    .notFound {
         width: 650px !important;
     }
 
-    .searchResult{
+    .searchResult {
         width: 95%;
+    }
+
+    /*Search Form*/
+    .searchFormBox {
+        animation: searchFormBoxIn 0.5s forwards;
+    }
+
+    @keyframes searchFormBoxIn {
+        from {
+            transform: translateY(0%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(1%);
+            opacity: 1;
+        }
     }
 }
 
@@ -511,7 +538,7 @@ input[type="checkbox"]:checked::before {
         padding-top: 110px !important;
     }
 
-    .notFound{
+    .notFound {
         width: 350px !important;
     }
 
@@ -541,7 +568,7 @@ input[type="checkbox"]:checked::before {
         height: 370px !important;
     }
 
-    .notFound{
+    .notFound {
         width: 300px !important;
     }
 }
@@ -561,6 +588,7 @@ input[type="checkbox"]:checked::before {
         right: -350px !important;
         padding-top: 90px !important;
     }
+
     .mainSlider {
         height: 310px !important;
     }

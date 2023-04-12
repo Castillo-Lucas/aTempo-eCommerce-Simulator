@@ -2,40 +2,35 @@ import React, { useState } from "react";
 import "../../App.css";
 
 const Filters = () => {
+  const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
+  const [acordionOne, setAcordionOne] = useState(false);
+  const [acordionTwo, setAcordionTwo] = useState(false);
+  const [acordionThree, setAcordionThree] = useState(false);
+  const [filtroMobile, setFiltroMobile] = useState(false);
 
-    const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
-    const [acordionOne, setAcordionOne] = useState(true);
-    const [acordionTwo, setAcordionTwo] = useState(false);
-    const [acordionThree, setAcordionThree] = useState(false);
-    const [filtroMobile, setFiltroMobile] = useState(false);
-  
-    const handleAcordion = (e, data) => {
-      e.preventDefault(e);
-  
-      if (data === "OrdenarPor") {
-        setAcordionOrdenarPor(!acordionOrdenarPor);
-      } else if (data === "Categories") {
-        setAcordionOne(!acordionOne);
-      } else if (data === "Brand") {
-        setAcordionTwo(!acordionTwo);
-      } else if (data === "Price") {
-        setAcordionThree(!acordionThree);
-      } else if (data === "FiltroMobile") {
-        setFiltroMobile(!filtroMobile);
-      }
-    };
+  const handleAcordion = (e, data) => {
+    e.preventDefault(e);
 
+    if (data === "OrdenarPor") {
+      setAcordionOrdenarPor(!acordionOrdenarPor);
+    } else if (data === "Categories") {
+      setAcordionOne(!acordionOne);
+    } else if (data === "Brand") {
+      setAcordionTwo(!acordionTwo);
+    } else if (data === "Price") {
+      setAcordionThree(!acordionThree);
+    } else if (data === "FiltroMobile") {
+      setFiltroMobile(!filtroMobile);
+    }
+  };
 
   return (
     <div>
-      <h1 className="font-medium text-lg  p-4 border-b">
-        Filtros
-      </h1>
+      <h1 className="font-medium text-lg  p-4 border-b">Filtros</h1>
 
       <div>
         {/*Ordenar Por*/}
         <div className="mb-2 accordion">
-          
           <h2 id="accordion-collapse-heading-1">
             <button
               type="button"
@@ -93,7 +88,7 @@ const Filters = () => {
                 htmlFor="default-checkbox"
                 className="ml-1 text-base font-normal  "
               >
-                Precio: Menor a Mayor
+                Más Vendidos
               </label>
             </div>
 
@@ -108,7 +103,7 @@ const Filters = () => {
                 htmlFor="default-checkbox"
                 className="ml-1 text-base font-normal  "
               >
-                Precio: Mayor a Menor
+                Ultimos Ingresos
               </label>
             </div>
 
@@ -142,6 +137,7 @@ const Filters = () => {
               </label>
             </div>
 
+            <p className="text-base font-medium text-zinc-800 mb-1">Precio</p>
             <div className="flex items-center mb-2">
               <input
                 id="default-checkbox"
@@ -151,9 +147,9 @@ const Filters = () => {
               />
               <label
                 htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
+                className="ml-1 text-base font-normal"
               >
-                Más Vendidos
+                Menor a Mayor
               </label>
             </div>
 
@@ -168,7 +164,7 @@ const Filters = () => {
                 htmlFor="default-checkbox"
                 className="ml-1 text-base font-normal  "
               >
-                Ultimos Ingresos
+                Mayor a Menor
               </label>
             </div>
           </div>
@@ -192,9 +188,7 @@ const Filters = () => {
                 handleAcordion(e, "Categories");
               }}
             >
-              <span className="font-normal text-lg  text-left">
-                Categorías
-              </span>
+              <span className="font-normal text-lg  text-left">Categorías</span>
               <svg
                 data-accordion-icon
                 className={
@@ -393,9 +387,7 @@ const Filters = () => {
                 handleAcordion(e, "Brand");
               }}
             >
-              <span className="font-normal text-lg  text-left">
-                Marca
-              </span>
+              <span className="font-normal text-lg  text-left">Marca</span>
               <svg
                 data-accordion-icon
                 className={
@@ -594,9 +586,7 @@ const Filters = () => {
                 handleAcordion(e, "Price");
               }}
             >
-              <span className="font-normal text-lg  text-left">
-                Precio
-              </span>
+              <span className="font-normal text-lg  text-left">Precio</span>
               <svg
                 data-accordion-icon
                 className={

@@ -12,11 +12,13 @@ const TopNavBar = ({
   productList
 }) => {
   return (
-    <div className="grid grid-cols-12 px-5 m-0 w-full">
+    <div className="grid grid-cols-12 px-2 md:px-5 m-0 w-full">
       {/*Logo*/}
-      <div className="my-auto col-span-8 md:col-span-4 lg:col-span-3">
+      <div className="my-auto col-span-5 md:col-span-4  lg:col-span-3">
         <Logo />
       </div>
+
+      <div className="lg:hidden col-span-3  md:col-span-5"></div>
 
       {/*Search Form*/}
       <SearchForm productList={productList}/>
