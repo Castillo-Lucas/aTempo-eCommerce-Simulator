@@ -7,6 +7,16 @@ const Filters = () => {
   const [acordionTwo, setAcordionTwo] = useState(false);
   const [acordionThree, setAcordionThree] = useState(false);
   const [filtroMobile, setFiltroMobile] = useState(false);
+  const ordenarPor = [
+    "Menor a Mayor",
+    "Mayor a Menor",
+    "Más Vendidos",
+    "Ultimos Ingresos",
+    "A - Z",
+    "Z - A",
+    "Envío Gratis",
+    "Ofertas"
+  ];
 
   const handleAcordion = (e, data) => {
     e.preventDefault(e);
@@ -22,6 +32,13 @@ const Filters = () => {
     } else if (data === "FiltroMobile") {
       setFiltroMobile(!filtroMobile);
     }
+  };
+
+  /*ID Generator*/
+  const generarIDe = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
   };
 
   return (
@@ -77,96 +94,21 @@ const Filters = () => {
                 : "hidden"
             }
           >
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Más Vendidos
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Ultimos Ingresos
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                A - Z
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Z - A
-              </label>
-            </div>
-
-            <p className="text-base font-medium text-zinc-800 mb-1">Precio</p>
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal"
-              >
-                Menor a Mayor
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Mayor a Menor
-              </label>
-            </div>
+            {ordenarPor.map((ordenar) => (
+              <div key={generarIDe()} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
+                />
+                <label
+                  htmlFor="default-checkbox"
+                  className="ml-1 text-base font-normal"
+                >
+                  {ordenar}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 

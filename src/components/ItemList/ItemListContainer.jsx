@@ -5,12 +5,42 @@ import FilterSection from "./FilterSection";
 import "../../App.css";
 import Pagination from "./Pagination";
 
-const ItemListContainer = ({
-  drawerOne,
-  handleDrawerOne,
-  productList
-}) => {
+const ItemListContainer = ({ drawerOne, handleDrawerOne, productList }) => {
+  const [orderedProducts, setOrderedProducts] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
+  const order = () => {
+    let orderedList = [...productList];
+
+    orderedList.sort((a, b) => a.position - b.position);
+  
+    selectedFilters.forEach(filter => {
+      if (filter === "Menor a Mayor") {
+        orderedList = orderedList.sort((a, b) => a.price - b.price);
+      } else if (filter === "Mayor a Menor") {
+        orderedList = orderedList.sort((a, b) => b.price - a.price);
+      } else if (filter === "Más Vendidos") {
+        orderedList = orderedList.filter((prod) => prod.bestSeller);
+      } else if (filter === "Ultimos Ingresos") {
+        orderedList = orderedList.filter((prod) => prod.newEntry);
+      } else if (filter === "A - Z") {
+        orderedList = orderedList.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (filter === "Z - A") {
+        orderedList = orderedList.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (filter === "Envío Gratis") {
+        orderedList = orderedList.filter((prod) => prod.price >= 500);
+      } else if (filter === "Ofertas") {
+        orderedList = orderedList.filter((prod) => prod.discountPercentage >= 1);
+      }
+    });
+  
+    return orderedList;
+  };
+
+  useEffect(() => {
+    const orderedList = order();
+    setOrderedProducts(orderedList);
+  }, [productList, selectedFilters]);
 
   return (
     <div>
@@ -24,7 +54,7 @@ const ItemListContainer = ({
 
         <div className="col-span-12 lg:col-span-10">
           <div className="grid grid-cols-12 gap-4 md:gap-6 px-4">
-            {productList.map((products) => (
+            {orderedProducts.map((products) => (
               <Card key={products.id} products={products} />
             ))}
           </div>

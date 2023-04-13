@@ -14,26 +14,22 @@ const MegaMenu = ({
 
   /*Get Categories*/
   useEffect(() => {
-    const getCategories = productList.map((prod) => prod.category);
-    const uniqueCategories = getCategories.filter(
-      (catg, index) => getCategories.indexOf(catg) === index
-    );
-    setCategories(uniqueCategories);
+    const getCategories = [
+      ...new Set(productList.map((article) => article.category)),
+    ];
+    setCategories(getCategories);
 
     setCatg(categories[0]);
   }, [productList]);
 
   /*Get Brands*/
   useEffect(() => {
-    const brand = productList.filter((prod) => {
-      return prod.category.includes(catg);
-    });
-    const getBrand = brand.map((prod) => prod.brand);
-    const uniqueBrands = getBrand.filter(
-      (brand, index) => getBrand.indexOf(brand) === index
-    );
+    const brand = [
+      ...new Set(productList.filter((prod) => prod.category.includes(catg))),
+    ];
+    const getBrand = [...new Set(brand.map((article) => article.brand))];
 
-    setBrands(uniqueBrands);
+    setBrands(getBrand);
   }, [catg]);
 
   const handleSubMegaMenuMobile = (e) => {

@@ -30,12 +30,10 @@ const SearchForm = ({ productList }) => {
   /*Function to open and close the search form field when clicked outside of it*/
   function handleClickOutside(event) {
     if (!event.target.closest(".myDiv")) {
-      setMagnifyingGlass(false);
-      console.log("afuera");
+      setMagnifyingGlass(false); /*OutSide*/
       setSearchTerm("");
     } else if (event.target.closest(".myDiv")) {
-      setMagnifyingGlass(true);
-      console.log("adentro");
+      setMagnifyingGlass(true); /*InSide*/
     }
   }
 
