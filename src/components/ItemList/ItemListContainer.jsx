@@ -18,17 +18,19 @@ const ItemListContainer = ({
   setSpinner,
 }) => {
   const [products, setProducts] = useState([]);
-  const [categ, setcateg] = useState(["Guitarras", "Bajos"]);
+  const [category, setCategory] = useState([]);
 
-  console.log(selectedCategories);
+  useEffect(() => {
+    const firstSort = productList.sort((a, b) => a.position - b.position);
+    setProducts(firstSort);
+  }, [productList]);
 
-  const productosFiltrados = productList.filter((producto) =>
-    producto.category.includes(selectedCategories)
-  );
-  console.log(productosFiltrados);
+  console.log(selectedFilters.length);
 
-  const order = () => {
-    let orderedList = [...productList];
+
+
+  useEffect(() => {
+    let orderedList = [...products];
 
     orderedList.sort((a, b) => a.position - b.position);
 
@@ -53,14 +55,23 @@ const ItemListContainer = ({
         );
       }
     });
-
-    return orderedList;
-  };
+    setProducts(orderedList);
+  }, [selectedFilters]);
 
   useEffect(() => {
-    const orderedList = order();
-    setProducts(orderedList);
-  }, [productList, selectedFilters]);
+    const filteringCategory = products.filter((producto) => {
+      return selectedCategories.some((categoria) =>
+        producto.category.includes(categoria)
+      );
+    });
+
+    if (filteringCategory.length === 0) {
+      const firstSort = productList.sort((a, b) => a.position - b.position);
+      setProducts(firstSort);
+    } else {
+      setProducts(filteringCategory);
+    }
+  }, [selectedCategories]);
 
   /*Spinner*/
   useEffect(() => {
