@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
+import Logo from "../Logo";
 
-const Filters = ({ selectedFilters, setSelectedFilters }) => {
+const Filters = ({
+  selectedFilters,
+  setSelectedFilters,
+  productList,
+  selectedCategories,
+  setSelectedCategories,
+}) => {
   const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
   const [acordionOne, setAcordionOne] = useState(false);
   const [acordionTwo, setAcordionTwo] = useState(false);
   const [acordionThree, setAcordionThree] = useState(false);
   const [filtroMobile, setFiltroMobile] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    setSelectedFilters(selectedOptions);
-  }, [selectedOptions]);
-
+  const [catg, setCatg] = useState("");
   const ordenarPor = [
     "Menor a Mayor",
     "Mayor a Menor",
@@ -23,6 +28,20 @@ const Filters = ({ selectedFilters, setSelectedFilters }) => {
     "Envío Gratis",
     "Ofertas",
   ];
+
+  useEffect(() => {
+    setSelectedFilters(selectedOptions);
+  }, [selectedOptions]);
+
+  /*Get Categories*/
+  useEffect(() => {
+    const getCategories = [
+      ...new Set(productList.map((article) => article.category)),
+    ];
+    setCategories(getCategories);
+
+    setCatg(categories[0]);
+  }, [productList]);
 
   const handleAcordion = (e, data) => {
     e.preventDefault(e);
@@ -45,6 +64,19 @@ const Filters = ({ selectedFilters, setSelectedFilters }) => {
     const Id1 = Math.random().toString(36).substring(2);
     const Id2 = Date.now().toString(36);
     return Id1 + Id2;
+  };
+
+  const handleCateg = (e) => {
+    const categName = e.target.value;
+
+    if (selectedCategories.includes(categName)) {
+      let categDeleted = selectedCategories.filter(
+        (catg) => catg !== categName
+      );
+      setSelectedCategories(categDeleted);
+    } else {
+      setSelectedCategories([...selectedCategories, categName]);
+    }
   };
 
   return (
@@ -178,155 +210,23 @@ const Filters = ({ selectedFilters, setSelectedFilters }) => {
                 : "hidden"
             }
           >
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal"
-              >
-                Guitarras
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Bajos
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Baterías
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Pianos
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Amplificadores
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Efectos
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                MIDI
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Home Studio
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                DJ
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Accesorios
-              </label>
-            </div>
+            {categories.map((category) => (
+              <div key={category} className="flex items-center mb-2">
+                <input
+                  id={category}
+                  type="checkbox"
+                  value={category}
+                  className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
+                  onChange={(e) => handleCateg(e)}
+                />
+                <label
+                  htmlFor={category}
+                  className="ml-1 text-base font-normal"
+                >
+                  {category}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -14,6 +14,8 @@ const DrawerLeft = ({
   generarID,
   selectedFilters,
   setSelectedFilters,
+  selectedCategories,
+  setSelectedCategories,
 }) => {
   return (
     <div
@@ -58,6 +60,9 @@ const DrawerLeft = ({
           <Filters
             selectedFilters={selectedFilters}
             setSelectedFilters={setSelectedFilters}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+            productList={productList}
           />
         ) : drawerOneContent === "Categories" ? (
           <div>

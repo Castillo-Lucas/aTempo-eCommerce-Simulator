@@ -7,7 +7,10 @@ const FilterSection = ({
   drawerOne,
   handleDrawerOne,
   selectedFilters,
-  setSelectedFilters
+  setSelectedFilters,
+  productList,
+  selectedCategories,
+  setSelectedCategories,
 }) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
@@ -21,10 +24,7 @@ const FilterSection = ({
         >
           Filtros
         </button>
-        <DrawerLeft
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
-        />
+        <DrawerLeft productList={productList} />
       </div>
 
       {/*Desktop*/}
@@ -32,6 +32,9 @@ const FilterSection = ({
         <Filters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
+          productList={productList}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
         />
       </div>
     </div>
