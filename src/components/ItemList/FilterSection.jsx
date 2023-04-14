@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "../../App.css";
 import Filters from "./Filters";
+import DrawerLeft from "./DrawerLeft";
 
-const FilterSection = ({ drawerOne, handleDrawerOne }) => {
+const FilterSection = ({
+  drawerOne,
+  handleDrawerOne,
+  selectedFilters,
+  setSelectedFilters
+}) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
       {/*Mobile*/}
@@ -15,11 +21,18 @@ const FilterSection = ({ drawerOne, handleDrawerOne }) => {
         >
           Filtros
         </button>
+        <DrawerLeft
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+        />
       </div>
 
       {/*Desktop*/}
       <div className="hidden lg:block">
-        <Filters />
+        <Filters
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+        />
       </div>
     </div>
   );

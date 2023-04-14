@@ -12,6 +12,8 @@ const DrawerLeft = ({
   handleDrawerOne,
   productList,
   generarID,
+  selectedFilters,
+  setSelectedFilters,
 }) => {
   return (
     <div
@@ -53,7 +55,10 @@ const DrawerLeft = ({
 
       <div className="h-screen overflow-auto">
         {drawerOneContent === "Filter" ? (
-          <Filters />
+          <Filters
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+          />
         ) : drawerOneContent === "Categories" ? (
           <div>
             <div className="px-4">

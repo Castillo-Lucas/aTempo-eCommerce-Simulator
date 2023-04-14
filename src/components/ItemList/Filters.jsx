@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 
-const Filters = () => {
+const Filters = ({ selectedFilters, setSelectedFilters }) => {
   const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
   const [acordionOne, setAcordionOne] = useState(false);
   const [acordionTwo, setAcordionTwo] = useState(false);
   const [acordionThree, setAcordionThree] = useState(false);
   const [filtroMobile, setFiltroMobile] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    setSelectedFilters(selectedOptions);
+  }, [selectedOptions]);
+
   const ordenarPor = [
     "Menor a Mayor",
     "Mayor a Menor",
@@ -15,7 +21,7 @@ const Filters = () => {
     "A - Z",
     "Z - A",
     "Envío Gratis",
-    "Ofertas"
+    "Ofertas",
   ];
 
   const handleAcordion = (e, data) => {
@@ -98,7 +104,20 @@ const Filters = () => {
               <div key={generarIDe()} className="flex items-center mb-2">
                 <input
                   type="checkbox"
-                  value=""
+                  value={ordenar}
+                  checked={selectedOptions.includes(ordenar)}
+                  onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    setSelectedOptions((prevOptions) => {
+                      if (isChecked) {
+                        return [...prevOptions, ordenar];
+                      } else {
+                        return prevOptions.filter(
+                          (option) => option !== ordenar
+                        );
+                      }
+                    });
+                  }}
                   className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
                 />
                 <label

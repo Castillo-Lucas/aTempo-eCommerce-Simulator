@@ -32,6 +32,7 @@ function ScrollToTop({ children }) {
 
 function App() {
   const [productList, setProductList] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [drawerOne, setDrawerOne] = useState(false);
@@ -40,6 +41,9 @@ function App() {
   const [layerTwo, setLayerTwo] = useState(false);
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  
+  
 
   /*Get Items*/
   useEffect(() => {
@@ -52,17 +56,17 @@ function App() {
   /*Separate items for carousels*/
   useEffect(() => {
     const bestSeller = productList.filter(
-      (producto) => producto.bestSeller.length > 1
+      (producto) => producto.bestSeller
     );
     const newProduct = productList.filter(
-      (producto) => producto.newEntry.length > 1
+      (producto) => producto.newEntry
     );
 
     setBestSellers(bestSeller);
     setNewProducts(newProduct);
   }, [productList]);
 
-  /*Function to opern Drawer Left*/
+  /*Function to open Drawer Left*/
   const handleDrawerOne = (e, Data) => {
     e.preventDefault(e);
 
@@ -70,7 +74,7 @@ function App() {
     setDrawerOneContent(Data);
   };
 
-  /*Function to opern Drawer Right*/
+  /*Function to open Drawer Right*/
   const handleDrawerTwo = (e) => {
     e.preventDefault(e);
 
@@ -78,7 +82,7 @@ function App() {
     setLayerTwo(!layerTwo);
   };
 
-  /*Function to opern Mega Menu*/
+  /*Function to open Mega Menu*/
   const handleSelectMegaMenu = (e) => {
     e.preventDefault(e);
 
@@ -108,7 +112,9 @@ function App() {
           drawerOneContent={drawerOneContent}
           handleDrawerOne={handleDrawerOne}
           productList={productList}
-          generarID={generarID}
+          generarID={generarID}          
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
         />
         <NavBar
           selectMegaMenu={selectMegaMenu}
@@ -133,6 +139,10 @@ function App() {
                   drawerOne={drawerOne}
                   handleDrawerOne={handleDrawerOne}
                   productList={productList}
+                  selectedFilters={selectedFilters}
+                  setSelectedFilters={setSelectedFilters}
+                  spinner={spinner}
+                  setSpinner={setSpinner}
                 />
               }
             />
