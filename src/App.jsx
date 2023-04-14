@@ -33,6 +33,7 @@ function ScrollToTop({ children }) {
 function App() {
   const [productList, setProductList] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [drawerOne, setDrawerOne] = useState(false);
@@ -42,7 +43,6 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
   const [spinner, setSpinner] = useState(false);
-  
   
 
   /*Get Items*/
@@ -55,12 +55,8 @@ function App() {
 
   /*Separate items for carousels*/
   useEffect(() => {
-    const bestSeller = productList.filter(
-      (producto) => producto.bestSeller
-    );
-    const newProduct = productList.filter(
-      (producto) => producto.newEntry
-    );
+    const bestSeller = productList.filter((producto) => producto.bestSeller);
+    const newProduct = productList.filter((producto) => producto.newEntry);
 
     setBestSellers(bestSeller);
     setNewProducts(newProduct);
@@ -112,9 +108,11 @@ function App() {
           drawerOneContent={drawerOneContent}
           handleDrawerOne={handleDrawerOne}
           productList={productList}
-          generarID={generarID}          
+          generarID={generarID}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
         />
         <NavBar
           selectMegaMenu={selectMegaMenu}
@@ -141,6 +139,8 @@ function App() {
                   productList={productList}
                   selectedFilters={selectedFilters}
                   setSelectedFilters={setSelectedFilters}
+                  selectedCategories={selectedCategories}
+                  setSelectedCategories={setSelectedCategories}
                   spinner={spinner}
                   setSpinner={setSpinner}
                 />

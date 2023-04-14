@@ -12,12 +12,20 @@ const ItemListContainer = ({
   productList,
   selectedFilters,
   setSelectedFilters,
+  selectedCategories,
+  setSelectedCategories,
   spinner,
   setSpinner,
 }) => {
-  const [orderedProducts, setOrderedProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [categ, setcateg] = useState(["Guitarras", "Bajos"]);
 
-  console.log(orderedProducts);
+  console.log(selectedCategories);
+
+  const productosFiltrados = productList.filter((producto) =>
+    producto.category.includes(selectedCategories)
+  );
+  console.log(productosFiltrados);
 
   const order = () => {
     let orderedList = [...productList];
@@ -51,9 +59,10 @@ const ItemListContainer = ({
 
   useEffect(() => {
     const orderedList = order();
-    setOrderedProducts(orderedList);
+    setProducts(orderedList);
   }, [productList, selectedFilters]);
 
+  /*Spinner*/
   useEffect(() => {
     setSpinner(true);
 
@@ -80,15 +89,18 @@ const ItemListContainer = ({
           handleDrawerOne={handleDrawerOne}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
+          productList={productList}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
         />
 
         <div className="col-span-12 lg:col-span-10">
           {spinner ? (
             <p className="text-xl pl-4 pt-6">Buscando productos...</p>
-          ) : orderedProducts.length >= 1 ? (
+          ) : products.length >= 1 ? (
             <div>
               <div className="grid grid-cols-12 gap-4 md:gap-6 px-4">
-                {orderedProducts.map((products) => (
+                {products.map((products) => (
                   <Card key={products.id} products={products} />
                 ))}
               </div>
