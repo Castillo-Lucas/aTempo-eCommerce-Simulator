@@ -11,6 +11,7 @@ const FilterSection = ({
   productList,
   selectedCategories,
   setSelectedCategories,
+  handleFilterClick
 }) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
@@ -25,7 +26,7 @@ const FilterSection = ({
           Filtros
         </button>
         <DrawerLeft productList={productList} />
-      </div>
+        </div>
 
       {/*Desktop*/}
       <div className="hidden lg:block">
@@ -35,6 +36,7 @@ const FilterSection = ({
           productList={productList}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+          handleFilterClick={handleFilterClick}
         />
       </div>
     </div>

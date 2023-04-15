@@ -16,37 +16,41 @@ const ItemListContainer = ({
   setSelectedCategories,
   spinner,
   setSpinner,
+  handleFilterClick,
 }) => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
+  console.log(selectedFilters);
+
+  const firstSort = productList.sort((a, b) => a.position - b.position);
+
   useEffect(() => {
-    const firstSort = productList.sort((a, b) => a.position - b.position);
     setProducts(firstSort);
   }, [productList]);
-
-  console.log(selectedFilters.length);
-
-
 
   useEffect(() => {
     let orderedList = [...products];
 
     orderedList.sort((a, b) => a.position - b.position);
 
+    /*if(!selectedFilters.includes("Más Vendidos")){
+      orderedList=firstSort
+    }*/
+
     selectedFilters.forEach((filter) => {
       if (filter === "Menor a Mayor") {
         orderedList = orderedList.sort((a, b) => a.price - b.price);
       } else if (filter === "Mayor a Menor") {
         orderedList = orderedList.sort((a, b) => b.price - a.price);
-      } else if (filter === "Más Vendidos") {
-        orderedList = orderedList.filter((prod) => prod.bestSeller);
-      } else if (filter === "Ultimos Ingresos") {
-        orderedList = orderedList.filter((prod) => prod.newEntry);
       } else if (filter === "A - Z") {
         orderedList = orderedList.sort((a, b) => a.name.localeCompare(b.name));
       } else if (filter === "Z - A") {
         orderedList = orderedList.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (filter === "Más Vendidos") {
+        orderedList = orderedList.filter((prod) => prod.bestSeller);        
+      } else if (filter === "Ultimos Ingresos") {
+        orderedList = orderedList.filter((prod) => prod.newEntry);
       } else if (filter === "Envío Gratis") {
         orderedList = orderedList.filter((prod) => prod.price >= 500);
       } else if (filter === "Ofertas") {
@@ -55,18 +59,18 @@ const ItemListContainer = ({
         );
       }
     });
+
     setProducts(orderedList);
   }, [selectedFilters]);
 
   useEffect(() => {
-    const filteringCategory = products.filter((producto) => {
+    const filteringCategory = productList.filter((producto) => {
       return selectedCategories.some((categoria) =>
         producto.category.includes(categoria)
       );
     });
 
     if (filteringCategory.length === 0) {
-      const firstSort = productList.sort((a, b) => a.position - b.position);
       setProducts(firstSort);
     } else {
       setProducts(filteringCategory);
@@ -103,6 +107,7 @@ const ItemListContainer = ({
           productList={productList}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+          handleFilterClick={handleFilterClick}
         />
 
         <div className="col-span-12 lg:col-span-10">

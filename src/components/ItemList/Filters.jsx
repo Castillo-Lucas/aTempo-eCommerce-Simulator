@@ -8,6 +8,7 @@ const Filters = ({
   productList,
   selectedCategories,
   setSelectedCategories,
+  handleFilterClick
 }) => {
   const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
   const [acordionOne, setAcordionOne] = useState(false);
