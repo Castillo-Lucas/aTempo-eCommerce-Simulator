@@ -32,10 +32,14 @@ function ScrollToTop({ children }) {
 
 function App() {
   const [productList, setProductList] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFiltersSort, setSelectedFiltersSort] = useState([]);
+  const [selectedFiltersForFilter, setSelectedFiltersForFilter] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [brandList, setBrandList] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+
   const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
   const [drawerOneContent, setDrawerOneContent] = useState("Filter");
@@ -43,7 +47,6 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
   const [spinner, setSpinner] = useState(false);
-  
 
   /*Get Items*/
   useEffect(() => {
@@ -109,10 +112,16 @@ function App() {
           handleDrawerOne={handleDrawerOne}
           productList={productList}
           generarID={generarID}
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
+          selectedFiltersSort={selectedFiltersSort}
+          setSelectedFiltersSort={setSelectedFiltersSort}
+          selectedFiltersForFilter={selectedFiltersForFilter}
+          setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
+          brandList={brandList}
+          setBrandList={setBrandList}
         />
         <NavBar
           selectMegaMenu={selectMegaMenu}
@@ -137,12 +146,18 @@ function App() {
                   drawerOne={drawerOne}
                   handleDrawerOne={handleDrawerOne}
                   productList={productList}
-                  selectedFilters={selectedFilters}
-                  setSelectedFilters={setSelectedFilters}
+                  selectedFiltersSort={selectedFiltersSort}
+                  setSelectedFiltersSort={setSelectedFiltersSort}
+                  selectedFiltersForFilter={selectedFiltersForFilter}
+                  setSelectedFiltersForFilter={setSelectedFiltersForFilter}
                   selectedCategories={selectedCategories}
                   setSelectedCategories={setSelectedCategories}
+                  selectedBrands={selectedBrands}
+                  setSelectedBrands={setSelectedBrands}
                   spinner={spinner}
                   setSpinner={setSpinner}
+                  brandList={brandList}
+                  setBrandList={setBrandList}
                 />
               }
             />

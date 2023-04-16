@@ -6,12 +6,18 @@ import DrawerLeft from "./DrawerLeft";
 const FilterSection = ({
   drawerOne,
   handleDrawerOne,
-  selectedFilters,
-  setSelectedFilters,
+  selectedFiltersSort,
+  setSelectedFiltersSort,
+  selectedFiltersForFilter,
+  setSelectedFiltersForFilter,
   productList,
   selectedCategories,
   setSelectedCategories,
-  handleFilterClick
+  selectedBrands,
+  setSelectedBrands,
+  handleFilterClick,
+  brandList,
+  setBrandList,
 }) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
@@ -26,17 +32,23 @@ const FilterSection = ({
           Filtros
         </button>
         <DrawerLeft productList={productList} />
-        </div>
+      </div>
 
       {/*Desktop*/}
       <div className="hidden lg:block">
         <Filters
-          selectedFilters={selectedFilters}
-          setSelectedFilters={setSelectedFilters}
+          selectedFiltersSort={selectedFiltersSort}
+          setSelectedFiltersSort={setSelectedFiltersSort}
+          selectedFiltersForFilter={selectedFiltersForFilter}
+          setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           productList={productList}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
+          selectedBrands={selectedBrands}
+          setSelectedBrands={setSelectedBrands}
           handleFilterClick={handleFilterClick}
+          brandList={brandList}
+          setBrandList={setBrandList}
         />
       </div>
     </div>

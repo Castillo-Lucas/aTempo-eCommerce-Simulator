@@ -3,12 +3,18 @@ import "../../App.css";
 import Logo from "../Logo";
 
 const Filters = ({
-  selectedFilters,
-  setSelectedFilters,
+  selectedFiltersSort,
+  setSelectedFiltersSort,
+  selectedFiltersForFilter,
+  setSelectedFiltersForFilter,
   productList,
   selectedCategories,
   setSelectedCategories,
-  handleFilterClick
+  selectedBrands,
+  setSelectedBrands,
+  handleFilterClick,
+  brandList,
+  setBrandList,
 }) => {
   const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
   const [acordionOne, setAcordionOne] = useState(false);
@@ -16,7 +22,9 @@ const Filters = ({
   const [acordionThree, setAcordionThree] = useState(false);
   const [filtroMobile, setFiltroMobile] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptionsTow, setSelectedOptionsTow] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
 
   const [catg, setCatg] = useState("");
   const ordenarPor = [
@@ -31,8 +39,9 @@ const Filters = ({
   ];
 
   useEffect(() => {
-    setSelectedFilters(selectedOptions);
-  }, [selectedOptions]);
+    setSelectedFiltersSort(selectedOptions);
+    setSelectedFiltersForFilter(selectedOptionsTow);
+  }, [selectedOptions, selectedOptionsTow]);
 
   /*Get Categories*/
   useEffect(() => {
@@ -44,6 +53,7 @@ const Filters = ({
     setCatg(categories[0]);
   }, [productList]);
 
+  /*Acordion Modifier*/
   const handleAcordion = (e, data) => {
     e.preventDefault(e);
 
@@ -80,6 +90,21 @@ const Filters = ({
     }
   };
 
+  const handleBrand = (e) => {
+    const brandName = e.target.value;
+
+    if (selectedBrands.includes(brandName)) {
+      let brandDeleted = selectedBrands.filter(
+        (catg) => catg !== brandName
+      );
+      setSelectedBrands(brandDeleted);
+    } else {
+      setSelectedBrands([...selectedBrands, brandName]);
+    }
+  };
+
+
+
   return (
     <div>
       <h1 className="font-medium text-lg  p-4 border-b">Filtros</h1>
@@ -87,6 +112,7 @@ const Filters = ({
       <div>
         {/*Ordenar Por*/}
         <div className="mb-2 accordion">
+          {/*Tittle*/}
           <h2 id="accordion-collapse-heading-1">
             <button
               type="button"
@@ -138,18 +164,45 @@ const Filters = ({
                 <input
                   type="checkbox"
                   value={ordenar}
-                  checked={selectedOptions.includes(ordenar)}
+                  checked={
+                    selectedOptions.includes(ordenar) ||
+                    selectedOptionsTow.includes(ordenar)
+                  }
                   onChange={(e) => {
                     const isChecked = e.target.checked;
-                    setSelectedOptions((prevOptions) => {
-                      if (isChecked) {
-                        return [...prevOptions, ordenar];
-                      } else {
-                        return prevOptions.filter(
-                          (option) => option !== ordenar
-                        );
+                    {
+                      if (
+                        ordenar === "Menor a Mayor" ||
+                        ordenar === "Mayor a Menor" ||
+                        ordenar === "A - Z" ||
+                        ordenar === "Z - A"
+                      ) {
+                        setSelectedOptions((prevOptions) => {
+                          if (isChecked) {
+                            return [...prevOptions, ordenar];
+                          } else {
+                            return prevOptions.filter(
+                              (option) => option !== ordenar
+                            );
+                          }
+                        });
+                      } else if (
+                        ordenar === "Más Vendidos" ||
+                        ordenar === "Ultimos Ingresos" ||
+                        ordenar === "Envío Gratis" ||
+                        ordenar === "Ofertas"
+                      ) {
+                        setSelectedOptionsTow((prevOptions) => {
+                          if (isChecked) {
+                            return [...prevOptions, ordenar];
+                          } else {
+                            return prevOptions.filter(
+                              (option) => option !== ordenar
+                            );
+                          }
+                        });
                       }
-                    });
+                    }
                   }}
                   className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
                 />
@@ -164,7 +217,7 @@ const Filters = ({
           </div>
         </div>
 
-        {/*Categories*/}
+        {/*Categorías*/}
         <div className="mb-2">
           {/*Tittle*/}
           <h2 id="accordion-collapse-heading-1">
@@ -231,7 +284,7 @@ const Filters = ({
           </div>
         </div>
 
-        {/*Brand*/}
+        {/*Marca*/}
         <div className="mb-2">
           {/*Tittle*/}
           <h2 id="accordion-collapse-heading-1">
@@ -278,159 +331,24 @@ const Filters = ({
                 : "hidden"
             }
           >
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Fender
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Ibanez
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Ernie Ball
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                DW
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Ludwig
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Nektar
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Gemini
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                Boss
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                M-Audio
-              </label>
-            </div>
-
-            <div className="flex items-center mb-2">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
-              />
-              <label
-                htmlFor="default-checkbox"
-                className="ml-1 text-base font-normal  "
-              >
-                PreSonus
-              </label>
-            </div>
+            {brandList.map((brand) => (
+              <div key={brand} className="flex items-center mb-2">
+                <input
+                  id={brand}
+                  type="checkbox"
+                  value={brand}
+                  className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
+                  onChange={(e) => handleBrand(e)}
+                />
+                <label htmlFor={brand} className="ml-1 text-base font-normal">
+                  {brand}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/*Price*/}
+        {/*Precio*/}
         <div className="mb-2 pb-14">
           {/*Tittle*/}
           <h2 id="accordion-collapse-heading-1">
