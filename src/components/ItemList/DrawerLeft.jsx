@@ -12,16 +12,17 @@ const DrawerLeft = ({
   handleDrawerOne,
   productList,
   generarID,
-  selectedFiltersSort,
   setSelectedFiltersSort,
-  selectedFiltersForFilter,
   setSelectedFiltersForFilter,
   selectedCategories,
   setSelectedCategories,
   selectedBrands,
   setSelectedBrands,
   brandList,
-  setBrandList,
+  fromValue,
+  setFromValue,
+  toValue,
+  setToValue,
 }) => {
   return (
     <div
@@ -64,17 +65,18 @@ const DrawerLeft = ({
       <div className="h-screen overflow-auto">
         {drawerOneContent === "Filter" ? (
           <Filters
-            selectedFiltersSort={selectedFiltersSort}
             setSelectedFiltersSort={setSelectedFiltersSort}
-            selectedFiltersForFilter={selectedFiltersForFilter}
             setSelectedFiltersForFilter={setSelectedFiltersForFilter}
             selectedCategories={selectedCategories}
-            setSelectedCategories={setSelectedCategories}            
+            setSelectedCategories={setSelectedCategories}
             selectedBrands={selectedBrands}
             setSelectedBrands={setSelectedBrands}
             productList={productList}
             brandList={brandList}
-            setBrandList={setBrandList}
+            fromValue={fromValue}
+            setFromValue={setFromValue}
+            toValue={toValue}
+            setToValue={setToValue}
           />
         ) : drawerOneContent === "Categories" ? (
           <div>

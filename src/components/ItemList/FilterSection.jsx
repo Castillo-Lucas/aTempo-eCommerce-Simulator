@@ -4,20 +4,19 @@ import Filters from "./Filters";
 import DrawerLeft from "./DrawerLeft";
 
 const FilterSection = ({
-  drawerOne,
   handleDrawerOne,
-  selectedFiltersSort,
   setSelectedFiltersSort,
-  selectedFiltersForFilter,
   setSelectedFiltersForFilter,
   productList,
   selectedCategories,
   setSelectedCategories,
   selectedBrands,
   setSelectedBrands,
-  handleFilterClick,
   brandList,
-  setBrandList,
+  fromValue,
+  setFromValue,
+  toValue,
+  setToValue,
 }) => {
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
@@ -37,18 +36,18 @@ const FilterSection = ({
       {/*Desktop*/}
       <div className="hidden lg:block">
         <Filters
-          selectedFiltersSort={selectedFiltersSort}
           setSelectedFiltersSort={setSelectedFiltersSort}
-          selectedFiltersForFilter={selectedFiltersForFilter}
           setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           productList={productList}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
-          handleFilterClick={handleFilterClick}
           brandList={brandList}
-          setBrandList={setBrandList}
+          fromValue={fromValue}
+          setFromValue={setFromValue}
+          toValue={toValue}
+          setToValue={setToValue}
         />
       </div>
     </div>

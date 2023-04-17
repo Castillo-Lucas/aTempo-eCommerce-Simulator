@@ -37,6 +37,8 @@ function App() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [brandList, setBrandList] = useState([]);
+  const [fromValue, setFromValue] = useState("");
+  const [toValue, setToValue] = useState("");
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
 
@@ -112,16 +114,17 @@ function App() {
           handleDrawerOne={handleDrawerOne}
           productList={productList}
           generarID={generarID}
-          selectedFiltersSort={selectedFiltersSort}
           setSelectedFiltersSort={setSelectedFiltersSort}
-          selectedFiltersForFilter={selectedFiltersForFilter}
           setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
           brandList={brandList}
-          setBrandList={setBrandList}
+          fromValue={fromValue}
+          setFromValue={setFromValue}
+          toValue={toValue}
+          setToValue={setToValue}
         />
         <NavBar
           selectMegaMenu={selectMegaMenu}
@@ -143,7 +146,6 @@ function App() {
               path="/itemList"
               element={
                 <ItemListContainer
-                  drawerOne={drawerOne}
                   handleDrawerOne={handleDrawerOne}
                   productList={productList}
                   selectedFiltersSort={selectedFiltersSort}
@@ -158,6 +160,10 @@ function App() {
                   setSpinner={setSpinner}
                   brandList={brandList}
                   setBrandList={setBrandList}
+                  fromValue={fromValue}
+                  setFromValue={setFromValue}
+                  toValue={toValue}
+                  setToValue={setToValue}
                 />
               }
             />

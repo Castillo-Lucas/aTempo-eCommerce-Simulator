@@ -3,18 +3,18 @@ import "../../App.css";
 import Logo from "../Logo";
 
 const Filters = ({
-  selectedFiltersSort,
   setSelectedFiltersSort,
-  selectedFiltersForFilter,
   setSelectedFiltersForFilter,
   productList,
   selectedCategories,
   setSelectedCategories,
   selectedBrands,
   setSelectedBrands,
-  handleFilterClick,
+  fromValue,
+  setFromValue,
+  toValue,
+  setToValue,
   brandList,
-  setBrandList,
 }) => {
   const [acordionOrdenarPor, setAcordionOrdenarPor] = useState(false);
   const [acordionOne, setAcordionOne] = useState(false);
@@ -25,8 +25,11 @@ const Filters = ({
   const [selectedOptionsTow, setSelectedOptionsTow] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
-
+  const [fromPrice, setFromPrice] = useState("");
+  const [toPrice, setToPrice] = useState("");
   const [catg, setCatg] = useState("");
+  const [stringAlert, setStringAlert] = useState(false);
+
   const ordenarPor = [
     "Menor a Mayor",
     "Mayor a Menor",
@@ -77,6 +80,7 @@ const Filters = ({
     return Id1 + Id2;
   };
 
+  /*Starting Filters by Categories*/
   const handleCateg = (e) => {
     const categName = e.target.value;
 
@@ -90,20 +94,47 @@ const Filters = ({
     }
   };
 
+  /*Starting Filters by Brand*/
   const handleBrand = (e) => {
     const brandName = e.target.value;
 
     if (selectedBrands.includes(brandName)) {
-      let brandDeleted = selectedBrands.filter(
-        (catg) => catg !== brandName
-      );
+      let brandDeleted = selectedBrands.filter((catg) => catg !== brandName);
       setSelectedBrands(brandDeleted);
     } else {
       setSelectedBrands([...selectedBrands, brandName]);
     }
   };
 
+  /*Starting Filters by Price*/
+  const handleSortByPrice = (e) => {
+    e.preventDefault();
 
+    if (isNaN(Number(fromPrice)) || isNaN(Number(toPrice))) {
+      setStringAlert(true);
+
+      setTimeout(() => {
+        setStringAlert(false);
+        setFromPrice("");
+        setToPrice("");
+      }, 1500);
+    } else {
+      setStringAlert(false);
+
+      setFromValue(fromPrice);
+      setToValue(toPrice);
+    }
+  };
+
+  /*Price Filter Cleaner*/
+  const handleClear = (e) => {
+    e.preventDefault();
+
+    setFromPrice("");
+    setToPrice("");
+    setFromValue(0);
+    setToValue(0);
+  };
 
   return (
     <div>
@@ -163,6 +194,7 @@ const Filters = ({
               <div key={generarIDe()} className="flex items-center mb-2">
                 <input
                   type="checkbox"
+                  id={ordenar}
                   value={ordenar}
                   checked={
                     selectedOptions.includes(ordenar) ||
@@ -270,6 +302,7 @@ const Filters = ({
                   id={category}
                   type="checkbox"
                   value={category}
+                  checked={selectedCategories.includes(category)}
                   className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
                   onChange={(e) => handleCateg(e)}
                 />
@@ -337,6 +370,7 @@ const Filters = ({
                   id={brand}
                   type="checkbox"
                   value={brand}
+                  checked={selectedBrands.includes(brand)}
                   className="w-4 h-4 bg-gray-100 border-gray-300 rounded checkboxStyles"
                   onChange={(e) => handleBrand(e)}
                 />
@@ -411,6 +445,8 @@ const Filters = ({
                       className="bg-gray-50 border border-gray-300 /80 text-sm rounded-lg block w-11/12 p-2"
                       placeholder="$"
                       required
+                      value={fromPrice}
+                      onChange={(e) => setFromPrice(e.target.value)}
                     />
                   </div>
                   <div>
@@ -426,15 +462,35 @@ const Filters = ({
                       className="bg-gray-50 border border-gray-300 /80 text-sm rounded-lg block w-11/12 p-2"
                       placeholder="$"
                       required
+                      value={toPrice}
+                      onChange={(e) => setToPrice(e.target.value)}
                     />
                   </div>
                 </div>
+
                 <button
                   type="submit"
                   className="text-sm font-medium  border rounded-lg w-full sm:w-auto px-4 py-2 text-center btnPrice"
+                  onClick={handleSortByPrice}
                 >
                   Filtrar
                 </button>
+                <button
+                  type="submit"
+                  className={`${
+                    fromValue.length >= 1 || toValue.length >= 1
+                      ? "inline"
+                      : "hidden"
+                  } text-sm font-medium  border rounded-lg w-full sm:w-auto px-3 py-2 text-center btnPrice ml-2`}
+                  onClick={handleClear}
+                >
+                  Limpiar
+                </button>
+                {stringAlert && (
+                  <p className="font-medium text-red-600 text-sm mt-2">
+                    El número no es valido
+                  </p>
+                )}
               </form>
             </div>
           </div>

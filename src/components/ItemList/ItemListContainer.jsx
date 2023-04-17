@@ -7,7 +7,6 @@ import Pagination from "./Pagination";
 import Spinner from "../Spinner";
 
 const ItemListContainer = ({
-  drawerOne,
   handleDrawerOne,
   productList,
   selectedFiltersSort,
@@ -23,10 +22,13 @@ const ItemListContainer = ({
   handleFilterClick,
   brandList,
   setBrandList,
+  fromValue,
+  setFromValue,
+  toValue,
+  setToValue,
 }) => {
   const [products, setProducts] = useState([]);
 
-  console.log(productList);
 
   /*Order products for first time according to "Position"*/
   const firstSort = productList.sort((a, b) => a.position - b.position);
@@ -136,6 +138,19 @@ const ItemListContainer = ({
     }
   }, [selectedBrands]);
 
+  /*Order products according to "Precio"*/
+  useEffect(() => {
+    const filteringPrice = products.filter((producto) => {
+      return producto.price >= fromValue && producto.price <= toValue;
+    });
+
+    if (filteringPrice.length === 0) {
+      setProducts(firstSort);
+    } else {
+      setProducts(filteringPrice);
+    }
+  }, [fromValue, toValue]);
+
   /*Spinner*/
   useEffect(() => {
     setSpinner(true);
@@ -159,20 +174,19 @@ const ItemListContainer = ({
 
       <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-8 mb-3">
         <FilterSection
-          drawerOne={drawerOne}
           handleDrawerOne={handleDrawerOne}
-          selectedFiltersSort={selectedFiltersSort}
           setSelectedFiltersSort={setSelectedFiltersSort}
-          selectedFiltersForFilter={selectedFiltersForFilter}
           setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           productList={productList}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
           selectedBrands={selectedBrands}
           setSelectedBrands={setSelectedBrands}
-          handleFilterClick={handleFilterClick}
           brandList={brandList}
-          setBrandList={setBrandList}
+          fromValue={fromValue}
+          setFromValue={setFromValue}
+          toValue={toValue}
+          setToValue={setToValue}
         />
 
         <div className="col-span-12 lg:col-span-10">
