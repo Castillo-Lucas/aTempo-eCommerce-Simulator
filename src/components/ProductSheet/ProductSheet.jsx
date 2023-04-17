@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../App.css";
 import BannerSix from "./BannerSix";
 import MainSlider from "./MainSlider";
@@ -8,9 +8,46 @@ import ProductDescription from "./ProductDescription";
 import CarouselOne from "../HomePage/CarouselOne";
 import CarouselTwo from "../HomePage/CarouselTwo";
 import BannerTwo from "../HomePage/BannerTwo";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const ProductSheet = ({ productList, bestSellers, newProducts }) => {
-  console.log(productList);
+  const [currentProduct, setCurrentProduct] = useState([]);
+
+  const useId = useParams();
+
+  useEffect(() => {
+    const getCurrentProduct = productList.find((prod) => {
+      return prod.id === useId.productId;
+    });
+
+    setCurrentProduct(getCurrentProduct);
+  }, [useId]);
+
+  const {
+    bestSeller,
+    brand,
+    category,
+    description,
+    discountPercentage,
+    discountPrice,
+    id,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    model,
+    name,
+    newEntry,
+    nickname,
+    price,
+    product,
+    stock,
+  } = currentProduct;
+
+  console.log(currentProduct);
+
   return (
     <div>
       <BannerSix />

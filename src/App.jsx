@@ -168,6 +168,7 @@ function App() {
               }
             />
             <Route
+              exact
               path="/product-sheet/:productId"
               element={
                 <ProductSheet
