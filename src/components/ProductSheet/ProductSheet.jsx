@@ -20,33 +20,25 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
       return prod.id === useId.productId;
     });
 
+    /*This allows the page to reload with the last product selected*/
+    if (!getCurrentProduct) {
+      return;
+    }
+
     setCurrentProduct(getCurrentProduct);
-  }, [useId]);
+  }, [useId, productList]);
 
-  const {
-    bestSeller,
-    brand,
-    category,
-    description,
-    discountPercentage,
-    discountPrice,
-    id,
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    model,
-    name,
-    newEntry,
-    nickname,
-    price,
-    product,
-    stock,
-  } = currentProduct;
+  const { img1, img2, img3, img4, img5, img6 } = currentProduct;
 
-  console.log(currentProduct);
+  const currentImages = [img1, img2, img3, img4, img5, img6];
+  const imagesWithSrc = currentImages.filter((img) => img);
+
+  /*ID Generator*/
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
+  };
 
   return (
     <div>
@@ -83,7 +75,7 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
                   href="#"
                   className="ml-1 text-sm font-medium text-zinc-800 hover:text-cyan-500"
                 >
-                  Guitarras
+                  {currentProduct.category}
                 </a>
               </div>
             </li>
@@ -103,7 +95,7 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
                   ></path>
                 </svg>
                 <span className="ml-1 text-sm font-medium text-zinc-800">
-                  Guitarra
+                  {currentProduct.product}
                 </span>
               </div>
             </li>
@@ -112,17 +104,20 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
 
         <div className="grid grid-cols-12 grid-rows-12 grid-flow-row md:grid-flow-col lg:grid-flow-row gap-4 ">
           {/*Main Slider*/}
-          <MainSlider />
+          <MainSlider imagesWithSrc={imagesWithSrc} generarID={generarID} />
 
           {/*Secondary Slider*/}
-          <SecondarySlider />
+          <SecondarySlider
+            imagesWithSrc={imagesWithSrc}
+            generarID={generarID}
+          />
 
           {/*Product Info*/}
-          <ProductInfo />
+          <ProductInfo currentProduct={currentProduct} />
         </div>
 
         {/*Product Description*/}
-        <ProductDescription />
+        <ProductDescription currentProduct={currentProduct} />
       </div>
 
       <div className="h-fit w-full">

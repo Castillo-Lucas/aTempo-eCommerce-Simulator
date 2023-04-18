@@ -13,11 +13,15 @@ import "swiper/css/pagination";
 // import required modules
 import { EffectFade, Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
-const MainSlider = () => {
+const MainSlider = ({ imagesWithSrc, generarID }) => {
+
+
+
+
   return (
     <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80">
       {/*Desktop*/}
-      <div >
+      <div>
         <Swiper
           spaceBetween={30}
           loop={true}
@@ -34,71 +38,18 @@ const MainSlider = () => {
           modules={[EffectFade, Navigation, Pagination, Keyboard, Autoplay]}
           className="mySwiper -pb-20 mainSlider"
         >
-          <SwiperSlide>
-            <div className="bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS1_fahhlc.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className=" bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS2_lboifk.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS3_rcjjyd.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS4_bik5xf.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS5_duhu6f.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className="bg-zinc-50">
-              <a href="">
-                <img
-                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679928857/aTempo/Assets/Guitarras/Fender%20American%20Professional%20II%20Roasted%20Pine%20Stratocaster%20HSS%20Electric%20Guitar%20Sienna%20Sunburst/americanProf2StratHSS6_ugnlsz.png"
-                  alt=""
-                />
-              </a>
-            </div>
-          </SwiperSlide>
+          {imagesWithSrc.map((img) => (
+            <SwiperSlide key={generarID()}>
+              <div  className="bg-zinc-50">
+                <a href="#">
+                  <img
+                    src={img}
+                    alt=""
+                  />
+                </a>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

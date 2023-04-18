@@ -1,28 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "../NavBar/ItemCount";
 
-const ProductInfo = () => {
+const ProductInfo = ({ currentProduct }) => {
+  const {
+    bestSeller,
+    brand,
+    category,
+    description,
+    discountPercentage,
+    discountPrice,
+    id,
+    model,
+    name,
+    newEntry,
+    nickname,
+    price,
+    product,
+    stock,
+  } = currentProduct;
+
+  const [itemCounter, setItemCounter] = useState(5)
+
+  const ahorro =  Math.round(price - discountPrice) ;
+  const financVisa =
+    discountPrice >= 1
+      ? Math.round(discountPrice / 12)
+      : price >= 1
+      ? Math.round(price / 12)
+      : 0;
+  const financMaster =
+    discountPrice >= 1
+      ? Math.round(discountPrice / 6)
+      : price >= 1
+      ? Math.round(price / 6)
+      : 0;
+  const financAmex =
+    discountPrice >= 1
+      ? Math.round(discountPrice / 3)
+      : price >= 1
+      ? Math.round(price / 3)
+      : 0;
+
   return (
     <div className="flex flex-col justify-between col-span-12 md:row-span-6 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80 -mt-5 md:mt-0 px-4 md:px-6 xl:px-14 py-4">
-
       {/*Name*/}
       <div className="mb-4">
-        <p className="text-2xl font-normal text-zinc-800">Fender</p>
-        <p className="text-sm font-light text-zinc-800 mb-">Guitarra</p>
-        <p className="text-base font-normal text-zinc-800">
-          American Professional II Roasted Pine Stratocaster HSS Electric Guitar
-          Sienna Sunburst
-        </p>
+        <p className="text-2xl font-normal text-zinc-800">{brand}</p>
+        <p className="text-sm font-light text-zinc-800 mb-">{product}</p>
+        <p className="text-base font-normal text-zinc-800">{model}</p>
       </div>
 
       {/*Price*/}
-      <div className="md:flex justify-between mb-4">
-        <p className="line-through text-zinc-800 text-lg mt-1">$1700</p>
-        <p className="text-2xl font-medium text-zinc-900 mb-2">$1500</p>
-        <div className="w-fit border py-1.5 px-1 rounded-lg bg-emerald-300">
-          <p className="text-emerald-800 font-medium">Ahorrás $200,00</p>
+      {discountPrice >= 1 ? (
+        <div className="md:flex justify-between mb-4">
+          <p className="line-through text-zinc-800 text-lg mt-1">${price}</p>
+          <p className="text-2xl font-medium text-zinc-900 mb-2">
+            ${discountPrice}
+          </p>
+          <div className="w-fit border py-1.5 px-1 rounded-lg bg-emerald-300">
+            <p className="text-emerald-800 font-medium">Ahorrás ${ahorro}</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="md:flex justify-between mb-4">
+          <p className="text-2xl font-medium text-zinc-900 mb-2">${price}</p>
+        </div>
+      )}
 
       {/*Modal*/}
       <div className="md:flex justify-between mb-4">
@@ -120,7 +163,15 @@ const ProductInfo = () => {
               />
             </g>
           </svg>
-          <p className="font-normal text-zinc-800 ml-2 mt-1">Medios de envío</p>
+          {price >= 500 ? (
+            <p className="font-semibold text-emerald-700 ml-2 mt-1">
+              Envío Gratis
+            </p>
+          ) : (
+            <p className="font-normal text-zinc-800 ml-2 mt-1">
+              Medios de envío
+            </p>
+          )}
         </button>
       </div>
 
@@ -145,7 +196,9 @@ const ProductInfo = () => {
               fill="#F2AE14"
             />
           </svg>
-          <p className="mt-2 pl-2">Hasta 12 cuotas sin interes de $125</p>
+          <p className="mt-2 pl-2">
+            Hasta 12 cuotas sin interes de ${financVisa}
+          </p>
         </div>
 
         <div className="flex">
@@ -385,7 +438,7 @@ const ProductInfo = () => {
               </g>
             </g>
           </svg>
-          <p className="pl-3">Hasta 6 cuotas sin interes de $250</p>
+          <p className="pl-3">Hasta 6 cuotas sin interes de ${financMaster}</p>
         </div>
 
         <div className="flex">
@@ -413,15 +466,18 @@ const ProductInfo = () => {
               fill="white"
             />
           </svg>
-          <p className="pl-4">Hasta 3 cuotas sin interes de $500</p>
+          <p className="pl-4">Hasta 3 cuotas sin interes de ${financAmex}</p>
         </div>
       </div>
 
       {/*Counter and Button*/}
       <div>
-        <div className="flex">
-          <p className="pt-4 mr-2">Cantidad</p>
-          <ItemCount />
+        <div className="flex justify-between">
+          <div className="flex">
+            <p className="pt-4 mr-2">Cantidad</p>
+            <ItemCount />
+          </div>
+          <p className="pt-4 mr-2  text-zinc-800">Stock: {stock}</p>
         </div>
 
         <button
@@ -431,7 +487,6 @@ const ProductInfo = () => {
           AGREGAR AL CARRITO
         </button>
       </div>
-
     </div>
   );
 };
