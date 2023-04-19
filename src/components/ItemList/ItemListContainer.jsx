@@ -29,24 +29,22 @@ const ItemListContainer = ({
   setToValue,
 }) => {
   const [products, setProducts] = useState([]);
+  const [categorybyURL, setCategorybyURL] = useState();
 
   const useId = useParams();
 
-  console.log(useId.category);
+  console.log(useId);
 
   /*Order products for first time according to "Position"*/
   const firstSort = productList.sort((a, b) => a.position - b.position);
+
   useEffect(() => {
     setProducts(firstSort);
   }, [productList]);
 
   /*Order products according URL*/
   useEffect(() => {
-    if (useId.category === "catalogo") {
-      firstSort;
-    } else {
-      setSelectedFiltersForFilter(useId.category);
-    }
+    setCategorybyURL(useId.category);
   }, [useId]);
 
   /*Setting Categories*/
@@ -99,7 +97,7 @@ const ItemListContainer = ({
 
   /*Order products according to "Ordenar Por" and Filter*/
 
-  const ordernarPorFilter = () => {
+  useEffect(() => {
     let orderedList = [...products];
     let filterByBestSeller = selectedFiltersForFilter.includes("Más Vendidos");
     let filterNewEntry = selectedFiltersForFilter.includes("Ultimos Ingresos");
@@ -109,23 +107,24 @@ const ItemListContainer = ({
 
     orderedList.sort((a, b) => a.position - b.position);
 
-    if (filterNewEntry) {
+    if (filterNewEntry || categorybyURL === "Ultimos Ingresos") {
+      orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.newEntry);
     } else if (filterByBestSeller) {
       orderedList = orderedList.filter((prod) => prod.bestSeller);
     } else if (filterByFreeShipping) {
       orderedList = orderedList.filter((prod) => prod.price >= 500);
-    } else if (filterByOffers) {
+    } else if (filterByOffers || categorybyURL === "Ofertas") {
+      orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.discountPercentage >= 1);
+    } else if (categorybyURL === "catalogo") {
+      orderedList = firstSort;
     } else {
       orderedList = firstSort;
     }
 
     setProducts(orderedList);
-  };
-  useEffect(() => {
-    ordernarPorFilter();
-  }, [selectedFiltersForFilter]);
+  }, [selectedFiltersForFilter, categorybyURL]);
 
   /*Order products according to "Categorías"*/
   useEffect(() => {

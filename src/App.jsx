@@ -154,7 +154,7 @@ function App() {
               }
             />
             <Route
-              path="/ItemListContainer/:category"
+              path="/ItemListContainer/:category/:brand"
               element={
                 <ItemListContainer
                   handleDrawerOne={handleDrawerOne}

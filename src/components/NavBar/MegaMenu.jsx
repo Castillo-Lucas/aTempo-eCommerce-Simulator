@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const MegaMenu = ({
   selectMegaMenu,
@@ -58,7 +59,12 @@ const MegaMenu = ({
                 className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu"
                 onMouseOver={(e) => setCatg(e.target.innerText)}
               >
-                <a className="aMegaMenu pl-4">{catg}</a>
+                <Link
+                  to={`/ItemListContainer/${catg}/all`}
+                  className="aMegaMenu pl-4"
+                >
+                  {catg}
+                </Link>
               </li>
             ))}
           </ul>
@@ -72,7 +78,7 @@ const MegaMenu = ({
                 key={generarID()}
                 className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu"
               >
-                <a className="aMegaMenu pl-4">{brand}</a>
+                <Link to={`/ItemListContainer/${catg}/${brand}`} className="aMegaMenu pl-4">{brand}</Link>
               </li>
             ))}
           </ul>

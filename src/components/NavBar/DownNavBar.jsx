@@ -23,7 +23,7 @@ const DownNavBar = ({
         </li>
 
         <li
-          className="hidden md:flex listMegaMenu py-2.5 md:py-0 md:mt-0 flex bottomNavList aMegaMenu hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent"
+          className="hidden md:flex listMegaMenu py-2.5 md:py-0 md:mt-0 bottomNavList aMegaMenu hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent"
           onClick={handleSelectMegaMenu}
         >
           <svg
@@ -49,7 +49,7 @@ const DownNavBar = ({
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/ItemListContainer/catalogo"
+            to="/ItemListContainer/catalogo/all"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             CATÁLOGO
@@ -58,7 +58,7 @@ const DownNavBar = ({
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/ItemListContainer/Ofertas"
+            to="/ItemListContainer/Ofertas/all"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             OFERTAS
@@ -67,7 +67,7 @@ const DownNavBar = ({
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/ItemListContainer/Ultimos Ingresos"
+            to="/ItemListContainer/Ultimos Ingresos/all"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             NUEVOS INGRESOS

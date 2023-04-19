@@ -40,7 +40,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/1_qwystt.png"
                   alt=""
@@ -53,7 +53,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/2_hmfgsr.png"
                   alt=""
@@ -66,7 +66,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/3_fkpldp.png"
                   alt=""
@@ -79,7 +79,7 @@ const HeroImage = () => {
           <SwiperSlide className="prueba">
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610421/aTempo/Assets/homepage/Mobile/4_bzwqj3.png"
                   alt=""
@@ -115,7 +115,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner1_onzrbw.png"
                   alt=""
@@ -127,7 +127,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner2_nazbs1.png"
                   alt=""
@@ -139,7 +139,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610380/aTempo/Assets/homepage/Desktop/banner3_rqnynv.png"
                   alt=""
@@ -151,7 +151,7 @@ const HeroImage = () => {
           <SwiperSlide>
             {" "}
             <div>
-              <Link to="/ItemListContainer/catalogo">
+              <Link to="/ItemListContainer/catalogo/all">
                 <img
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679610381/aTempo/Assets/homepage/Desktop/banner4_h6ucfj.png"
                   alt=""
