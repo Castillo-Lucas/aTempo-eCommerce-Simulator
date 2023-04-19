@@ -9,7 +9,9 @@ const TopNavBar = ({
   handleDrawerTwo,
   windowWidth,
   handleBurgerState,
-  productList
+  productList,
+  cart,
+  setCart,
 }) => {
   return (
     <div className="grid grid-cols-12 px-2 md:px-5 m-0 w-full">
@@ -21,7 +23,7 @@ const TopNavBar = ({
       <div className="lg:hidden col-span-3  md:col-span-5"></div>
 
       {/*Search Form*/}
-      <SearchForm productList={productList}/>
+      <SearchForm productList={productList} />
 
       {/*Icons Section*/}
       <div className="my-auto col-span-2 md:col-span-2 ">
@@ -42,7 +44,11 @@ const TopNavBar = ({
           </svg>
 
           {/*Cart Icon*/}
-          <CartWidget handleDrawerTwo={handleDrawerTwo} />
+          <CartWidget
+            handleDrawerTwo={handleDrawerTwo}
+            cart={cart}
+            setCart={setCart}
+          />
         </div>
       </div>
       {/*Burger Menu */}

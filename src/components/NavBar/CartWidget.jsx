@@ -1,12 +1,15 @@
 import React from "react";
 import "./NavBarStyles.css";
 
-const CartWidget = ({handleDrawerTwo}) => {
+const CartWidget = ({ handleDrawerTwo, cart, setCart }) => {
   return (
     <div className="mr-4 lg:mr-0">
-      <div className="w-5 h-5 ml-6 -mt-2 p-0 rounded-3xl bg-red-600 absolute counterWidget flex justify-center content-center">
-        <div className="text-zinc-300 font-medium text-sm">0</div>
-      </div>
+      {cart.length >= 1 && (
+        <div className="w-5 h-5 ml-6 -mt-2 p-0 rounded-3xl bg-red-600 absolute counterWidget flex justify-center content-center">
+          <div className="text-zinc-300 font-medium text-sm">{cart.length}</div>
+        </div>
+      )}
+
       <svg
         width="35px"
         height="35px"

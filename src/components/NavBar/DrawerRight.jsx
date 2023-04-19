@@ -2,7 +2,7 @@ import React from "react";
 import "../../App.css";
 import ProductDetail from "./ProductDetail";
 
-const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
+const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
   return (
     <div
       className={`fixed -right-96 top-0 z-10 h-screen p-4  bg-zinc-50 md:pt-36 ${
@@ -40,8 +40,46 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
       </p>
 
       <div className="w-full h-full pt-4">
-        {/*Empty Cart
-          <div className="pt-48 md:pt-60 2xl:pt-72">
+        {cart.length >= 1 ? (
+          <div className="fullCart">
+            {/*Purchase Detail*/}
+            {/*Product Detail*/}
+            <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
+              <ProductDetail cart={cart} setCart={setCart} />
+            </div>
+
+            {/*Price Detail*/}
+            <div className="w-full flex flex-col justify-end md:h-1/6 mb-4 md:mb-0 pb-2">
+              <div className="w-full flex justify-between pl-2 pr-4">
+                <p className="font-normal text-lg text-zinc-60">Subtotal</p>
+                <p className="font-normal text-lg text-zinc-800">$1500</p>
+              </div>
+              <div className="w-full flex justify-between pl-2 pr-4">
+                <p className="font-medium text-lg text-zinc-60">Total</p>
+                <p className="font-medium text-lg text-zinc-800">$1500</p>
+              </div>
+            </div>
+
+            {/*Finalize Purchase*/}
+            <div className="w-full md:h-fit">
+              <div className="w-full flex justify-between pl-2 pr-4">
+                <button
+                  type="button"
+                  className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
+                >
+                  Finalizar Compra
+                </button>
+              </div>
+              <div className="w-full flex justify-between pl-6 pt-2">
+                <p className="font-thin text-sm text-zinc-60">
+                  *Los gastos de envío seran calculados al finalizar la compra
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="pt-48 pl-14 md:pt-60 2xl:pt-72">
+            {/*Empty Cart*/}
             <svg
               width="80px"
               height="80px"
@@ -59,49 +97,8 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo }) => {
             <p className="text-base font-medium text-zinc-600 pl-16">
               Tu carrito esta vacío
             </p>
-          </div>*/}
-
-        {/*Purchase Detail*/}
-        <div className="fullCart">
-          {/*Product Detail*/}
-          <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
-            <ProductDetail />
-            <ProductDetail />
-            <ProductDetail />
-            <ProductDetail />
-            <ProductDetail />
-            <ProductDetail />
           </div>
-
-          {/*Price Detail*/}
-          <div className="w-full flex flex-col justify-end md:h-1/6 mb-4 md:mb-0 pb-2">
-            <div className="w-full flex justify-between pl-2 pr-4">
-              <p className="font-normal text-lg text-zinc-60">Subtotal</p>
-              <p className="font-normal text-lg text-zinc-800">$1500</p>
-            </div>
-            <div className="w-full flex justify-between pl-2 pr-4">
-              <p className="font-medium text-lg text-zinc-60">Total</p>
-              <p className="font-medium text-lg text-zinc-800">$1500</p>
-            </div>
-          </div>
-
-          {/*Finalize Purchase*/}
-          <div className="w-full md:h-fit">
-            <div className="w-full flex justify-between pl-2 pr-4">
-              <button
-                type="button"
-                className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
-              >
-                Finalizar Compra
-              </button>
-            </div>
-            <div className="w-full flex justify-between pl-6 pt-2">
-              <p className="font-thin text-sm text-zinc-60">
-                *Los gastos de envío seran calculados al finalizar la compra
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

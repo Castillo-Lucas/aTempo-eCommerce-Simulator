@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ItemCount from "../NavBar/ItemCount";
 
-const ProductInfo = ({ currentProduct }) => {
+const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
   const {
     bestSeller,
     brand,
@@ -19,9 +19,7 @@ const ProductInfo = ({ currentProduct }) => {
     stock,
   } = currentProduct;
 
-  const [itemCounter, setItemCounter] = useState(5)
-
-  const ahorro =  Math.round(price - discountPrice) ;
+  const ahorro = Math.round(price - discountPrice);
   const financVisa =
     discountPrice >= 1
       ? Math.round(discountPrice / 12)
@@ -40,6 +38,10 @@ const ProductInfo = ({ currentProduct }) => {
       : price >= 1
       ? Math.round(price / 3)
       : 0;
+
+  const handleAddtoCart = () => {
+    setCart([...cart, currentProduct]);
+  };
 
   return (
     <div className="flex flex-col justify-between col-span-12 md:row-span-6 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80 -mt-5 md:mt-0 px-4 md:px-6 xl:px-14 py-4">
@@ -475,7 +477,11 @@ const ProductInfo = ({ currentProduct }) => {
         <div className="flex justify-between">
           <div className="flex">
             <p className="pt-4 mr-2">Cantidad</p>
-            <ItemCount />
+            <ItemCount
+              stock={stock}
+              currentProduct={currentProduct}
+              setCurrentProduct={setCurrentProduct}
+            />
           </div>
           <p className="pt-4 mr-2  text-zinc-800">Stock: {stock}</p>
         </div>
@@ -483,6 +489,7 @@ const ProductInfo = ({ currentProduct }) => {
         <button
           type="button"
           className="buttonCard py-2.5 px-5 w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
+          onClick={handleAddtoCart}
         >
           AGREGAR AL CARRITO
         </button>

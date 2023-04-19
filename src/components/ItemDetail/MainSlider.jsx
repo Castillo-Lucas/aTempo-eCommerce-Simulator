@@ -14,10 +14,6 @@ import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const MainSlider = ({ imagesWithSrc, generarID }) => {
-
-
-
-
   return (
     <div className="col-span-12 md:row-span-4 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80">
       {/*Desktop*/}
@@ -40,13 +36,8 @@ const MainSlider = ({ imagesWithSrc, generarID }) => {
         >
           {imagesWithSrc.map((img) => (
             <SwiperSlide key={generarID()}>
-              <div  className="bg-zinc-50">
-                <a href="#">
-                  <img
-                    src={img}
-                    alt=""
-                  />
-                </a>
+              <div className="bg-zinc-50">
+                <img src={img} alt="" className="hover:cursor-pointer" />
               </div>
             </SwiperSlide>
           ))}

@@ -14,7 +14,7 @@ import DrawerRight from "./components/NavBar/DrawerRight";
 import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
-import ProductSheet from "./components/ProductSheet/ProductSheet";
+import ItemDetail from "./components/ItemDetail/ItemDetail";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Nosotros from "./components/Nosotros";
@@ -41,7 +41,11 @@ function App() {
   const [toValue, setToValue] = useState("");
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
+
+
+  /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
   const [drawerOneContent, setDrawerOneContent] = useState("Filter");
@@ -52,7 +56,7 @@ function App() {
 
   /*Get Items*/
   useEffect(() => {
-    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1680903467/aTempo/Assets/productList_p1hhov.json`;
+    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1681865053/aTempo/Assets/aTempoProductList_pgxp8v.json`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => setProductList(data));
@@ -107,7 +111,12 @@ function App() {
           layerThree={layerThree}
           handleSelectMegaMenu={handleSelectMegaMenu}
         />
-        <DrawerRight drawerTwo={drawerTwo} handleDrawerTwo={handleDrawerTwo} />
+        <DrawerRight
+          drawerTwo={drawerTwo}
+          handleDrawerTwo={handleDrawerTwo}
+          cart={cart}
+          setCart={setCart}
+        />
         <DrawerLeft
           drawerOne={drawerOne}
           drawerOneContent={drawerOneContent}
@@ -133,6 +142,8 @@ function App() {
           handleSelectMegaMenu={handleSelectMegaMenu}
           productList={productList}
           generarID={generarID}
+          cart={cart}
+          setCart={setCart}
         />
         <ScrollToTop>
           <Routes>
@@ -169,12 +180,14 @@ function App() {
             />
             <Route
               exact
-              path="/product-sheet/:productId"
+              path="/ItemDetail/:productId"
               element={
-                <ProductSheet
+                <ItemDetail
                   productList={productList}
                   bestSellers={bestSellers}
                   newProducts={newProducts}
+                  cart={cart}
+                  setCart={setCart}
                 />
               }
             />

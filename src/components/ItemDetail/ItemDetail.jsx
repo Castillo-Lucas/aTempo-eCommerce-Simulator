@@ -10,7 +10,13 @@ import CarouselTwo from "../HomePage/CarouselTwo";
 import BannerTwo from "../HomePage/BannerTwo";
 import { useLoaderData, useParams } from "react-router-dom";
 
-const ProductSheet = ({ productList, bestSellers, newProducts }) => {
+const ItemDetail = ({
+  productList,
+  bestSellers,
+  newProducts,
+  cart,
+  setCart,
+}) => {
   const [currentProduct, setCurrentProduct] = useState([]);
 
   const useId = useParams();
@@ -113,7 +119,12 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
           />
 
           {/*Product Info*/}
-          <ProductInfo currentProduct={currentProduct} />
+          <ProductInfo
+            currentProduct={currentProduct}
+            setCurrentProduct={setCurrentProduct}
+            cart={cart}
+            setCart={setCart}
+          />
         </div>
 
         {/*Product Description*/}
@@ -136,4 +147,4 @@ const ProductSheet = ({ productList, bestSellers, newProducts }) => {
   );
 };
 
-export default ProductSheet;
+export default ItemDetail;

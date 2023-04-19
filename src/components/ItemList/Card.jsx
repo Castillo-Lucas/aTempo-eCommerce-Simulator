@@ -15,7 +15,6 @@ const Card = ({ products }) => {
     position,
   } = products;
 
-
   return (
     <div className="col-span-6 md:col-span-3 relative">
       {newEntry.length >= 1 && (
@@ -85,7 +84,7 @@ const Card = ({ products }) => {
 
           <div className="flex justify-center">
             <NavLink
-              to={`/product-sheet/${id}`}
+              to={`/ItemDetail/${id}`}
               className="buttonCard text-center py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
             >
               Ver producto
