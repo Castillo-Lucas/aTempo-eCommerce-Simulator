@@ -23,7 +23,7 @@ const DownNavBar = ({
         </li>
 
         <li
-          className="listMegaMenu py-2.5 md:py-0 md:mt-0 flex bottomNavList aMegaMenu hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent"
+          className="hidden md:flex listMegaMenu py-2.5 md:py-0 md:mt-0 flex bottomNavList aMegaMenu hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent"
           onClick={handleSelectMegaMenu}
         >
           <svg
@@ -39,14 +39,17 @@ const DownNavBar = ({
               clipRule="evenodd"
             ></path>
           </svg>
-          <a href="#" className="bottomNavList aMegaMenu text-sm md:text-base">
+          <button
+            href="#"
+            className="bottomNavList aMegaMenu text-sm md:text-base"
+          >
             CATEGORÍAS
-          </a>
+          </button>
         </li>
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/itemList"
+            to="/ItemListContainer/catalogo"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             CATÁLOGO
@@ -55,7 +58,7 @@ const DownNavBar = ({
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/itemList"
+            to="/ItemListContainer/Ofertas"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             OFERTAS
@@ -64,7 +67,7 @@ const DownNavBar = ({
 
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/itemList"
+            to="/ItemListContainer/Ultimos Ingresos"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             NUEVOS INGRESOS

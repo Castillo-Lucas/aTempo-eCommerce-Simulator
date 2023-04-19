@@ -8,7 +8,7 @@ import ProductDescription from "./ProductDescription";
 import CarouselOne from "../HomePage/CarouselOne";
 import CarouselTwo from "../HomePage/CarouselTwo";
 import BannerTwo from "../HomePage/BannerTwo";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ItemDetail = ({
   productList,

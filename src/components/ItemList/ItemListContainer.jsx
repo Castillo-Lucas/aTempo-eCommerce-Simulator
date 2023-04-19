@@ -5,6 +5,7 @@ import FilterSection from "./FilterSection";
 import "../../App.css";
 import Pagination from "./Pagination";
 import Spinner from "../Spinner";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({
   handleDrawerOne,
@@ -29,12 +30,24 @@ const ItemListContainer = ({
 }) => {
   const [products, setProducts] = useState([]);
 
+  const useId = useParams();
+
+  console.log(useId.category);
 
   /*Order products for first time according to "Position"*/
   const firstSort = productList.sort((a, b) => a.position - b.position);
   useEffect(() => {
     setProducts(firstSort);
   }, [productList]);
+
+  /*Order products according URL*/
+  useEffect(() => {
+    if (useId.category === "catalogo") {
+      firstSort;
+    } else {
+      setSelectedFiltersForFilter(useId.category);
+    }
+  }, [useId]);
 
   /*Setting Categories*/
   useEffect(() => {
@@ -85,7 +98,8 @@ const ItemListContainer = ({
   }, [selectedFiltersSort]);
 
   /*Order products according to "Ordenar Por" and Filter*/
-  useEffect(() => {
+
+  const ordernarPorFilter = () => {
     let orderedList = [...products];
     let filterByBestSeller = selectedFiltersForFilter.includes("Más Vendidos");
     let filterNewEntry = selectedFiltersForFilter.includes("Ultimos Ingresos");
@@ -108,6 +122,9 @@ const ItemListContainer = ({
     }
 
     setProducts(orderedList);
+  };
+  useEffect(() => {
+    ordernarPorFilter();
   }, [selectedFiltersForFilter]);
 
   /*Order products according to "Categorías"*/
