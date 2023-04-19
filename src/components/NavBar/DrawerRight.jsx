@@ -42,7 +42,6 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
       <div className="w-full h-full pt-4">
         {cart.length >= 1 ? (
           <div className="fullCart">
-            {/*Purchase Detail*/}
             {/*Product Detail*/}
             <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
               <ProductDetail cart={cart} setCart={setCart} />

@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const ItemCount = ({ stock, quantity, currentProduct}) => {
+const ItemCountDetail = ({
+  stock,
+  quantity,
+  setCurrentProduct,
+  currentProduct,
+}) => {
   const handleAddCounter = () => {
-    console.log("sumando");
+    setCurrentProduct((prevProduct) => {
+      const updatedProduct = { ...prevProduct };
+      updatedProduct.quantity += 1;
+      return updatedProduct;
+    });
   };
 
   const handleSubtractCounter = () => {
-    console.log("restansdo");
+    setCurrentProduct((prevProduct) => {
+      const updatedProduct = { ...prevProduct };
+      updatedProduct.quantity -= 1;
+      return updatedProduct;
+    });
   };
-
   return (
     <div className="w-1 px-0.5 py-3 flex">
       <button
@@ -43,4 +55,4 @@ const ItemCount = ({ stock, quantity, currentProduct}) => {
   );
 };
 
-export default ItemCount;
+export default ItemCountDetail;

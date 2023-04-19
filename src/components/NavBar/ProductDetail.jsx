@@ -11,7 +11,6 @@ const ProductDetail = ({ cart, setCart }) => {
     return Id1 + Id2;
   };
 
-
   const handleDeleteItem = (id) => {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
@@ -30,7 +29,11 @@ const ProductDetail = ({ cart, setCart }) => {
               <img className="h-16" src={item.img1} alt="" />
             </div>
 
-            <ItemCount />
+            <ItemCount
+              stock={item.stock}
+              quantity={item.quantity}
+              currentProduct={item}
+            />
           </div>
 
           {/*Product Name and Detail*/}
@@ -48,7 +51,9 @@ const ProductDetail = ({ cart, setCart }) => {
               <div className="flex">
                 {" "}
                 <p className="text-base line-through">${item.price}</p>
-                <p className="text-base font-medium ml-4">${item.discountPrice}</p>
+                <p className="text-base font-medium ml-4">
+                  ${item.discountPrice}
+                </p>
               </div>
             ) : (
               <div className="flex">

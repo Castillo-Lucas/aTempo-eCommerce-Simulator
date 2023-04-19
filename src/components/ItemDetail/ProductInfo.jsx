@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import ItemCount from "../NavBar/ItemCount";
+import ItemCount from "../NavBar/ItemCount"
+import ItemCountDetail from "./ItemCountDetail";
 
 const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
   const {
@@ -16,6 +17,7 @@ const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
     nickname,
     price,
     product,
+    quantity,
     stock,
   } = currentProduct;
 
@@ -477,8 +479,9 @@ const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
         <div className="flex justify-between">
           <div className="flex">
             <p className="pt-4 mr-2">Cantidad</p>
-            <ItemCount
+            <ItemCountDetail
               stock={stock}
+              quantity={quantity}
               currentProduct={currentProduct}
               setCurrentProduct={setCurrentProduct}
             />
