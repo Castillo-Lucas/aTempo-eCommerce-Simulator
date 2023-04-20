@@ -56,12 +56,12 @@ const MegaMenu = ({
             {categories.map((catg) => (
               <li
                 key={generarID()}
-                className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu"
+                className="py-2.5 hover:bg-zinc-700 listMegaMenu"
                 onMouseOver={(e) => setCatg(e.target.innerText)}
               >
                 <Link
                   to={`/ItemListContainer/${catg}/all`}
-                  className="aMegaMenu pl-4"
+                  className="aMegaMenu pl-4 hover:cursor-pointer"
                 >
                   {catg}
                 </Link>
@@ -76,9 +76,14 @@ const MegaMenu = ({
             {brands.map((brand) => (
               <li
                 key={generarID()}
-                className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu"
+                className="py-2.5 hover:bg-zinc-700 listMegaMenu"
               >
-                <Link to={`/ItemListContainer/${catg}/${brand}`} className="aMegaMenu pl-4">{brand}</Link>
+                <Link
+                  to={`/ItemListContainer/${catg}/${brand}`}
+                  className="aMegaMenu pl-4  hover:cursor-pointe"
+                >
+                  {brand}
+                </Link>
               </li>
             ))}
           </ul>
@@ -160,7 +165,12 @@ const MegaMenu = ({
                 key={generarID()}
                 className="py-2.5 hover:cursor-pointer hover:bg-zinc-700 listMegaMenu"
               >
-                <a className="aMegaMenu pl-4">{brand}</a>
+                <Link
+                  to={`/ItemListContainer/${catg}/${brand}`}
+                  className="aMegaMenu pl-4"
+                >
+                  {brand}
+                </Link>
               </li>
             ))}
           </ul>

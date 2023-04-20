@@ -29,11 +29,11 @@ const ItemListContainer = ({
   setToValue,
 }) => {
   const [products, setProducts] = useState([]);
+  const [selectbyURL, setSelectbyURL] = useState();
   const [categorybyURL, setCategorybyURL] = useState();
+  const [brandbyURL, setBrandbyURL] = useState();
 
   const useId = useParams();
-
-  console.log(useId);
 
   /*Order products for first time according to "Position"*/
   const firstSort = productList.sort((a, b) => a.position - b.position);
@@ -42,9 +42,18 @@ const ItemListContainer = ({
     setProducts(firstSort);
   }, [productList]);
 
-  /*Order products according URL*/
+  /*Getting products according URL*/
   useEffect(() => {
-    setCategorybyURL(useId.category);
+    if (
+      useId.category === "catalogo" ||
+      useId.category === "Ofertas" ||
+      useId.category === "Ultimos Ingresos"
+    ) {
+      setSelectbyURL(useId.category);
+    } else {
+      setCategorybyURL(useId.category);
+      setBrandbyURL(useId.brand);
+    }
   }, [useId]);
 
   /*Setting Categories*/
@@ -96,7 +105,6 @@ const ItemListContainer = ({
   }, [selectedFiltersSort]);
 
   /*Order products according to "Ordenar Por" and Filter*/
-
   useEffect(() => {
     let orderedList = [...products];
     let filterByBestSeller = selectedFiltersForFilter.includes("Más Vendidos");
@@ -107,24 +115,53 @@ const ItemListContainer = ({
 
     orderedList.sort((a, b) => a.position - b.position);
 
-    if (filterNewEntry || categorybyURL === "Ultimos Ingresos") {
+    if (filterNewEntry || selectbyURL === "Ultimos Ingresos") {
       orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.newEntry);
     } else if (filterByBestSeller) {
       orderedList = orderedList.filter((prod) => prod.bestSeller);
     } else if (filterByFreeShipping) {
       orderedList = orderedList.filter((prod) => prod.price >= 500);
-    } else if (filterByOffers || categorybyURL === "Ofertas") {
+    } else if (filterByOffers || selectbyURL === "Ofertas") {
       orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.discountPercentage >= 1);
-    } else if (categorybyURL === "catalogo") {
+    } else if (selectbyURL === "catalogo") {
       orderedList = firstSort;
     } else {
       orderedList = firstSort;
     }
 
     setProducts(orderedList);
-  }, [selectedFiltersForFilter, categorybyURL]);
+  }, [selectedFiltersForFilter, selectbyURL]);
+
+  /*Order products according Category, Brand and URL*/
+  useEffect(() => {
+    const filteringCategory = productList.filter((producto) => {
+      return producto.category.includes(categorybyURL);
+    });
+
+    if (filteringCategory.length === 0) {
+      setProducts(firstSort);
+    } else {
+      setProducts(filteringCategory);
+    }
+
+    if (brandbyURL !== "all") {
+      const filteringCategory = productList.filter((producto) => {
+        return producto.category.includes(categorybyURL);
+      });
+
+      const filteringBrand = filteringCategory.filter((producto) => {
+        return producto.brand.includes(brandbyURL);
+      });
+
+      if (filteringBrand.length === 0) {
+        setProducts(firstSort);
+      } else {
+        setProducts(filteringBrand);
+      }
+    }
+  }, [categorybyURL, brandbyURL]);
 
   /*Order products according to "Categorías"*/
   useEffect(() => {
