@@ -43,8 +43,6 @@ function App() {
   const [newProducts, setNewProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
-
-
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
