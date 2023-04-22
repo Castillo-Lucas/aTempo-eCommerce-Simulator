@@ -42,6 +42,17 @@ function App() {
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [totalPurchase, setTotalPurchase] = useState();
+
+ /* useEffect(() => {
+    const arrtotalPirce = cart.map((prod) => prod.totalPurchase);
+    const totalPrice = arrtotalPirce.reduce(
+      (acumulador, valorActual) => acumulador + valorActual,
+      0
+    );
+    console.log(totalPrice);
+  }, [[cart.map(prod => prod.totalPurchase)]]);*/
+
 
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
@@ -54,7 +65,7 @@ function App() {
 
   /*Get Items*/
   useEffect(() => {
-    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1681865053/aTempo/Assets/aTempoProductList_pgxp8v.json`;
+    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1682176449/aTempo/Assets/aTempoProducts_no7idv.json`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => setProductList(data));

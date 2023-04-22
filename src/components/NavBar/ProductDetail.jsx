@@ -19,6 +19,7 @@ const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
     product,
     quantity,
     stock,
+    totalPurchase,
   } = cart;
 
   /*Function that formats numbers to look like this: 333.33*/
@@ -39,6 +40,14 @@ const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
     "es-ES",
     opcionesDeFormato
   );
+
+  useEffect(() => {
+    if (discountPrice >= 1) {
+      cart.totalPurchase = totalDiscount;
+    } else {
+      cart.totalPurchase = total;
+    }
+  }, [total, totalDiscount]);
 
   /*ID Generator*/
   const generarID = () => {
