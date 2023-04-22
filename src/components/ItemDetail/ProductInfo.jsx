@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ItemCount from "../NavBar/ItemCount"
+import ItemCount from "../NavBar/ItemCount";
 import ItemCountDetail from "./ItemCountDetail";
 
 const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
@@ -42,7 +42,17 @@ const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
       : 0;
 
   const handleAddtoCart = () => {
-    setCart([...cart, currentProduct]);
+    const itemIndex = cart.findIndex((item) => item.id === currentProduct.id);
+
+    if (itemIndex === -1) {
+      // If the product doesnt exist in the cart, its added with the amount indicated in the counter
+      setCart([...cart, { ...currentProduct }]);
+    } else {
+      // If the product exist in the cart, its quantity is updated
+      const updatedCart = [...cart];
+      updatedCart[itemIndex].quantity += 1;
+      setCart(updatedCart);
+    }
   };
 
   return (

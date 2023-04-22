@@ -1,12 +1,34 @@
 import React, { useEffect, useState } from "react";
 
-const ItemCount = ({ stock, quantity, currentProduct}) => {
+const ItemCount = ({
+  stock,
+  quantity,
+  cart,
+  setTotal,
+  price,
+  setTotalDiscount,
+  discountPrice,
+}) => {
+  const [counter, setCounter] = useState(quantity);
+
   const handleAddCounter = () => {
-    console.log("sumando");
+    setCounter((cart.quantity += 1));
+
+    const calc = price * (counter + 1);
+    setTotal(calc);
+
+    const calcDiscount = discountPrice * (counter + 1);
+    setTotalDiscount(calcDiscount);
   };
 
   const handleSubtractCounter = () => {
-    console.log("restansdo");
+    setCounter((cart.quantity -= 1));
+
+    const calc = price * (counter - 1);
+    setTotal(calc);
+
+    const calcDiscount = discountPrice * (counter - 1);
+    setTotalDiscount(calcDiscount);
   };
 
   return (
@@ -14,9 +36,9 @@ const ItemCount = ({ stock, quantity, currentProduct}) => {
       <button
         type="button"
         className={`${
-          quantity === stock ? "cursor-auto " : " btnCounter"
+          counter === stock ? "cursor-auto " : " btnCounter"
         } px-1.5 bg-zinc-50 border border-zinc-300 rounded-l-md`}
-        onClick={quantity < stock ? handleAddCounter : undefined}
+        onClick={counter < stock ? handleAddCounter : undefined}
       >
         <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
           +
@@ -26,14 +48,14 @@ const ItemCount = ({ stock, quantity, currentProduct}) => {
         type="button"
         className="p-2 bg-zinc-50 border border-zinc-300 hover:cursor-auto"
       >
-        <p className="w-3 text-xs text-zinc-600 text-center">{quantity}</p>
+        <p className="w-3 text-xs text-zinc-600 text-center">{counter}</p>
       </div>
       <button
         type="button"
         className={`${
-          quantity === 1 ? "cursor-auto " : " btnCounter"
+          counter === 1 ? "cursor-auto " : " btnCounter"
         } px-2 bg-zinc-50 border border-zinc-300 rounded-r-md `}
-        onClick={quantity > 1 ? handleSubtractCounter : undefined}
+        onClick={counter > 1 ? handleSubtractCounter : undefined}
       >
         <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
           -

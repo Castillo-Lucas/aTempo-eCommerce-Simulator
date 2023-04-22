@@ -3,6 +3,19 @@ import "../../App.css";
 import ProductDetail from "./ProductDetail";
 
 const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
+  /*ID Generator*/
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
+  };
+
+  /*Item Deleter*/
+  const handleDeleteItem = (id) => {
+    const newCart = cart.filter((item) => item.id !== id);
+    setCart(newCart);
+  };
+  
   return (
     <div
       className={`fixed -right-96 top-0 z-10 h-screen p-4  bg-zinc-50 md:pt-36 ${
@@ -44,7 +57,14 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
           <div className="fullCart">
             {/*Product Detail*/}
             <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
-              <ProductDetail cart={cart} setCart={setCart} />
+              {cart.map((cart) => (
+                <ProductDetail
+                  key={generarID()}
+                  cart={cart}
+                  setCart={setCart}
+                  handleDeleteItem={handleDeleteItem}
+                />
+              ))}
             </div>
 
             {/*Price Detail*/}
