@@ -1,34 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 const ItemCount = ({
   stock,
   quantity,
-  cart,
+  currentProduct,
   setTotal,
   price,
   setTotalDiscount,
   discountPrice,
+  handleTotalPurchase
 }) => {
   const [counter, setCounter] = useState(quantity);
 
+  /*Add the quantity of the selected product */
   const handleAddCounter = () => {
-    setCounter((cart.quantity += 1));
+    setCounter((currentProduct.quantity += 1));
 
     const calc = price * (counter + 1);
     setTotal(calc);
 
     const calcDiscount = discountPrice * (counter + 1);
     setTotalDiscount(calcDiscount);
+
+    /*Update cart whit current modified product*/
+    handleTotalPurchase(currentProduct)
   };
 
+  /*Subtract the quantity of the selected product */
   const handleSubtractCounter = () => {
-    setCounter((cart.quantity -= 1));
+    setCounter((currentProduct.quantity -= 1));
 
     const calc = price * (counter - 1);
     setTotal(calc);
 
     const calcDiscount = discountPrice * (counter - 1);
     setTotalDiscount(calcDiscount);
+
+    /*Update cart whit current modified product*/
+    handleTotalPurchase(currentProduct)
   };
 
   return (

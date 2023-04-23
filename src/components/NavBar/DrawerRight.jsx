@@ -1,8 +1,15 @@
 import React from "react";
 import "../../App.css";
 import ProductDetail from "./ProductDetail";
+import { Link } from "react-router-dom";
 
-const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
+const DrawerRight = ({
+  drawerTwo,
+  handleDrawerTwo,
+  cart,
+  setCart,
+  totalPurchase,
+}) => {
   /*ID Generator*/
   const generarID = () => {
     const Id1 = Math.random().toString(36).substring(2);
@@ -15,7 +22,42 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
   };
-  
+
+  const handleTotalPurchase = (currectProduct) => {
+    const itemIndex = cart.findIndex((item) => item.id === currectProduct.id);
+
+    if (itemIndex === -1) {
+      // If the product doesnt exist in the cart, its added with the amount indicated in the counter
+      setCart([...cart, { ...currentProduct }]);
+    } else {
+      // If the product exist in the cart, its quantity is updated
+      const updatedCart = [...cart];
+      setCart(updatedCart);
+    }
+  };
+
+  /*Function that formats numbers to look like this: 333.33*/
+  const opcionesDeFormato = {
+    style: "decimal",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    useGrouping: true,
+  };
+
+  /*Setting totalPurchase to look like "opcionesDeFormato" format*/
+  const tot = Number(totalPurchase);
+  const totalPurchaseFormat = tot.toLocaleString("es-ES", opcionesDeFormato);
+
+  const handleFinishPurchase = (e) => {
+    const timeoutId = setTimeout(() => {
+      handleDrawerTwo(e);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  };
+
   return (
     <div
       className={`fixed -right-96 top-0 z-10 h-screen p-4  bg-zinc-50 md:pt-36 ${
@@ -57,12 +99,15 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
           <div className="fullCart">
             {/*Product Detail*/}
             <div className="w-full h-2/4 md:h-4/6 overflow-auto border-b">
-              {cart.map((cart) => (
+              {cart.map((currentProduct) => (
                 <ProductDetail
                   key={generarID()}
+                  currentProduct={currentProduct}
                   cart={cart}
                   setCart={setCart}
                   handleDeleteItem={handleDeleteItem}
+                  handleTotalPurchase={handleTotalPurchase}
+                  opcionesDeFormato={opcionesDeFormato}
                 />
               ))}
             </div>
@@ -71,23 +116,31 @@ const DrawerRight = ({ drawerTwo, handleDrawerTwo, cart, setCart }) => {
             <div className="w-full flex flex-col justify-end md:h-1/6 mb-4 md:mb-0 pb-2">
               <div className="w-full flex justify-between pl-2 pr-4">
                 <p className="font-normal text-lg text-zinc-60">Subtotal</p>
-                <p className="font-normal text-lg text-zinc-800">$1500</p>
+                <p className="font-normal text-lg text-zinc-800">
+                  ${totalPurchaseFormat}
+                </p>
               </div>
               <div className="w-full flex justify-between pl-2 pr-4">
                 <p className="font-medium text-lg text-zinc-60">Total</p>
-                <p className="font-medium text-lg text-zinc-800">$1500</p>
+                <p className="font-medium text-lg text-zinc-800">
+                  ${totalPurchaseFormat}
+                </p>
               </div>
             </div>
 
             {/*Finalize Purchase*/}
             <div className="w-full md:h-fit">
               <div className="w-full flex justify-between pl-2 pr-4">
-                <button
+                <Link
+                  to="/checkout"
                   type="button"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
+                  onClick={(e) => {
+                    handleFinishPurchase(e);
+                  }}
                 >
-                  Finalizar Compra
-                </button>
+                  <p className="text-center">Finalizar Compra</p>
+                </Link>
               </div>
               <div className="w-full flex justify-between pl-6 pt-2">
                 <p className="font-thin text-sm text-zinc-60">

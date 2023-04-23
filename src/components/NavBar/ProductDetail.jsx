@@ -1,34 +1,24 @@
 import React, { useState, useEffect } from "react";
 import ItemCount from "./ItemCount";
 
-const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
+const ProductDetail = ({
+  currentProduct,
+  setCart,
+  handleDeleteItem,
+  handleTotalPurchase,
+  opcionesDeFormato,
+}) => {
   const {
-    bestSeller,
     brand,
-    category,
-    description,
-    discountPercentage,
     discountPrice,
     id,
     img1,
     model,
-    name,
-    newEntry,
-    nickname,
     price,
     product,
     quantity,
     stock,
-    totalPurchase,
-  } = cart;
-
-  /*Function that formats numbers to look like this: 333.33*/
-  const opcionesDeFormato = {
-    style: "decimal",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    useGrouping: true,
-  };
+  } = currentProduct;
 
   /*Getting totals of each product separately*/
   const [total, setTotal] = useState(price * quantity);
@@ -43,9 +33,9 @@ const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
 
   useEffect(() => {
     if (discountPrice >= 1) {
-      cart.totalPurchase = totalDiscount;
+      currentProduct.totalPurchase = totalDiscount;
     } else {
-      cart.totalPurchase = total;
+      currentProduct.totalPurchase = total;
     }
   }, [total, totalDiscount]);
 
@@ -71,13 +61,14 @@ const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
           <ItemCount
             stock={stock}
             quantity={quantity}
-            cart={cart}
+            currentProduct={currentProduct}
             setCart={setCart}
             total={total}
             setTotal={setTotal}
             price={price}
             setTotalDiscount={setTotalDiscount}
             discountPrice={discountPrice}
+            handleTotalPurchase={handleTotalPurchase}
           />
         </div>
 
@@ -95,7 +86,7 @@ const ProductDetail = ({ cart, setCart, handleDeleteItem }) => {
           {discountPrice >= 1 ? (
             <div className="flex">
               {" "}
-              <p className="text-base line-through">${price}</p>
+              <p className="text-base line-through">${totalFormat}</p>
               <p className="text-base font-medium ml-4">${totalDiscFormat}</p>
             </div>
           ) : (

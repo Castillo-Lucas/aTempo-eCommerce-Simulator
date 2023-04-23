@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +15,7 @@ import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
+import CheckOut from "./components/CheckOut/CheckOut";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Nosotros from "./components/Nosotros";
@@ -44,16 +45,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [totalPurchase, setTotalPurchase] = useState();
 
- /* useEffect(() => {
-    const arrtotalPirce = cart.map((prod) => prod.totalPurchase);
-    const totalPrice = arrtotalPirce.reduce(
-      (acumulador, valorActual) => acumulador + valorActual,
-      0
-    );
-    console.log(totalPrice);
-  }, [[cart.map(prod => prod.totalPurchase)]]);*/
-
-
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
   const [drawerTwo, setDrawerTwo] = useState(false);
@@ -70,6 +61,16 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProductList(data));
   }, []);
+
+  /*Getting total purchase*/
+  useEffect(() => {
+    const arrtotalPirce = cart.map((prod) => prod.totalPurchase);
+    const totalPrice = arrtotalPirce.reduce(
+      (acumulador, valorActual) => acumulador + valorActual,
+      0
+    );
+    setTotalPurchase(totalPrice);
+  }, [cart]);
 
   /*Separate items for carousels*/
   useEffect(() => {
@@ -125,6 +126,7 @@ function App() {
           handleDrawerTwo={handleDrawerTwo}
           cart={cart}
           setCart={setCart}
+          totalPurchase={totalPurchase}
         />
         <DrawerLeft
           drawerOne={drawerOne}
@@ -200,8 +202,12 @@ function App() {
                 />
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route
+              path="/checkout"
+              element={<CheckOut spinner={spinner} setSpinner={setSpinner} />}
+            />
             <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>
 
