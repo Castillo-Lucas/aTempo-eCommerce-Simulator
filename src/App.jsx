@@ -15,6 +15,7 @@ import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
+import Cart from "./components/Cart/Cart";
 import CheckOut from "./components/CheckOut/CheckOut";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
@@ -53,6 +54,7 @@ function App() {
   const [layerThree, setLayerThree] = useState(false);
   const [selectMegaMenu, setSelectMegaMenu] = useState(false);
   const [spinner, setSpinner] = useState(false);
+  const [showNavBar, setShowNavBar] = useState(true);
 
   /*Get Items*/
   useEffect(() => {
@@ -127,6 +129,7 @@ function App() {
           cart={cart}
           setCart={setCart}
           totalPurchase={totalPurchase}
+          showNavBar={showNavBar}
         />
         <DrawerLeft
           drawerOne={drawerOne}
@@ -146,22 +149,30 @@ function App() {
           toValue={toValue}
           setToValue={setToValue}
         />
-        <NavBar
-          selectMegaMenu={selectMegaMenu}
-          handleDrawerOne={handleDrawerOne}
-          handleDrawerTwo={handleDrawerTwo}
-          handleSelectMegaMenu={handleSelectMegaMenu}
-          productList={productList}
-          generarID={generarID}
-          cart={cart}
-          setCart={setCart}
-        />
+
+        {showNavBar && (
+          <NavBar
+            selectMegaMenu={selectMegaMenu}
+            handleDrawerOne={handleDrawerOne}
+            handleDrawerTwo={handleDrawerTwo}
+            handleSelectMegaMenu={handleSelectMegaMenu}
+            productList={productList}
+            generarID={generarID}
+            cart={cart}
+            setCart={setCart}
+          />
+        )}
+
         <ScrollToTop>
           <Routes>
             <Route
               path="/"
               element={
-                <Home bestSellers={bestSellers} newProducts={newProducts} />
+                <Home
+                  bestSellers={bestSellers}
+                  newProducts={newProducts}
+                  setShowNavBar={setShowNavBar}
+                />
               }
             />
             <Route
@@ -203,6 +214,22 @@ function App() {
               }
             />
             <Route
+              path="/cart"
+              element={
+                <Cart
+                  spinner={spinner}
+                  setSpinner={setSpinner}
+                  setShowNavBar={setShowNavBar}
+                  cart={cart}
+                  setCart={setCart}
+                  totalPurchase={totalPurchase}
+                  setTotalPurchase={setTotalPurchase}
+                  showNavBar={showNavBar}
+                />
+              }
+            />
+
+            <Route
               path="/checkout"
               element={<CheckOut spinner={spinner} setSpinner={setSpinner} />}
             />
@@ -211,7 +238,7 @@ function App() {
           </Routes>
         </ScrollToTop>
 
-        <Footer />
+        {showNavBar && <Footer />}
       </Router>
     </div>
   );

@@ -438,6 +438,11 @@ input[type="checkbox"]:checked::before {
     width: 500px !important;
 }
 
+/*------------Cart---------------*/
+.bodyCart{
+    height: calc(100vh - 280px) !important;
+}
+
 /*------------Spinner------------------*/
 .spinner {
     width: 100px;

@@ -9,6 +9,7 @@ const DrawerRight = ({
   cart,
   setCart,
   totalPurchase,
+  showNavBar
 }) => {
   /*ID Generator*/
   const generarID = () => {
@@ -108,6 +109,7 @@ const DrawerRight = ({
                   handleDeleteItem={handleDeleteItem}
                   handleTotalPurchase={handleTotalPurchase}
                   opcionesDeFormato={opcionesDeFormato}
+                  showNavBar={showNavBar}
                 />
               ))}
             </div>
@@ -132,7 +134,7 @@ const DrawerRight = ({
             <div className="w-full md:h-fit">
               <div className="w-full flex justify-between pl-2 pr-4">
                 <Link
-                  to="/checkout"
+                  to="/cart"
                   type="button"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
                   onClick={(e) => {

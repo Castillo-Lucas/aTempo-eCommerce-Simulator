@@ -8,7 +8,12 @@ import CarouselTwo from "./CarouselTwo";
 import Categories from "./Categories";
 import HeroImage from "./HeroImage";
 
-const Home = ({ bestSellers, newProducts }) => {
+const Home = ({ bestSellers, newProducts, setShowNavBar }) => {
+
+    useEffect(() => {
+      setShowNavBar(true)
+
+    }, []);
   return (
     <div className="h-fit w-full">
       <HeroImage />

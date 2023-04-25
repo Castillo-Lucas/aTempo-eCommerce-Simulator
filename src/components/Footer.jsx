@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -142,16 +143,16 @@ const Footer = () => {
 
           {/*Logo*/}
           <div className="hidden md:block col-span-8 md:col-span-4 lg:col-span-3">
-            <a href="#" className="">
+            <Link  to="/" className="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679173118/aTempo/logo_o2vgxx.png"
                 className="logo "
                 alt="Logo"
               />
-            </a>
-            <span className="logName self-center text-3xl whitespace-nowrap text-white">
+            </Link>
+            <Link to="/" className="logName self-center text-3xl whitespace-nowrap text-white">
               aTempo
-            </span>
+            </Link>
           </div>
         </div>
       </footer>
