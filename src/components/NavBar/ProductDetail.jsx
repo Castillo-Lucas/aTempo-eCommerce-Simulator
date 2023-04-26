@@ -128,7 +128,7 @@ const ProductDetail = ({
         <div className="relative overflow-x-auto h-46">
           <table className="w-full text-sm text-left">
             <tbody>
-              <tr className="bg-white border-b border-zinc-300/70">
+              <tr className="border-b border-zinc-300/70">
                 {/*Image*/}
                 <td className="pl-2 py-4 w-24 font-medium text-zinc-800 whitespace-nowrap">
                   {" "}

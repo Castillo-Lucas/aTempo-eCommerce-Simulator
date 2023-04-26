@@ -44,7 +44,9 @@ function App() {
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [subTotalPurchase, setSubTotalPurchase] = useState();
   const [totalPurchase, setTotalPurchase] = useState();
+  const [shipping, setShipping] = useState(20);
 
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
@@ -64,15 +66,23 @@ function App() {
       .then((data) => setProductList(data));
   }, []);
 
-  /*Getting total purchase*/
+  /*Getting sub total purchase*/
   useEffect(() => {
     const arrtotalPirce = cart.map((prod) => prod.totalPurchase);
     const totalPrice = arrtotalPirce.reduce(
       (acumulador, valorActual) => acumulador + valorActual,
       0
     );
-    setTotalPurchase(totalPrice);
+    setSubTotalPurchase(totalPrice);
   }, [cart]);
+
+  useEffect(() => {
+    if (subTotalPurchase <= 500) {
+      setTotalPurchase(subTotalPurchase + shipping);
+    } else {
+      setTotalPurchase(subTotalPurchase);
+    }
+  }, [subTotalPurchase]);
 
   /*Separate items for carousels*/
   useEffect(() => {
@@ -128,6 +138,8 @@ function App() {
           handleDrawerTwo={handleDrawerTwo}
           cart={cart}
           setCart={setCart}
+          subTotalPurchase={subTotalPurchase}
+          setSubTotalPurchase={setSubTotalPurchase}
           totalPurchase={totalPurchase}
           showNavBar={showNavBar}
         />
@@ -222,9 +234,13 @@ function App() {
                   setShowNavBar={setShowNavBar}
                   cart={cart}
                   setCart={setCart}
+                  subTotalPurchase={subTotalPurchase}
+                  setSubTotalPurchase={setSubTotalPurchase}
                   totalPurchase={totalPurchase}
                   setTotalPurchase={setTotalPurchase}
                   showNavBar={showNavBar}
+                  shipping={shipping}
+                  setShipping={setShipping}
                 />
               }
             />
