@@ -440,8 +440,21 @@ input[type="checkbox"]:checked::before {
 
 /*------------Cart---------------*/
 .bodyCart{
-    height: calc(100vh - 280px) !important;
+    min-height: calc(100vh - 280px) !important;
 }
+
+.bodyCartInfo{
+    min-height: 500px !important;
+}
+
+.priceCart{
+    min-width: 69.9px !important;
+}
+
+.emptyCart{
+    background-color: #FFFFFF;
+}
+
 
 /*------------Spinner------------------*/
 .spinner {
@@ -599,6 +612,10 @@ input[type="checkbox"]:checked::before {
 
     .notFound {
         width: 350px !important;
+    }
+
+    .bodyCartInfo{
+        min-height: 0px !important;
     }
 
 }

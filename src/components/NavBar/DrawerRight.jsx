@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import ProductDetail from "./ProductDetail";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const DrawerRight = ({
   cart,
   setCart,
   totalPurchase,
-  showNavBar
+  showNavBar,
 }) => {
   /*ID Generator*/
   const generarID = () => {
@@ -52,12 +52,14 @@ const DrawerRight = ({
   const handleFinishPurchase = (e) => {
     const timeoutId = setTimeout(() => {
       handleDrawerTwo(e);
-    }, 100);
+    }, 1);
 
     return () => {
       clearTimeout(timeoutId);
     };
   };
+
+
 
   return (
     <div
@@ -132,7 +134,7 @@ const DrawerRight = ({
 
             {/*Finalize Purchase*/}
             <div className="w-full md:h-fit">
-              <div className="w-full flex justify-between pl-2 pr-4">
+              <div className="w-full flex justify-center pl-2 pr-4">
                 <Link
                   to="/cart"
                   type="button"
