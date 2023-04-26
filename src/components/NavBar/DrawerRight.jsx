@@ -8,6 +8,8 @@ const DrawerRight = ({
   handleDrawerTwo,
   cart,
   setCart,
+  subTotalPurchase,
+  setSubTotalPurchase,
   totalPurchase,
   showNavBar,
 }) => {
@@ -45,9 +47,12 @@ const DrawerRight = ({
     useGrouping: true,
   };
 
-  /*Setting totalPurchase to look like "opcionesDeFormato" format*/
-  const tot = Number(totalPurchase);
-  const totalPurchaseFormat = tot.toLocaleString("es-ES", opcionesDeFormato);
+  /*Setting subTotalPurchase to look like "opcionesDeFormato" format*/
+  const subTot = Number(subTotalPurchase);
+  const subTotalPurchaseFormat = subTot.toLocaleString(
+    "es-ES",
+    opcionesDeFormato
+  );
 
   const handleFinishPurchase = (e) => {
     const timeoutId = setTimeout(() => {
@@ -58,8 +63,6 @@ const DrawerRight = ({
       clearTimeout(timeoutId);
     };
   };
-
-
 
   return (
     <div
@@ -121,13 +124,13 @@ const DrawerRight = ({
               <div className="w-full flex justify-between pl-2 pr-4">
                 <p className="font-normal text-lg text-zinc-60">Subtotal</p>
                 <p className="font-normal text-lg text-zinc-800">
-                  ${totalPurchaseFormat}
+                  ${subTotalPurchaseFormat}
                 </p>
               </div>
               <div className="w-full flex justify-between pl-2 pr-4">
                 <p className="font-medium text-lg text-zinc-60">Total</p>
                 <p className="font-medium text-lg text-zinc-800">
-                  ${totalPurchaseFormat}
+                  ${subTotalPurchaseFormat}
                 </p>
               </div>
             </div>

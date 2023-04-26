@@ -11,9 +11,13 @@ const Cart = ({
   setShowNavBar,
   cart,
   setCart,
+  subTotalPurchase,
+  setSubTotalPurchase,
   totalPurchase,
   setTotalPurchase,
   showNavBar,
+  shipping,
+  setShipping,
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -30,10 +34,6 @@ const Cart = ({
       clearTimeout(timeoutId);
     };
   }, []);
-
-  /*<div className={`${spinner ? "absolute" : "hidden"}`}>
-        <Spinner />
-  </div>*/
 
   /*ID Generator*/
   const generarID = () => {
@@ -68,6 +68,13 @@ const Cart = ({
     maximumFractionDigits: 2,
     useGrouping: true,
   };
+
+  /*Setting subTotalPurchase to look like "opcionesDeFormato" format*/
+  const subTot = Number(subTotalPurchase);
+  const subTotalPurchaseFormat = subTot.toLocaleString(
+    "es-ES",
+    opcionesDeFormato
+  );
 
   /*Setting totalPurchase to look like "opcionesDeFormato" format*/
   const tot = Number(totalPurchase);
@@ -161,7 +168,7 @@ const Cart = ({
           </div>
 
           <div className="col-span-12 lg:col-span-4 mt-4 lg:mt-0 px-4 sm:px-40 lg:px-8  order-first lg:order-none">
-            <div className="px-4 py-8 bg-zinc-50 border border-zinc-300/50 shadow-md">
+            <div className="px-4 pt-6 pb-4 border border-zinc-300/50 shadow-md">
               <h2 className="text-center font-bold mb-5">
                 RESUMEN DE LA COMPRA
               </h2>
@@ -170,7 +177,7 @@ const Cart = ({
                 <div className="w-full flex justify-between pl-2 pr-4 pb-4 my-2 border-b border-zinc-300/50">
                   <p className="font-normal text-lg text-zinc-60">Subtotal</p>
                   <p className="font-normal text-lg text-zinc-800">
-                    ${totalPurchaseFormat}
+                    ${subTotalPurchaseFormat}
                   </p>
                 </div>
                 <div className="w-full flex justify-between pl-2 pr-4 pb-4 my-2 border-b border-zinc-300/50">
@@ -178,7 +185,7 @@ const Cart = ({
                     Gastos de envío
                   </p>
                   <p className="font-normal text-lg text-zinc-800">
-                    {totalPurchase >= 500 ? "Gratis" : "$20"}
+                    {subTotalPurchase >= 500 ? "Gratis" : `$${shipping}`}
                   </p>
                 </div>
                 <div className="w-full flex justify-between pl-2 pr-4 pb-4 my-2">
@@ -203,16 +210,28 @@ const Cart = ({
                     <p className="text-center">Finalizar Compra</p>
                   </Link>
                 </div>
+                <div className="w-full flex justify-center mt-2 pl-2 pr-4">
+                  <Link
+                    to="/"
+                    type="button"
+                    className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md"
+                    onClick={(e) => {
+                      handleFinishPurchase(e);
+                    }}
+                  >
+                    <p className="text-center">Seguir Comprando</p>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="bodyCart emptyCart container mx-auto px-2 xl:px-44 py-1 mt-4 mb-8 flex justify-center">
+        <div className="bodyCart emptyCart container mx-auto px-2 xl:px-44 py-1 mt-4 mb-8 flex justify-center bg-transparent">
           <div className="mt-10">
             <img
               className="lg:h-96"
-              src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682477465/aTempo/preview_tfdpse.png"
+              src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682515820/aTempo/emptyCart_dmu7uq.png"
               alt=""
             />
 
@@ -224,7 +243,6 @@ const Cart = ({
                   to="/"
                   type="button"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-zinc-200"
-
                 >
                   <p className="text-center">Seguir Comprando</p>
                 </Link>
