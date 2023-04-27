@@ -20,6 +20,8 @@ import CheckOut from "./components/CheckOut/CheckOut";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Nosotros from "./components/Nosotros";
+import HeaderCheckOut from "./components/HeaderCheckOut";
+import FooterCheckOut from "./components/FooterCheckOut";
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -162,7 +164,7 @@ function App() {
           setToValue={setToValue}
         />
 
-        {showNavBar && (
+        {showNavBar === true ? (
           <NavBar
             selectMegaMenu={selectMegaMenu}
             handleDrawerOne={handleDrawerOne}
@@ -173,6 +175,8 @@ function App() {
             cart={cart}
             setCart={setCart}
           />
+        ) : (
+          <HeaderCheckOut />
         )}
 
         <ScrollToTop>
@@ -247,14 +251,22 @@ function App() {
 
             <Route
               path="/checkout"
-              element={<CheckOut spinner={spinner} setSpinner={setSpinner} />}
+              element={
+                <CheckOut
+                  spinner={spinner}
+                  setSpinner={setSpinner}
+                  subTotalPurchase={subTotalPurchase}
+                  totalPurchase={totalPurchase}
+                  shipping={shipping}
+                />
+              }
             />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>
 
-        {showNavBar && <Footer />}
+        {showNavBar ? <Footer /> : <FooterCheckOut />}
       </Router>
     </div>
   );

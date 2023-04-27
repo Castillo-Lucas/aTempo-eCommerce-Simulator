@@ -440,7 +440,7 @@ input[type="checkbox"]:checked::before {
 
 /*------------Cart---------------*/
 .bodyCart{
-    min-height: calc(100vh - 280px) !important;
+    min-height: calc(100vh - 275px) !important;
 }
 
 .bodyCartInfo{
@@ -453,6 +453,12 @@ input[type="checkbox"]:checked::before {
 
 .emptyCart{
     background-color: #FFFFFF;
+}
+
+
+/*------------CheckOut------------------*/
+.indicadorCheckOut{
+    color: var(--color-palette-3);
 }
 
 
@@ -612,6 +618,10 @@ input[type="checkbox"]:checked::before {
 
     .notFound {
         width: 350px !important;
+    }
+
+    .bodyCart{
+        min-height: calc(100vh - 220px) !important;
     }
 
     .bodyCartInfo{
