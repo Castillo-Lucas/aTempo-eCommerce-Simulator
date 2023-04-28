@@ -5,7 +5,7 @@ import Payment from "./Payment";
 
 const FormCheckOut = () => {
   return (
-    <div className="flex flex-col pr-10">
+    <div className="flex flex-col px-4 md:pr-10">
       <Identification />
 
       <Shipping />

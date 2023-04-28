@@ -15,7 +15,7 @@ const Shipping = () => {
   };
 
   return (
-    <div className="border-b border-gray-200 pb-4 mb-4">
+    <div className="mb-4">
       <h2 className="indicadorCheckOut text-2xl font-semibold mb-2">
         2. <span className="text-zinc-800 font-normal text-xl">Envío</span>
       </h2>
@@ -26,7 +26,12 @@ const Shipping = () => {
         <button
           to="/checkout"
           type="button"
-          className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-l-xl border-t-2 border-b-2 border-l-2 border-r border-gray-200"
+          className={`${
+            deliveryMethod === "Home"
+              ? "bg-zinc-800 text-zinc-100"
+              : "text-zinc-800 border-y-2 border-l-2 border-r border-gray-200"
+          } py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium rounded-l-xl
+           hover:bg-zinc-800 hover:text-zinc-100 hover:border-y-2 hover:border-r-2 hover:border-gray-800`}
           onClick={(e) => handleDeliveryMethod(e, "Home")}
         >
           <div className="flex justify-center">
@@ -70,7 +75,12 @@ const Shipping = () => {
         <button
           to="/checkout"
           type="button"
-          className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-r-xl border-t-2 border-b-2 border-r-2 border-gray-200"
+          className={`${
+            deliveryMethod === "Store"
+              ? "bg-zinc-800 text-zinc-100"
+              : "text-zinc-800 border-y-2 border-r-2 border-gray-200 "
+          } py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium  
+          rounded-r-xl hover:bg-zinc-800 hover:text-zinc-100 hover:border-y-2 hover:border-r-2 hover:border-gray-800`}
           onClick={(e) => handleDeliveryMethod(e, "Store")}
         >
           <div className="flex justify-center">
@@ -85,8 +95,8 @@ const Shipping = () => {
       </div>
 
       {deliveryMethod === "Home" ? (
-        <div className="p-4 border border-gray-200 shadow-md">
-          <h3 className="text-zinc-800 text-lg">Ingresá tu domicilio</h3>
+        <div className="p-4 border border-gray-200 shadow-md rounded-lg">
+          <h3 className="text-zinc-800 font-medium text-lg">Ingresá tu domicilio</h3>
           <p className="text-zinc-600">
             No compartiremos tu domicilio con nadie.
           </p>
@@ -187,8 +197,22 @@ const Shipping = () => {
                 </div>
               </div>
 
-              {/*Button & NewsLetter*/}
-              <div className="pt-7 col-span-12 flex flex-col justify-center items-center md:items-start md:px-44">
+              {/*City & Province*/}
+              <div className="col-span-12 sm:col-span-6 px-10 flex justify-between">
+                <img
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682674432/aTempo/expressShiping2-removebg-preview_tflcev.png"
+                  alt=""
+                  className="h-20"
+                />
+                <img
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682673764/aTempo/expressShiping-removebg-preview_y4j6x9.png"
+                  alt=""
+                  className="h-20"
+                />
+              </div>
+
+              {/*Button*/}
+              <div className="col-span-12 sm:col-span-6 flex flex-col justify-center items-center md:items-start ">
                 {/*Button*/}
                 <button
                   type="submit"
@@ -202,9 +226,19 @@ const Shipping = () => {
           </form>
         </div>
       ) : (
-        <div className="p-4 border border-gray-200 shadow-md">
-          <h3 className="text-zinc-800 text-lg">Retiro en tienda</h3>
-          <p className="text-zinc-600">Pasa por</p>
+        <div className="p-4 border border-gray-200 shadow-md rounded-lg">
+          <h3 className="text-zinc-800 font-medium text-lg">
+            Retiro en tienda
+          </h3>
+          <p className="text-zinc-600">
+            Te enviaremos un mail para informar cuando tu pedido este listo para
+            retirar
+          </p>
+          <p className="text-zinc-600">La demora estimada es de 48hs hábiles</p>
+          <p className="text-zinc-600 font-medium mt-4">
+            Te esperamos en Av. Lorem Ipsum 3500, Córdoba
+          </p>
+          <p className="text-zinc-600">De lunes a viernes de 9:00 a 18:00</p>
         </div>
       )}
     </div>

@@ -48,12 +48,13 @@ const CheckOut = ({
         <Spinner />
       </div>*/}
       <div className="bodyCart container mx-auto px-2 xl:px-44 py-1 mt-4 mb-8 grid grid-cols-12">
-        <div className="bodyCartInfo col-span-12 lg:col-span-8 h-96 lg:h-fit overflow-auto py-4">
+        <div className="bodyCartInfo col-span-12 lg:col-span-8 overflow-hidden py-4">
           <FormCheckOut />
         </div>
 
-        <div className="col-span-12 lg:col-span-4 mt-4 lg:mt-0 px-4 sm:px-40 lg:px-8  order-first lg:order-none">
-          <div className="px-4 pt-6 pb-4 border border-zinc-300/50 shadow-md">
+        {/*Resumen de Compra*/}
+        <div className="col-span-12 lg:col-span-4 mt-4 lg:mt-0 px-4 lg:pt-16 sm:px-40 lg:px-8 mb-4 lg:mb-2 order-first lg:order-none">
+          <div className="px-4 pt-6 pb-4 border border-zinc-300/50 shadow-md rounded-lg">
             <h2 className="text-center font-bold mb-5">RESUMEN DE LA COMPRA</h2>
             {/*Price Detail*/}
             <div className="w-full flex flex-col justify-end mb-4 md:mb-0 pb-2">
