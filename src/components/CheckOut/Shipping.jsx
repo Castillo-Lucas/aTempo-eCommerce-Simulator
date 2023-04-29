@@ -96,7 +96,9 @@ const Shipping = () => {
 
       {deliveryMethod === "Home" ? (
         <div className="p-4 border border-gray-200 shadow-md rounded-lg">
-          <h3 className="text-zinc-800 font-medium text-lg">Ingresá tu domicilio</h3>
+          <h3 className="text-zinc-800 font-medium text-lg">
+            Ingresá tu domicilio
+          </h3>
           <p className="text-zinc-600">
             No compartiremos tu domicilio con nadie.
           </p>
@@ -239,6 +241,17 @@ const Shipping = () => {
             Te esperamos en Av. Lorem Ipsum 3500, Córdoba
           </p>
           <p className="text-zinc-600">De lunes a viernes de 9:00 a 18:00</p>
+          {/*Button*/}
+          <div className="col-span-12 sm:col-span-6 flex flex-col justify-center items-center md:items-start px-40 mt-4">
+            {/*Button*/}
+            <button
+              type="submit"
+              className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
+             border-gray-200"
+            >
+              Continuar
+            </button>
+          </div>
         </div>
       )}
     </div>
