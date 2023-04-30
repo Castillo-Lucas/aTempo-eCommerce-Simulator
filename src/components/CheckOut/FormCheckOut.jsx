@@ -7,9 +7,13 @@ const FormCheckOut = () => {
   const [showIdentification, setShowIdentification] = useState(true);
   const [showShipping, setShowShipping] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
-  const [identificationInfo, setIdentificationInfo] = useState("");
+  const [formValidation, setFormValidation] = useState([]);
+
+  const [identificationInfo, setIdentificationInfo] = useState([]);
   const [deliveryInfo, setDeliveryInfo] = useState("");
   const [paymentInfo, setPaymentInfo] = useState("");
+
+  console.log(identificationInfo);
 
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
@@ -32,14 +36,35 @@ const FormCheckOut = () => {
       setShowPayment(false);
     }
   };
+
+  const handleValidation = (e, data) => {
+    e.preventDefault();
+
+    if (e.target.value.trim() === "") {
+      setFormValidation([...formValidation, data]);
+    } else {
+      const newValidation = formValidation.filter((filt) => filt !== data);
+      setFormValidation(newValidation);
+    }
+  };
+
+  const handleRestartValidation = (e, data) => {
+    e.preventDefault();
+
+    const newValidation = formValidation.filter((filt) => filt !== data);
+    setFormValidation(newValidation);
+  };
   return (
     <div className="flex flex-col sm:px-4 md:pr-10">
       <Identification
-        showIdentification={showIdentification}
         showShipping={showShipping}
         showPayment={showPayment}
         identificationInfo={identificationInfo}
         handleChangeVisibility={handleChangeVisibility}
+        formValidation={formValidation}
+        handleValidation={handleValidation}
+        handleRestartValidation={handleRestartValidation}
+        setIdentificationInfo={setIdentificationInfo}
       />
 
       <Shipping

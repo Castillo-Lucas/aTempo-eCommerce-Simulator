@@ -1,39 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SummaryInfoBox from "./SummaryInfoBox";
+import AlertOne from "./AlertOne";
 
 const Identification = ({
-  showIdentification,
   showShipping,
   showPayment,
   identificationInfo,
   handleChangeVisibility,
+  formValidation,
+  handleValidation,
+  handleRestartValidation,
+  setIdentificationInfo,
 }) => {
   const [identif, setIdentif] = useState("editIdentification");
-  const [formValidation, setFormValidation] = useState([]);
+
+  const [alertDNI, setAlertDNI] = useState(false);
+  const [alertPhoneNumber, setAlertPhoneNumber] = useState(false);
+  const [alertEmail, setAlertEmail] = useState(true);
+
   const [name, setName] = useState("");
-  const [lasName, setLasName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [DNI, setDNI] = useState("");
-  const [phoneNumber, setphoneNumber] = useState("");
+  const [areaNumber, setAreaNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  useEffect(() => {
+    if (isNaN(DNI)) {
+      setAlertDNI(true);
 
-
-  const handleValidation = (e, data) => {
-    e.preventDefault();
-
-    if (e.target.value.trim() === "") {
-      setFormValidation([...formValidation, data]);
-    } else {
-      const newValidation = formValidation.filter((filt) => filt !== data);
-      setFormValidation(newValidation);
+      setTimeout(() => {
+        setDNI("");
+      }, 2000);
+    } else if (DNI === "") {
+      setAlertDNI(false);
+      setDNI("");
     }
+  }, [DNI]);
+
+  useEffect(() => {
+    if (isNaN(areaNumber) || isNaN(phoneNumber)) {
+      setAlertPhoneNumber(true);
+
+      setTimeout(() => {
+        setAreaNumber("");
+        setPhoneNumber("");
+      }, 2000);
+    } else if (areaNumber === "" || areaNumber === "") {
+      setAlertPhoneNumber(false);
+      setAreaNumber("");
+      setPhoneNumber("");
+    }
+  }, [areaNumber, phoneNumber]);
+
+  useEffect(() => {
+    if (email === "") {
+      setAlertEmail(true);
+    } else if (email !== "") {
+      const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+      const resultado = regex.test(email);
+      setAlertEmail(resultado);
+    }
+    /*;*/
+  }, [email]);
+
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
   };
 
-  const handleRestartValidation = (e, data) => {
-    e.preventDefault();
+  const objIdentification = {
+    name,
+    lastName,
+    DNI,
+    areaNumber,
+    phoneNumber,
+    email,
+    id: generarID(),
+  };
 
-    const newValidation = formValidation.filter((filt) => filt !== data);
-    setFormValidation(newValidation);
+  const handleContinuar = (e, data) => {
+    handleChangeVisibility(e, data);
+    setIdentificationInfo(objIdentification);
   };
 
   return (
@@ -77,14 +126,13 @@ const Identification = ({
                     required
                     onBlur={(e) => handleValidation(e, "Name")}
                     onFocus={(e) => handleRestartValidation(e, "Name")}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
-                  {formValidation.includes("Name") && (
-                    <div>
-                      <p className="pl-1 pt-1 text-sm text-red-700">
-                        Este campo es obligatorio
-                      </p>
-                    </div>
-                  )}
+                  <AlertOne
+                    formValidation={formValidation}
+                    validation={"Name"}
+                  />
                 </div>
 
                 {/*Last Name*/}
@@ -105,14 +153,13 @@ const Identification = ({
                     required
                     onBlur={(e) => handleValidation(e, "lastName")}
                     onFocus={(e) => handleRestartValidation(e, "lastName")}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
-                  {formValidation.includes("lastName") && (
-                    <div>
-                      <p className="pl-1 pt-1 text-sm text-red-700">
-                        Este campo es obligatorio
-                      </p>
-                    </div>
-                  )}
+                  <AlertOne
+                    formValidation={formValidation}
+                    validation={"lastName"}
+                  />
                 </div>
 
                 {/*DNI*/}
@@ -133,11 +180,19 @@ const Identification = ({
                     required
                     onBlur={(e) => handleValidation(e, "DNI")}
                     onFocus={(e) => handleRestartValidation(e, "DNI")}
+                    value={DNI}
+                    onChange={(e) => setDNI(e.target.value)}
                   />
-                  {formValidation.includes("DNI") && (
+
+                  <AlertOne
+                    formValidation={formValidation}
+                    validation={"DNI"}
+                  />
+
+                  {alertDNI && (
                     <div>
-                      <p className="pl-1 pt-1 text-sm text-red-700">
-                        Este campo es obligatorio
+                      <p className="pl-1 pt-1 text-xs text-red-700">
+                        El DNI debe ser en formato numérico
                       </p>
                     </div>
                   )}
@@ -162,6 +217,8 @@ const Identification = ({
                       required
                       onBlur={(e) => handleValidation(e, "areaNumber")}
                       onFocus={(e) => handleRestartValidation(e, "areaNumber")}
+                      value={areaNumber}
+                      onChange={(e) => setAreaNumber(e.target.value)}
                     />
                     <input
                       type="text"
@@ -172,14 +229,23 @@ const Identification = ({
                       required
                       onBlur={(e) => handleValidation(e, "phoneNumber")}
                       onFocus={(e) => handleRestartValidation(e, "phoneNumber")}
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </div>
 
                   {(formValidation.includes("areaNumber") ||
                     formValidation.includes("phoneNumber")) && (
                     <div>
-                      <p className="pl-4 pt-1 text-sm text-red-700">
-                        Este campo es obligatorio
+                      <p className="pl-4 pt-1 text-xs text-red-700">
+                        Ambos campos son obligatorios
+                      </p>
+                    </div>
+                  )}
+                  {alertPhoneNumber && (
+                    <div>
+                      <p className="pl-4 pt-1 text-xs text-red-700">
+                        El teléfono debe ser en formato numérico
                       </p>
                     </div>
                   )}
@@ -203,16 +269,23 @@ const Identification = ({
                     required
                     onBlur={(e) => handleValidation(e, "Email")}
                     onFocus={(e) => handleRestartValidation(e, "Email")}
-              
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  {formValidation.includes("Email") && (
+
+                  <AlertOne
+                    formValidation={formValidation}
+                    validation={"Email"}
+                  />
+
+                  {!alertEmail && (
                     <div>
-                      <p className="pl-1 pt-1 text-sm text-red-700">
-                        Este campo es obligatorio
+                      <p className="pl-1 pt-1 text-xs text-red-700">
+                        El formato del e-mail debe ser el siguente:{" "}
+                        <span className="font-medium">ejemplo@ejemplo.com</span>
                       </p>
                     </div>
                   )}
-    
                 </div>
 
                 {/*Button & NewsLetter*/}
@@ -220,9 +293,9 @@ const Identification = ({
                   {/*Button*/}
                   <button
                     type="submit"
-                    className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
-                     border-gray-200"
-                    onClick={(e) => handleChangeVisibility(e, "Identification")}
+                    className="btnFinCompr py-1 md:py-2.5 px-1 md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
+                    border-gray-200"
+                    onClick={(e) => handleContinuar(e, "Identification")}
                   >
                     Continuar
                   </button>
