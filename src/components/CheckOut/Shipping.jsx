@@ -6,7 +6,9 @@ const Shipping = ({
   showShipping,
   showPayment,
   deliveryInfo,
+  handleChangeVisibility,
 }) => {
+  const [ship, setShip] = useState("editShipping");
   const [checkShipping, setCheckShipping] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState("Home");
 
@@ -231,6 +233,7 @@ const Shipping = ({
                       type="submit"
                       className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
              border-gray-200"
+                      onClick={(e) => handleChangeVisibility(e, "Shipping")}
                     >
                       Continuar
                     </button>
@@ -262,7 +265,8 @@ const Shipping = ({
                 <button
                   type="submit"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
-             border-gray-200"
+                 border-gray-200"
+                  onClick={(e) => handleChangeVisibility(e, "Shipping")}
                 >
                   Continuar
                 </button>
@@ -271,7 +275,7 @@ const Shipping = ({
           )}
         </div>
       ) : (
-        <SummaryInfoBox data={deliveryInfo} />
+        <SummaryInfoBox data={deliveryInfo} edit={ship} handleChangeVisibility={handleChangeVisibility} />
       )}
     </div>
   );

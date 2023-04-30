@@ -11,6 +11,7 @@ const Payment = ({
   showShipping,
   showPayment,
   paymentInfo,
+  handleChangeVisibility,
 }) => {
   const [paymentMethod, setPaymentMethod] = useState("TC");
   const [cardPosition, setCardPosition] = useState("Front");
