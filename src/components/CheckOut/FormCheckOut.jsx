@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Identification from "./Identification";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
@@ -10,10 +10,8 @@ const FormCheckOut = () => {
   const [formValidation, setFormValidation] = useState([]);
 
   const [identificationInfo, setIdentificationInfo] = useState([]);
-  const [deliveryInfo, setDeliveryInfo] = useState("");
-  const [paymentInfo, setPaymentInfo] = useState("");
-
-  console.log(identificationInfo);
+  const [deliveryInfo, setDeliveryInfo] = useState([]);
+  const [paymentInfo, setPaymentInfo] = useState([]);;
 
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
@@ -57,14 +55,15 @@ const FormCheckOut = () => {
   return (
     <div className="flex flex-col sm:px-4 md:pr-10">
       <Identification
+        setShowIdentification={setShowIdentification}
         showShipping={showShipping}
         showPayment={showPayment}
-        identificationInfo={identificationInfo}
-        handleChangeVisibility={handleChangeVisibility}
         formValidation={formValidation}
         handleValidation={handleValidation}
         handleRestartValidation={handleRestartValidation}
         setIdentificationInfo={setIdentificationInfo}
+        handleChangeVisibility={handleChangeVisibility}
+        identificationInfo={identificationInfo}
       />
 
       <Shipping
@@ -72,7 +71,6 @@ const FormCheckOut = () => {
         showShipping={showShipping}
         showPayment={showPayment}
         deliveryInfo={deliveryInfo}
-        handleChangeVisibility={handleChangeVisibility}
       />
 
       <Payment
@@ -80,7 +78,6 @@ const FormCheckOut = () => {
         showShipping={showShipping}
         showPayment={showPayment}
         paymentInfo={paymentInfo}
-        handleChangeVisibility={handleChangeVisibility}
       />
     </div>
   );

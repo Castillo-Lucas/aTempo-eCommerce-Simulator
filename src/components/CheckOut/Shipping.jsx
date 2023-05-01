@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import SummaryInfoBox from "./SummaryInfoBox";
 
 const Shipping = ({
   showIdentification,
-  showShipping,
   showPayment,
   deliveryInfo,
-  handleChangeVisibility,
 }) => {
   const [ship, setShip] = useState("editShipping");
   const [checkShipping, setCheckShipping] = useState(false);
@@ -233,7 +230,6 @@ const Shipping = ({
                       type="submit"
                       className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
              border-gray-200"
-                      onClick={(e) => handleChangeVisibility(e, "Shipping")}
                     >
                       Continuar
                     </button>
@@ -266,7 +262,6 @@ const Shipping = ({
                   type="submit"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
                  border-gray-200"
-                  onClick={(e) => handleChangeVisibility(e, "Shipping")}
                 >
                   Continuar
                 </button>
@@ -275,7 +270,39 @@ const Shipping = ({
           )}
         </div>
       ) : (
-        <SummaryInfoBox data={deliveryInfo} edit={ship} handleChangeVisibility={handleChangeVisibility} />
+        <div className="p-4 border border-gray-200 shadow-md rounded-lg">
+          {deliveryInfo.length >= 1 ? (
+            <div className="flex justify-between">
+              <div>
+                <p className="text-zinc-600">
+                  {deliveryInfo[0].name} {deliveryInfo[0].lastName}
+                </p>
+                <p className="text-zinc-600">
+                  DNI: {deliveryInfo[0].DNI}
+                </p>
+                <p className="text-zinc-600">
+                  ({deliveryInfo[0].areaNumber}){" "}
+                  {deliveryInfo[0].phoneNumber}
+                </p>
+                <p className="text-zinc-600">{deliveryInfo[0].email}</p>
+              </div>
+
+              <button>
+                <img
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682803677/aTempo/editar-texto_iythiq.png"
+                  alt=""
+                  className="h-5"
+                />
+              </button>
+            </div>
+          ) : (
+            <div>
+              <p className="text-zinc-400/80">
+                Esperando que se complete la información
+              </p>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

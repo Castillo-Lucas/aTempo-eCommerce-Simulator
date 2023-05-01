@@ -3,16 +3,8 @@ import CreditCard from "./CreditCard";
 import DebitCard from "./DebitCard";
 import Cash from "./Cash";
 import "animate.css";
-import SummaryInfoBox from "./SummaryInfoBox";
-SummaryInfoBox;
 
-const Payment = ({
-  showIdentification,
-  showShipping,
-  showPayment,
-  paymentInfo,
-  handleChangeVisibility,
-}) => {
+const Payment = ({ showIdentification, showShipping, paymentInfo }) => {
   const [paymentMethod, setPaymentMethod] = useState("TC");
   const [cardPosition, setCardPosition] = useState("Front");
 
@@ -117,7 +109,36 @@ const Payment = ({
           )}
         </div>
       ) : (
-        <SummaryInfoBox data={paymentInfo} />
+        <div className="p-4 border border-gray-200 shadow-md rounded-lg">
+          {paymentInfo.length >= 1 ? (
+            <div className="flex justify-between">
+              <div>
+                <p className="text-zinc-600">
+                  {paymentInfo[0].name} {paymentInfo[0].lastName}
+                </p>
+                <p className="text-zinc-600">DNI: {paymentInfo[0].DNI}</p>
+                <p className="text-zinc-600">
+                  ({paymentInfo[0].areaNumber}) {paymentInfo[0].phoneNumber}
+                </p>
+                <p className="text-zinc-600">{paymentInfo[0].email}</p>
+              </div>
+
+              <button>
+                <img
+                  src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682803677/aTempo/editar-texto_iythiq.png"
+                  alt=""
+                  className="h-5"
+                />
+              </button>
+            </div>
+          ) : (
+            <div>
+              <p className="text-zinc-400/80">
+                Esperando que se complete la información
+              </p>
+            </div>
+          )}
+        </div>
       )}
     </div>
   );

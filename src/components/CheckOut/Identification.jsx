@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
-import SummaryInfoBox from "./SummaryInfoBox";
 import AlertOne from "./AlertOne";
 
 const Identification = ({
   showShipping,
   showPayment,
-  identificationInfo,
-  handleChangeVisibility,
   formValidation,
   handleValidation,
   handleRestartValidation,
   setIdentificationInfo,
+  handleChangeVisibility,
+  identificationInfo,
 }) => {
-  const [identif, setIdentif] = useState("editIdentification");
-
+  const [error, setError] = useState(false);
   const [alertDNI, setAlertDNI] = useState(false);
   const [alertPhoneNumber, setAlertPhoneNumber] = useState(false);
   const [alertEmail, setAlertEmail] = useState(true);
+  const [edit, setEdit] = useState(false);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -24,6 +23,7 @@ const Identification = ({
   const [areaNumber, setAreaNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [newsLetter, setNewsLetter] = useState(false);
 
   useEffect(() => {
     if (isNaN(DNI)) {
@@ -31,7 +31,7 @@ const Identification = ({
 
       setTimeout(() => {
         setDNI("");
-      }, 2000);
+      }, 1000);
     } else if (DNI === "") {
       setAlertDNI(false);
       setDNI("");
@@ -70,19 +70,57 @@ const Identification = ({
     return Id1 + Id2;
   };
 
-  const objIdentification = {
-    name,
-    lastName,
-    DNI,
-    areaNumber,
-    phoneNumber,
-    email,
-    id: generarID(),
+  const handleNewsLetter = (e) => {
+    setNewsLetter(e.target.checked);
   };
 
   const handleContinuar = (e, data) => {
+    e.preventDefault();
+
+    if (
+      [name, lastName, DNI, areaNumber, phoneNumber, email].includes("") ||
+      alertEmail === false
+    ) {
+      setError(true);
+
+      setTimeout(() => {
+        setError(false);
+      }, 2500);
+
+      return;
+    }
+    setError(false);
+
+    const objIdentification = {
+      name,
+      lastName,
+      DNI,
+      areaNumber,
+      phoneNumber,
+      email,
+      newsLetter,
+      id: generarID(),
+    };
+
+    setIdentificationInfo([...identificationInfo, objIdentification]);
     handleChangeVisibility(e, data);
-    setIdentificationInfo(objIdentification);
+    setEdit(false);
+  };
+
+  const handleModificar = (e, data) => {
+    handleChangeVisibility(e, data);
+
+    setName(identificationInfo[0].name);
+    setLastName(identificationInfo[0].lastName);
+    setDNI(identificationInfo[0].DNI);
+    setAreaNumber(identificationInfo[0].areaNumber);
+    setPhoneNumber(identificationInfo[0].phoneNumber);
+    setEmail(identificationInfo[0].email);
+    setNewsLetter(identificationInfo[0].newsLetter);
+
+    setIdentificationInfo([]);
+
+    setEdit(true);
   };
 
   return (
@@ -297,7 +335,7 @@ const Identification = ({
                     border-gray-200"
                     onClick={(e) => handleContinuar(e, "Identification")}
                   >
-                    Continuar
+                    {edit ? <p>Guardar Cambios</p> : <p>Continuar</p>}
                   </button>
 
                   {/*NewsLetter*/}
@@ -306,9 +344,11 @@ const Identification = ({
                       <input
                         id="remember"
                         type="checkbox"
-                        value=""
+                        value={newsLetter}
+                        checked={newsLetter}
                         className="w-4 h-4 border border-gray-300 rounded"
                         required
+                        onChange={(e) => handleNewsLetter(e)}
                       />
                     </div>
                     <label
@@ -318,17 +358,49 @@ const Identification = ({
                       Quiero recibir promociones por mail
                     </label>
                   </div>
+
+                  {error && (
+                    <div>
+                      <p className="pl-6 pt-1 text-xs text-red-700">
+                        Todos los campos son obligatorios
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </form>
           </div>
         </div>
       ) : (
-        <SummaryInfoBox
-          data={identificationInfo}
-          edit={identif}
-          handleChangeVisibility={handleChangeVisibility}
-        />
+        <div className="p-4 border border-gray-200 shadow-md rounded-lg">
+          <div className="flex justify-between">
+            <div>
+              <p className="text-zinc-600">
+                {identificationInfo[0].name} {identificationInfo[0].lastName}
+              </p>
+              <p className="text-zinc-600">DNI: {identificationInfo[0].DNI}</p>
+              <p className="text-zinc-600">
+                ({identificationInfo[0].areaNumber}){" "}
+                {identificationInfo[0].phoneNumber}
+              </p>
+              <p className="text-zinc-600">{identificationInfo[0].email}</p>
+              {identificationInfo[0].newsLetter && (
+                <p className="text-zinc-600/50 italic text-sm">
+                  Suscrito al Newsletter
+                </p>
+              )}
+            </div>
+
+            <button>
+              <img
+                src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682803677/aTempo/editar-texto_iythiq.png"
+                alt=""
+                className="h-5"
+                onClick={(e) => handleModificar(e, "editIdentification")}
+              />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
