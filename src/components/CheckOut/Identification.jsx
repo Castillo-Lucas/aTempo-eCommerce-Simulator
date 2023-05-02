@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import AlertOne from "./AlertOne";
 
 const Identification = ({
+  identificationInfo,
+  setIdentificationInfo,
   showShipping,
   showPayment,
   formValidation,
   handleValidation,
   handleRestartValidation,
-  setIdentificationInfo,
   handleChangeVisibility,
-  identificationInfo,
 }) => {
   const [error, setError] = useState(false);
   const [alertDNI, setAlertDNI] = useState(false);
