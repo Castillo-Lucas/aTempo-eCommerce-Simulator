@@ -4,7 +4,17 @@ import DebitCard from "./DebitCard";
 import Cash from "./Cash";
 import "animate.css";
 
-const Payment = ({ showIdentification, showShipping, paymentInfo }) => {
+const Payment = ({
+  paymentInfo,
+  setPaymentInfo,
+  showIdentification,
+  showShipping,
+  formValidation,
+  handleValidation,
+  handleRestartValidation,
+  handleChangeVisibility,
+  totalPurchase,
+}) => {
   const [paymentMethod, setPaymentMethod] = useState("TC");
   const [cardPosition, setCardPosition] = useState("Front");
 
@@ -98,6 +108,10 @@ const Payment = ({ showIdentification, showShipping, paymentInfo }) => {
             <CreditCard
               cardPosition={cardPosition}
               handleCardPosition={handleCardPosition}
+              formValidation={formValidation}
+              handleValidation={handleValidation}
+              handleRestartValidation={handleRestartValidation}
+              totalPurchase={totalPurchase}
             />
           ) : paymentMethod === "TD" ? (
             <DebitCard

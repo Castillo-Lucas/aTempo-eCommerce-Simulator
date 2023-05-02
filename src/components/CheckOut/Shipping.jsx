@@ -436,7 +436,7 @@ const Shipping = ({
                  border-gray-200"
                   onClick={(e) => handleContinuar(e, "Shipping")}
                 >
-                  Continuar
+                  {edit ? <p>Guardar Cambios</p> : <p>Continuar</p>}
                 </button>
               </div>
             </div>

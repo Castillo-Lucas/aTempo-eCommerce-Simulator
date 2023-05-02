@@ -3,7 +3,7 @@ import Identification from "./Identification";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
 
-const FormCheckOut = () => {
+const FormCheckOut = ({ totalPurchase }) => {
   const [showIdentification, setShowIdentification] = useState(true);
   const [showShipping, setShowShipping] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -12,8 +12,6 @@ const FormCheckOut = () => {
   const [identificationInfo, setIdentificationInfo] = useState([]);
   const [shippingInfo, setShippingInfo] = useState([]);
   const [paymentInfo, setPaymentInfo] = useState([]);
-
-  console.log(shippingInfo);
 
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
@@ -79,10 +77,15 @@ const FormCheckOut = () => {
       />
 
       <Payment
+        paymentInfo={paymentInfo}
+        setPaymentInfo={setPaymentInfo}
         showIdentification={showIdentification}
         showShipping={showShipping}
-        showPayment={showPayment}
-        paymentInfo={paymentInfo}
+        formValidation={formValidation}
+        handleValidation={handleValidation}
+        handleRestartValidation={handleRestartValidation}
+        handleChangeVisibility={handleChangeVisibility}
+        totalPurchase={totalPurchase}
       />
     </div>
   );

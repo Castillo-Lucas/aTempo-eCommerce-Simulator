@@ -49,7 +49,7 @@ const CheckOut = ({
       </div>*/}
       <div className="bodyCart container mx-auto px-2 xl:px-44 py-1 mt-4 mb-8 grid grid-cols-12">
         <div className="bodyCartInfo col-span-12 lg:col-span-8 overflow-hidden py-4">
-          <FormCheckOut />
+          <FormCheckOut totalPurchase={totalPurchase}/>
         </div>
 
         {/*Resumen de Compra*/}
