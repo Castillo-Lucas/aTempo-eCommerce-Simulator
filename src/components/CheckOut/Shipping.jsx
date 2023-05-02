@@ -1,22 +1,114 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AlertOne from "./AlertOne";
 
 const Shipping = ({
+  shippingInfo,
+  setShippingInfo,
   showIdentification,
   showPayment,
-  deliveryInfo,
+  formValidation,
+  handleValidation,
+  handleRestartValidation,
+  handleChangeVisibility,
 }) => {
-  const [ship, setShip] = useState("editShipping");
-  const [checkShipping, setCheckShipping] = useState(false);
+  const [error, setError] = useState(false);
+  const [alertStreetNumber, setAlertStreetNumber] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [deliveryMethod, setDeliveryMethod] = useState("Home");
 
-  const handleCheckShipping = (e) => {
-    setCheckShipping(e);
-  };
+  const [street, setStreet] = useState("");
+  const [streetNumber, setStreetNumber] = useState("");
+  const [floor, setFloor] = useState("");
+  const [city, setCity] = useState("");
+  const [province, setProvince] = useState("");
+
+  useEffect(() => {
+    if (isNaN(streetNumber)) {
+      setAlertStreetNumber(true);
+
+      setTimeout(() => {
+        setStreetNumber("");
+      }, 1000);
+    } else if (streetNumber === "") {
+      setAlertStreetNumber(false);
+      setStreetNumber("");
+    }
+  }, [streetNumber]);
 
   const handleDeliveryMethod = (e, data) => {
     e.preventDefault();
 
     setDeliveryMethod(data);
+  };
+
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
+  };
+
+  const handleContinuar = (e, data) => {
+    e.preventDefault();
+
+    if (deliveryMethod === "Store") {
+      setShippingInfo([]);
+
+      const objShipping = {
+        deliveryMethod,
+        id: generarID(),
+      };
+
+      setShippingInfo([...shippingInfo, objShipping]);
+      handleChangeVisibility(e, data);
+      setEdit(false);
+
+      return;
+    }
+
+    if (deliveryMethod === "Home") {
+      if ([street, streetNumber, floor, city, province].includes("")) {
+        setError(true);
+
+        setTimeout(() => {
+          setError(false);
+        }, 2500);
+
+        return;
+      }
+    }
+
+    setError(false);
+
+    const objShipping = {
+      street,
+      streetNumber,
+      floor,
+      city,
+      province,
+      deliveryMethod,
+      id: generarID(),
+    };
+
+    setShippingInfo([...shippingInfo, objShipping]);
+    handleChangeVisibility(e, data);
+    setEdit(false);
+  };
+
+  const handleModificar = (e, data) => {
+    handleChangeVisibility(e, data);
+
+    console.log(data);
+
+    setDeliveryMethod(shippingInfo[0].deliveryMethod);
+    setStreet(shippingInfo[0].street);
+    setStreetNumber(shippingInfo[0].streetNumber);
+    setFloor(shippingInfo[0].floor);
+    setCity(shippingInfo[0].city);
+    setProvince(shippingInfo[0].province);
+
+    setShippingInfo([]);
+
+    setEdit(true);
   };
 
   return (
@@ -112,6 +204,7 @@ const Shipping = ({
               <p className="text-zinc-600">
                 No compartiremos tu domicilio con nadie.
               </p>
+
               <form className="mt-6">
                 <div className="grid gap-6 mb-6 grid-cols-12">
                   {/*Address*/}
@@ -128,9 +221,20 @@ const Shipping = ({
                         <input
                           type="text"
                           id="street"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
+                          className={`${
+                            formValidation.includes("street") && "formValidate"
+                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
                           placeholder="Calle"
                           required
+                          onBlur={(e) => handleValidation(e, "street")}
+                          onFocus={(e) => handleRestartValidation(e, "street")}
+                          value={street}
+                          onChange={(e) => setStreet(e.target.value)}
+                        />
+
+                        <AlertOne
+                          formValidation={formValidation}
+                          validation={"street"}
                         />
                       </div>
 
@@ -145,10 +249,31 @@ const Shipping = ({
                         <input
                           type="text"
                           id="streetNumber"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
+                          className={`${
+                            formValidation.includes("streetNumber") &&
+                            "formValidate"
+                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
                           placeholder="Numero"
                           required
+                          onBlur={(e) => handleValidation(e, "streetNumber")}
+                          onFocus={(e) =>
+                            handleRestartValidation(e, "streetNumber")
+                          }
+                          value={streetNumber}
+                          onChange={(e) => setStreetNumber(e.target.value)}
                         />
+
+                        <AlertOne
+                          formValidation={formValidation}
+                          validation={"streetNumber"}
+                        />
+                        {alertStreetNumber && (
+                          <div>
+                            <p className="pl-1 pt-1 text-xs text-red-700">
+                              El valor debe ser numérico
+                            </p>
+                          </div>
+                        )}
                       </div>
 
                       {/*Floor / Departament*/}
@@ -162,9 +287,23 @@ const Shipping = ({
                         <input
                           type="text"
                           id="floorDpto"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
-                          placeholder="Opcional"
+                          className={`${
+                            formValidation.includes("floorDpto") &&
+                            "formValidate"
+                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
+                          placeholder="Piso/Dpto"
                           required
+                          onBlur={(e) => handleValidation(e, "floorDpto")}
+                          onFocus={(e) =>
+                            handleRestartValidation(e, "floorDpto")
+                          }
+                          value={floor}
+                          onChange={(e) => setFloor(e.target.value)}
+                        />
+
+                        <AlertOne
+                          formValidation={formValidation}
+                          validation={"floorDpto"}
                         />
                       </div>
                     </div>
@@ -184,9 +323,20 @@ const Shipping = ({
                         <input
                           type="text"
                           id="city"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
+                          className={`${
+                            formValidation.includes("city") && "formValidate"
+                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
                           placeholder="Ciudad"
                           required
+                          onBlur={(e) => handleValidation(e, "city")}
+                          onFocus={(e) => handleRestartValidation(e, "city")}
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                        />
+
+                        <AlertOne
+                          formValidation={formValidation}
+                          validation={"city"}
                         />
                       </div>
 
@@ -201,9 +351,23 @@ const Shipping = ({
                         <input
                           type="text"
                           id="province"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
+                          className={`${
+                            formValidation.includes("province") &&
+                            "formValidate"
+                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
                           placeholder="Provincia"
                           required
+                          onBlur={(e) => handleValidation(e, "province")}
+                          onFocus={(e) =>
+                            handleRestartValidation(e, "province")
+                          }
+                          value={province}
+                          onChange={(e) => setProvince(e.target.value)}
+                        />
+
+                        <AlertOne
+                          formValidation={formValidation}
+                          validation={"province"}
                         />
                       </div>
                     </div>
@@ -224,15 +388,23 @@ const Shipping = ({
                   </div>
 
                   {/*Button*/}
-                  <div className="col-span-12 sm:col-span-6 flex flex-col justify-center items-center md:items-start ">
+                  <div className="col-span-12 sm:col-span-6 flex flex-col pt-4">
                     {/*Button*/}
                     <button
                       type="submit"
                       className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
              border-gray-200"
+                      onClick={(e) => handleContinuar(e, "Shipping")}
                     >
-                      Continuar
+                      {edit ? <p>Guardar Cambios</p> : <p>Continuar</p>}
                     </button>
+                    {error && (
+                      <div>
+                        <p className="pl-1 text-xs text-red-700">
+                          Todos los campos son obligatorios
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </form>
@@ -243,11 +415,11 @@ const Shipping = ({
                 Retiro en tienda
               </h3>
               <p className="text-zinc-600">
-                Te enviaremos un mail para informar cuando tu pedido este listo
-                para retirar
+                Te enviaremos un mail para informarte cuando tu pedido este
+                listo para retirar.
               </p>
               <p className="text-zinc-600">
-                La demora estimada es de 48hs hábiles
+                La demora estimada es de 48hs hábiles.
               </p>
               <p className="text-zinc-600 font-medium mt-4">
                 Te esperamos en Av. Lorem Ipsum 3500, Córdoba
@@ -262,6 +434,7 @@ const Shipping = ({
                   type="submit"
                   className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2
                  border-gray-200"
+                  onClick={(e) => handleContinuar(e, "Shipping")}
                 >
                   Continuar
                 </button>
@@ -271,20 +444,44 @@ const Shipping = ({
         </div>
       ) : (
         <div className="p-4 border border-gray-200 shadow-md rounded-lg">
-          {deliveryInfo.length >= 1 ? (
+          {shippingInfo.length >= 1 ? (
             <div className="flex justify-between">
               <div>
-                <p className="text-zinc-600">
-                  {deliveryInfo[0].name} {deliveryInfo[0].lastName}
-                </p>
-                <p className="text-zinc-600">
-                  DNI: {deliveryInfo[0].DNI}
-                </p>
-                <p className="text-zinc-600">
-                  ({deliveryInfo[0].areaNumber}){" "}
-                  {deliveryInfo[0].phoneNumber}
-                </p>
-                <p className="text-zinc-600">{deliveryInfo[0].email}</p>
+                {deliveryMethod === "Home" ? (
+                  <div>
+                    <p className="text-zinc-600 font-medium">
+                      Envío a domicilio
+                    </p>
+                    <p className="text-zinc-600">
+                      {shippingInfo[0].street} {shippingInfo[0].streetNumber}
+                    </p>
+                    {floor !== "" && (
+                      <p className="text-zinc-600">{shippingInfo[0].floor}</p>
+                    )}
+                    <p className="text-zinc-600">
+                      {shippingInfo[0].city}, {shippingInfo[0].province}
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="text-zinc-800 font-medium text-lg">
+                      Retiro en tienda
+                    </h3>
+                    <p className="text-zinc-600">
+                      Te enviaremos un mail para informarte cuando tu pedido
+                      este listo para retirar.
+                    </p>
+                    <p className="text-zinc-600">
+                      La demora estimada es de 48hs hábiles.
+                    </p>
+                    <p className="text-zinc-600 font-medium mt-4">
+                      Te esperamos en Av. Lorem Ipsum 3500, Córdoba
+                    </p>
+                    <p className="text-zinc-600">
+                      De lunes a viernes de 9:00 a 18:00
+                    </p>
+                  </div>
+                )}
               </div>
 
               <button>
@@ -292,6 +489,7 @@ const Shipping = ({
                   src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682803677/aTempo/editar-texto_iythiq.png"
                   alt=""
                   className="h-5"
+                  onClick={(e) => handleModificar(e, "editShipping")}
                 />
               </button>
             </div>

@@ -10,8 +10,10 @@ const FormCheckOut = () => {
   const [formValidation, setFormValidation] = useState([]);
 
   const [identificationInfo, setIdentificationInfo] = useState([]);
-  const [deliveryInfo, setDeliveryInfo] = useState([]);
-  const [paymentInfo, setPaymentInfo] = useState([]);;
+  const [shippingInfo, setShippingInfo] = useState([]);
+  const [paymentInfo, setPaymentInfo] = useState([]);
+
+  console.log(shippingInfo);
 
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
@@ -55,22 +57,25 @@ const FormCheckOut = () => {
   return (
     <div className="flex flex-col sm:px-4 md:pr-10">
       <Identification
-        setShowIdentification={setShowIdentification}
+        identificationInfo={identificationInfo}
+        setIdentificationInfo={setIdentificationInfo}
         showShipping={showShipping}
         showPayment={showPayment}
         formValidation={formValidation}
         handleValidation={handleValidation}
         handleRestartValidation={handleRestartValidation}
-        setIdentificationInfo={setIdentificationInfo}
         handleChangeVisibility={handleChangeVisibility}
-        identificationInfo={identificationInfo}
       />
 
       <Shipping
+        shippingInfo={shippingInfo}
+        setShippingInfo={setShippingInfo}
         showIdentification={showIdentification}
-        showShipping={showShipping}
         showPayment={showPayment}
-        deliveryInfo={deliveryInfo}
+        formValidation={formValidation}
+        handleValidation={handleValidation}
+        handleRestartValidation={handleRestartValidation}
+        handleChangeVisibility={handleChangeVisibility}
       />
 
       <Payment
