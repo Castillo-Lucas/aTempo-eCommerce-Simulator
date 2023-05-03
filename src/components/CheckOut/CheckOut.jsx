@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, redirect, useSearchParams, useNavigate } from "react-router-dom";
 import Spinner from "../Spinner";
 import FormCheckOut from "./FormCheckOut";
+import Swal from "sweetalert2";
+import "../../App.css";
 
 const CheckOut = ({
   spinner,
@@ -10,6 +12,9 @@ const CheckOut = ({
   totalPurchase,
   shipping,
 }) => {
+  const [confirm, setConfirm] = useState(false);
+  const navigate = useNavigate();
+
   /*Spinner*/
   useEffect(() => {
     setSpinner(true);
@@ -22,6 +27,33 @@ const CheckOut = ({
       clearTimeout(timeoutId);
     };
   }, []);
+
+  /*Redirect to order confirmation section*/
+  useEffect(() => {
+    if (confirm) {
+      Swal.fire({
+        title: "Confirmar Compra",
+        text: "Esta acción no se puede deshacer",
+        icon: "warning",
+        iconColor: "#00b9e5",
+        backdrop: "#27272a63",
+        background: "#27272a",
+        confirmButtonText: "Confirmar",
+        customClass: {
+          title: "my-custom-title",
+          text: "my-custom-text",
+          confirmButton: "my-custom-confirm-button",
+          cancelButton: "my-custom-cancel-button",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/orderConfirmation");
+        }
+        setConfirm(false);
+        return null;
+      });
+    }
+  }, [confirm]);
 
   /*Function that formats numbers to look like this: 333.33*/
   const opcionesDeFormato = {
@@ -49,7 +81,7 @@ const CheckOut = ({
       </div>*/}
       <div className="bodyCart container mx-auto px-2 xl:px-44 py-1 mt-4 mb-8 grid grid-cols-12">
         <div className="bodyCartInfo col-span-12 lg:col-span-8 overflow-hidden py-4">
-          <FormCheckOut totalPurchase={totalPurchase}/>
+          <FormCheckOut totalPurchase={totalPurchase} setConfirm={setConfirm} />
         </div>
 
         {/*Resumen de Compra*/}

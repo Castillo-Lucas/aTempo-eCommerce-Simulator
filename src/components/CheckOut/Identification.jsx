@@ -37,11 +37,6 @@ const Identification = ({
   useEffect(() => {
     if (isNaN(areaNumber) || isNaN(phoneNumber)) {
       setAlertPhoneNumber(true);
-
-      setTimeout(() => {
-        setAreaNumber("");
-        setPhoneNumber("");
-      }, 2000);
     } else if (areaNumber === "" || areaNumber === "") {
       setAlertPhoneNumber(false);
       setAreaNumber("");

@@ -14,6 +14,8 @@ const Payment = ({
   handleRestartValidation,
   handleChangeVisibility,
   totalPurchase,
+  identificationInfo,
+  setConfirm,
 }) => {
   const [paymentMethod, setPaymentMethod] = useState("TC");
   const [cardPosition, setCardPosition] = useState("Front");
@@ -114,6 +116,7 @@ const Payment = ({
               handleValidation={handleValidation}
               handleRestartValidation={handleRestartValidation}
               totalPurchase={totalPurchase}
+              setConfirm={setConfirm}
             />
           ) : paymentMethod === "TD" ? (
             <DebitCard
@@ -125,9 +128,15 @@ const Payment = ({
               handleValidation={handleValidation}
               handleRestartValidation={handleRestartValidation}
               totalPurchase={totalPurchase}
+              setConfirm={setConfirm}
             />
           ) : (
-            <Cash />
+            <Cash
+              paymentInfo={paymentInfo}
+              setPaymentInfo={setPaymentInfo}
+              identificationInfo={identificationInfo}
+              setConfirm={setConfirm}
+            />
           )}
         </div>
       ) : (

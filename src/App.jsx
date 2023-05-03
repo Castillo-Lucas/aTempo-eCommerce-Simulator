@@ -17,6 +17,7 @@ import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
 import Cart from "./components/Cart/Cart";
 import CheckOut from "./components/CheckOut/CheckOut";
+import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmation";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Nosotros from "./components/Nosotros";
@@ -249,7 +250,6 @@ function App() {
                 />
               }
             />
-
             <Route
               path="/checkout"
               element={
@@ -262,6 +262,8 @@ function App() {
                 />
               }
             />
+            <Route path="/orderConfirmation" element={<OrderConfirmation />} />
+
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

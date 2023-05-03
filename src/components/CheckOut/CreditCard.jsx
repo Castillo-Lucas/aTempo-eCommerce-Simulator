@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
 import AlertOne from "./AlertOne";
 
 const CreditCard = ({
@@ -10,6 +12,7 @@ const CreditCard = ({
   handleValidation,
   handleRestartValidation,
   totalPurchase,
+  setConfirm,
 }) => {
   const [paymentType, setPaymentType] = useState("creditCard");
   const [cardNumber, setCardNumber] = useState(Number());
@@ -133,8 +136,8 @@ const CreditCard = ({
       financing,
       id: generarID(),
     };
-
     setPaymentInfo([...paymentInfo, objPayment]);
+    setConfirm(true);
   };
 
   return (
