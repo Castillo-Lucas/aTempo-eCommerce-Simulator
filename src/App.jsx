@@ -245,6 +245,7 @@ function App() {
                   showNavBar={showNavBar}
                   shipping={shipping}
                   setShipping={setShipping}
+                  handleDrawerTwo={handleDrawerTwo}
                 />
               }
             />

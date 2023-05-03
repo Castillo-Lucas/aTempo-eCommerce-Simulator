@@ -174,9 +174,6 @@ const Cart = ({
                     to="/checkout"
                     type="button"
                     className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
-                    onClick={(e) => {
-                      handleFinishPurchase(e);
-                    }}
                   >
                     <p className="text-center">Finalizar Compra</p>
                   </Link>
@@ -186,9 +183,6 @@ const Cart = ({
                     to="/"
                     type="button"
                     className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md"
-                    onClick={(e) => {
-                      handleFinishPurchase(e);
-                    }}
                   >
                     <p className="text-center">Seguir Comprando</p>
                   </Link>
