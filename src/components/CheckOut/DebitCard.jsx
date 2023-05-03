@@ -1,9 +1,6 @@
 import React from "react";
 
-const DebitCard = ({
-  cardPosition,
-  handleCardPosition
-}) => {
+const DebitCard = ({ cardPosition, handleCardPosition }) => {
   return (
     <div className="p-4 border border-gray-200 shadow-md rounded-lg">
       {/*Card Image*/}

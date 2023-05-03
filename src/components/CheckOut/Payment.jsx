@@ -106,6 +106,8 @@ const Payment = ({
           </div>
           {paymentMethod === "TC" ? (
             <CreditCard
+              paymentInfo={paymentInfo}
+              setPaymentInfo={setPaymentInfo}
               cardPosition={cardPosition}
               handleCardPosition={handleCardPosition}
               formValidation={formValidation}
@@ -115,8 +117,14 @@ const Payment = ({
             />
           ) : paymentMethod === "TD" ? (
             <DebitCard
+              paymentInfo={paymentInfo}
+              setPaymentInfo={setPaymentInfo}
               cardPosition={cardPosition}
               handleCardPosition={handleCardPosition}
+              formValidation={formValidation}
+              handleValidation={handleValidation}
+              handleRestartValidation={handleRestartValidation}
+              totalPurchase={totalPurchase}
             />
           ) : (
             <Cash />

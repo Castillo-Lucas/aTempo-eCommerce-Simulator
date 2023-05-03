@@ -28,10 +28,6 @@ const Identification = ({
   useEffect(() => {
     if (isNaN(DNI)) {
       setAlertDNI(true);
-
-      setTimeout(() => {
-        setDNI("");
-      }, 1000);
     } else if (DNI === "") {
       setAlertDNI(false);
       setDNI("");

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AlertOne from "./AlertOne";
 
 const CreditCard = ({
+  paymentInfo,
+  setPaymentInfo,
   cardPosition,
   handleCardPosition,
   formValidation,
@@ -9,6 +11,7 @@ const CreditCard = ({
   handleRestartValidation,
   totalPurchase,
 }) => {
+  const [paymentType, setPaymentType] = useState("creditCard");
   const [cardNumber, setCardNumber] = useState(Number());
   const [ownerName, setOwnerName] = useState("");
   const [expMonth, setExpMonth] = useState("");
@@ -17,9 +20,27 @@ const CreditCard = ({
   const [dniCard, setDniCard] = useState("");
   const [financing, setFinancing] = useState("");
 
+  const [error, setError] = useState(false);
   const [alertCardNumberOne, setAlertCardNumberOne] = useState(false);
+  const [alertCVC, setAlertCVC] = useState(false);
+  const [alertCardDNI, setAlertCardDNI] = useState(false);
   const [cardNumberLength, setCardNumberLength] = useState();
   const [separateCardnumbers, setSeparateCardnumbers] = useState();
+  const [arrMonth, setArrMonth] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+  ]);
+  const [years, setYears] = useState(() => {
+    const currentYear = new Date().getFullYear();
+    const yearsArray = [];
+
+    for (let i = currentYear; i <= currentYear + 15; i++) {
+      yearsArray.push(i);
+    }
+
+    return yearsArray;
+  });
+  const shortenedYear = expYear.toString().slice(-2);
+  const [arrFinancing, setArrFinancing] = useState([1, 3, 6, 12]);
 
   useEffect(() => {
     if (isNaN(cardNumber)) {
@@ -47,6 +68,75 @@ const CreditCard = ({
     setSeparateCardnumbers(formattedCardNumber);
   }, [cardNumber]);
 
+  useEffect(() => {
+    if (isNaN(cvc)) {
+      setAlertCVC(true);
+    } else if (cvc === "") {
+      setAlertCVC(false);
+      setCvc("");
+    }
+  }, [cvc]);
+
+  useEffect(() => {
+    if (isNaN(dniCard)) {
+      setAlertCardDNI(true);
+    } else if (dniCard === "") {
+      setAlertCardDNI(false);
+      setDniCard("");
+    }
+  }, [dniCard]);
+
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
+  };
+
+  const handleFocusCvc = (e, data) => {
+    handleRestartValidation(e, "cvc");
+    handleCardPosition(e, "Back");
+  };
+
+  const handleContinuar = (e, data) => {
+    e.preventDefault();
+
+    if (
+      [
+        cardNumber,
+        ownerName,
+        expMonth,
+        expYear,
+        cvc,
+        dniCard,
+        financing,
+      ].includes("") ||
+      cardNumber.length < 16
+    ) {
+      setError(true);
+
+      setTimeout(() => {
+        setError(false);
+      }, 2500);
+
+      return;
+    }
+    setError(false);
+
+    const objPayment = {
+      paymentType,
+      cardNumber,
+      ownerName,
+      expMonth,
+      expYear,
+      cvc,
+      dniCard,
+      financing,
+      id: generarID(),
+    };
+
+    setPaymentInfo([...paymentInfo, objPayment]);
+  };
+
   return (
     <div className="p-4 border border-gray-200 shadow-md rounded-lg">
       {/*Card Image*/}
@@ -67,15 +157,24 @@ const CreditCard = ({
             </div>
 
             {/*Expire*/}
-            <div className="absolute top-44 mt-5 pr-4 ml-28 flex">
-              <p className=" text-zinc-500 text-lg font-medium mr-1">1</p>
-              <span className=" text-zinc-500 text-lg font-medium mr-1">/</span>
-              <p className=" text-zinc-500 text-lg font-medium mr-1">26</p>
+            <div className="absolute top-44 mt-5 w-14 pr-4 ml-28 flex">
+              <p className=" text-zinc-500 text-lg font-medium mr-1">
+                {expMonth}
+              </p>
+              {shortenedYear >= 1 && (
+                <span className=" text-zinc-500 text-lg font-medium mr-1">
+                  /
+                </span>
+              )}
+
+              <p className=" text-zinc-500 text-lg font-medium mr-1">
+                {shortenedYear}
+              </p>
             </div>
 
             {/*Name*/}
             <div
-              className="absolute w-full top-56 pt-1 pl-10 text-right flex justify-start"
+              className="absolute w-full top-56 pt-1 cardName text-right flex justify-start"
               dir="ltr"
             >
               <p className="text-zinc-400 text-right text-xl font-medium mr-4">
@@ -93,7 +192,11 @@ const CreditCard = ({
 
             {/*CVC*/}
             <div className="absolute top-20 mt-6 pr-4 ml-80 flex">
-              <p className=" text-zinc-700 text-lg font-medium mr-1">645</p>
+              {isNaN(cvc) ? (
+                ""
+              ) : (
+                <p className=" text-zinc-700 text-lg font-medium mr-1">{cvc}</p>
+              )}
             </div>
           </div>
         )}
@@ -121,6 +224,7 @@ const CreditCard = ({
               } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
               placeholder="Numero"
               required
+              maxLength={16}
               value={cardNumber === 0 ? "" : cardNumber}
               onBlur={(e) => handleValidation(e, "cardNumber")}
               onFocus={(e) => handleRestartValidation(e, "cardNumber")}
@@ -141,7 +245,7 @@ const CreditCard = ({
             )}
             {cardNumberLength <= 15 && cardNumberLength >= 1 && (
               <div>
-                <p className="pl-1 pt-1 text-xs text-zinc-700">
+                <p className="pl-1 pt-1 text-xs text-red-700">
                   Faltan {cardNumberLength} números.
                 </p>
               </div>
@@ -201,18 +305,12 @@ const CreditCard = ({
                   onClick={(e) => handleCardPosition(e, "Front")}
                 >
                   <option value=""></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
+
+                  {arrMonth.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
                 </select>
                 <select
                   aria-label="Default select example"
@@ -228,16 +326,12 @@ const CreditCard = ({
                   onClick={(e) => handleCardPosition(e, "Front")}
                 >
                   <option value=""></option>
-                  <option value="2023">2023</option>
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026">2026</option>
-                  <option value="2027">2027</option>
-                  <option value="2028">2028</option>
-                  <option value="2029">2029</option>
-                  <option value="2030">2030</option>
-                  <option value="2031">2031</option>
-                  <option value="2032">2032</option>
+
+                  {years.map((month) => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -268,13 +362,21 @@ const CreditCard = ({
               } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-20 p-2.5 formCheckOut`}
               placeholder="CVC"
               required
+              maxLength={3}
               onBlur={(e) => handleValidation(e, "cvc")}
-              onFocus={(e) => handleRestartValidation(e, "cvc")}
+              onFocus={(e) => handleFocusCvc(e, "cvc")}
               value={cvc}
               onChange={(e) => setCvc(e.target.value)}
               onClick={(e) => handleCardPosition(e, "Back")}
             />
             <AlertOne formValidation={formValidation} validation={"cvc"} />
+            {alertCVC && (
+              <div>
+                <p className="pl-1 pt-1 text-xs text-red-700">
+                  El valor debe ser numérico
+                </p>
+              </div>
+            )}
           </div>
 
           {/*DNI*/}
@@ -300,6 +402,13 @@ const CreditCard = ({
               onClick={(e) => handleCardPosition(e, "Front")}
             />
             <AlertOne formValidation={formValidation} validation={"dniCard"} />
+            {alertCardDNI && (
+              <div>
+                <p className="pl-1 pt-1 text-xs text-red-700">
+                  El DNI debe ser en formato numérico
+                </p>
+              </div>
+            )}
           </div>
 
           {/*Financing*/}
@@ -322,16 +431,12 @@ const CreditCard = ({
               onChange={(e) => setFinancing(e.target.value)}
             >
               <option value=""></option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-              <option value="2031">2031</option>
-              <option value="2032">2032</option>
+              {arrFinancing.map((financing) => (
+                <option key={financing} value={financing}>
+                  {financing} {financing === 1 ? "cuota" : "cuotas"} de $
+                  {Math.floor(totalPurchase / financing)}
+                </option>
+              ))}
             </select>
             <AlertOne
               formValidation={formValidation}
@@ -340,15 +445,23 @@ const CreditCard = ({
           </div>
 
           {/*Button*/}
-          <div className="col-span-12 pt-7 flex justify-center">
+          <div className="col-span-12 h-14 flex  items-center flex-col">
             {/*Button*/}
             <button
               type="submit"
               className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-1/2  text-sm font-medium text-zinc-800 rounded-md border-2
    border-gray-200"
+              onClick={(e) => handleContinuar(e, "Identification")}
             >
               Finalizar Compra
             </button>
+            {error && (
+              <div>
+                <p className="pl-6 pt-1 text-xs text-red-700">
+                  Todos los campos son obligatorios
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </form>

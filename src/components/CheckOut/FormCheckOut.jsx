@@ -13,6 +13,10 @@ const FormCheckOut = ({ totalPurchase }) => {
   const [shippingInfo, setShippingInfo] = useState([]);
   const [paymentInfo, setPaymentInfo] = useState([]);
 
+  console.log(identificationInfo);
+  console.log(shippingInfo);
+  console.log(paymentInfo);
+
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
 
