@@ -136,7 +136,9 @@ const CreditCard = ({
       financing,
       id: generarID(),
     };
+
     setPaymentInfo([...paymentInfo, objPayment]);
+
     setConfirm(true);
   };
 

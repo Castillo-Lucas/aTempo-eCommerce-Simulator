@@ -22,6 +22,31 @@ const Shipping = ({
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
 
+  //Arreglos para Provincias
+  const [apiProvince, setApiProvince] = useState([]);
+  const arrProvincias = apiProvince
+    .map((prov) => prov.iso_nombre)
+    .sort((a, b) => a.localeCompare(b));
+
+  //Arreglos para Municipios
+  const [apiMunicipio, setApiMunicipio] = useState([]);
+  const municipios = apiMunicipio
+    .filter((mun) => mun.provincia.nombre === province)
+    .map((mun) => mun.nombre)
+    .sort((a, b) => a.localeCompare(b));
+
+  useEffect(() => {
+    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1683207244/aTempo/Assets/provincias_xxh5qj.json`;
+    const url2 = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1683207245/aTempo/Assets/municipios_vqgctz.json`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setApiProvince(data.provincias));
+
+    fetch(url2)
+      .then((response) => response.json())
+      .then((data) => setApiMunicipio(data.municipios));
+  }, []);
+
   useEffect(() => {
     if (isNaN(streetNumber)) {
       setAlertStreetNumber(true);
@@ -34,6 +59,12 @@ const Shipping = ({
       setStreetNumber("");
     }
   }, [streetNumber]);
+
+  useEffect(() => {
+    if (province === "Ciudad Autónoma de Buenos Aires") {
+      setCity("");
+    }
+  }, [province]);
 
   const handleDeliveryMethod = (e, data) => {
     e.preventDefault();
@@ -66,7 +97,17 @@ const Shipping = ({
     }
 
     if (deliveryMethod === "Home") {
-      if ([street, streetNumber, floor, city, province].includes("")) {
+      if (province === "Ciudad Autónoma de Buenos Aires") {
+        if ([street, streetNumber, province].includes("")) {
+          setError(true);
+
+          setTimeout(() => {
+            setError(false);
+          }, 2500);
+
+          return;
+        }
+      } else if ([street, streetNumber, city, province].includes("")) {
         setError(true);
 
         setTimeout(() => {
@@ -96,8 +137,6 @@ const Shipping = ({
 
   const handleModificar = (e, data) => {
     handleChangeVisibility(e, data);
-
-    console.log(data);
 
     setDeliveryMethod(shippingInfo[0].deliveryMethod);
     setStreet(shippingInfo[0].street);
@@ -287,10 +326,7 @@ const Shipping = ({
                         <input
                           type="text"
                           id="floorDpto"
-                          className={`${
-                            formValidation.includes("floorDpto") &&
-                            "formValidate"
-                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut"
                           placeholder="Piso/Dpto"
                           required
                           onBlur={(e) => handleValidation(e, "floorDpto")}
@@ -300,11 +336,6 @@ const Shipping = ({
                           value={floor}
                           onChange={(e) => setFloor(e.target.value)}
                         />
-
-                        <AlertOne
-                          formValidation={formValidation}
-                          validation={"floorDpto"}
-                        />
                       </div>
                     </div>
                   </div>
@@ -312,43 +343,17 @@ const Shipping = ({
                   {/*City & Province*/}
                   <div className="col-span-12">
                     <div className="grid grid-cols-12 gap-6">
-                      {/*City*/}
-                      <div className="col-span-12 sm:col-span-6">
-                        <label
-                          htmlFor="city"
-                          className="block mb-2 text-sm font-medium text-zinc-700"
-                        >
-                          Ciudad
-                        </label>
-                        <input
-                          type="text"
-                          id="city"
-                          className={`${
-                            formValidation.includes("city") && "formValidate"
-                          } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
-                          placeholder="Ciudad"
-                          required
-                          onBlur={(e) => handleValidation(e, "city")}
-                          onFocus={(e) => handleRestartValidation(e, "city")}
-                          value={city}
-                          onChange={(e) => setCity(e.target.value)}
-                        />
-
-                        <AlertOne
-                          formValidation={formValidation}
-                          validation={"city"}
-                        />
-                      </div>
-
                       {/*Province*/}
                       <div className="col-span-12 sm:col-span-6">
                         <label
                           htmlFor="province"
                           className="block mb-2 text-sm font-medium text-zinc-700"
                         >
-                          Provincia
+                          {province !== "Ciudad Autónoma de Buenos Aires"
+                            ? "Provincia"
+                            : "Ciudad"}
                         </label>
-                        <input
+                        <select
                           type="text"
                           id="province"
                           className={`${
@@ -363,17 +368,63 @@ const Shipping = ({
                           }
                           value={province}
                           onChange={(e) => setProvince(e.target.value)}
-                        />
+                        >
+                          <option value=""></option>
+
+                          {arrProvincias.map((prov) => (
+                            <option key={generarID()} value={prov}>
+                              {prov}
+                            </option>
+                          ))}
+                        </select>
 
                         <AlertOne
                           formValidation={formValidation}
                           validation={"province"}
                         />
                       </div>
+
+                      {/*City*/}
+                      {province !== "Ciudad Autónoma de Buenos Aires" && (
+                        <div className="col-span-12 sm:col-span-6">
+                          <label
+                            htmlFor="city"
+                            className="block mb-2 text-sm font-medium text-zinc-700"
+                          >
+                            Ciudad
+                          </label>
+                          <select
+                            type="text"
+                            id="city"
+                            className={`${
+                              formValidation.includes("city") && "formValidate"
+                            } bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 formCheckOut`}
+                            placeholder="Ciudad"
+                            required
+                            onBlur={(e) => handleValidation(e, "city")}
+                            onFocus={(e) => handleRestartValidation(e, "city")}
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                          >
+                            <option value=""></option>
+
+                            {municipios.map((mun) => (
+                              <option key={generarID()} value={mun}>
+                                {mun}
+                              </option>
+                            ))}
+                          </select>
+
+                          <AlertOne
+                            formValidation={formValidation}
+                            validation={"city"}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {/*City & Province*/}
+                  {/*Logos*/}
                   <div className="col-span-12 sm:col-span-6 px-10 flex justify-between">
                     <img
                       src="https://res.cloudinary.com/dthpuldpm/image/upload/v1682674432/aTempo/expressShiping2-removebg-preview_tflcev.png"
@@ -459,7 +510,8 @@ const Shipping = ({
                       <p className="text-zinc-600">{shippingInfo[0].floor}</p>
                     )}
                     <p className="text-zinc-600">
-                      {shippingInfo[0].city}, {shippingInfo[0].province}
+                      {shippingInfo[0].city} {shippingInfo[0].city && ","}{" "}
+                      {shippingInfo[0].province}
                     </p>
                   </div>
                 ) : (

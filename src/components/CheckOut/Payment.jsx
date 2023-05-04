@@ -145,7 +145,7 @@ const Payment = ({
             <div className="flex justify-between">
               <div>
                 <p className="text-zinc-600">
-                  {paymentInfo[0].name} {paymentInfo[0].lastName}
+                  {paymentInfo[0].cardNumber}
                 </p>
                 <p className="text-zinc-600">DNI: {paymentInfo[0].DNI}</p>
                 <p className="text-zinc-600">
