@@ -33,7 +33,6 @@ const CheckOut = ({
     if (confirm) {
       Swal.fire({
         title: "Confirmar Compra",
-        text: "Esta acción no se puede deshacer",
         icon: "warning",
         iconColor: "#00b9e5",
         backdrop: "#27272a63",
