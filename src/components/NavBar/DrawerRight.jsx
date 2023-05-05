@@ -146,7 +146,7 @@ const DrawerRight = ({
                     handleFinishPurchase(e);
                   }}
                 >
-                  <p className="text-center">Finalizar Compra</p>
+                  <p className="text-center">Ir al Carrito</p>
                 </Link>
               </div>
               <div className="w-full flex justify-between pl-6 pt-2">

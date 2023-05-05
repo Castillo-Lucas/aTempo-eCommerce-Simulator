@@ -12,7 +12,6 @@ const Payment = ({
   formValidation,
   handleValidation,
   handleRestartValidation,
-  handleChangeVisibility,
   totalPurchase,
   identificationInfo,
   setConfirm,
