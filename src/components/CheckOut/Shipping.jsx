@@ -10,6 +10,9 @@ const Shipping = ({
   handleValidation,
   handleRestartValidation,
   handleChangeVisibility,
+  setShippingMethod,
+  setShipping,
+  subTotalPurchase,
 }) => {
   const [error, setError] = useState(false);
   const [alertStreetNumber, setAlertStreetNumber] = useState(false);
@@ -46,6 +49,16 @@ const Shipping = ({
       .then((response) => response.json())
       .then((data) => setApiMunicipio(data.municipios));
   }, []);
+
+  useEffect(() => {
+    setShippingMethod(deliveryMethod);
+
+    if (deliveryMethod === "Home" && subTotalPurchase <= 499) {
+      setShipping(20);
+    } else if (deliveryMethod === "Store" || subTotalPurchase >= 500) {
+      setShipping(0);
+    }
+  }, [deliveryMethod]);
 
   useEffect(() => {
     if (isNaN(streetNumber)) {

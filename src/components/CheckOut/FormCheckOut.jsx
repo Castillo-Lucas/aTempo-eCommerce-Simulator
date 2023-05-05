@@ -3,7 +3,13 @@ import Identification from "./Identification";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
 
-const FormCheckOut = ({ totalPurchase, setConfirm }) => {
+const FormCheckOut = ({
+  totalPurchase,
+  setConfirm,
+  setShippingMethod,
+  setShipping,
+  subTotalPurchase,
+}) => {
   const [showIdentification, setShowIdentification] = useState(true);
   const [showShipping, setShowShipping] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -74,6 +80,9 @@ const FormCheckOut = ({ totalPurchase, setConfirm }) => {
         handleValidation={handleValidation}
         handleRestartValidation={handleRestartValidation}
         handleChangeVisibility={handleChangeVisibility}
+        setShippingMethod={setShippingMethod}
+        setShipping={setShipping}
+        subTotalPurchase={subTotalPurchase}
       />
 
       <Payment
@@ -84,7 +93,6 @@ const FormCheckOut = ({ totalPurchase, setConfirm }) => {
         formValidation={formValidation}
         handleValidation={handleValidation}
         handleRestartValidation={handleRestartValidation}
-        handleChangeVisibility={handleChangeVisibility}
         totalPurchase={totalPurchase}
         identificationInfo={identificationInfo}
         setConfirm={setConfirm}

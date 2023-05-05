@@ -48,8 +48,8 @@ function App() {
   const [newProducts, setNewProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [subTotalPurchase, setSubTotalPurchase] = useState();
+  const [shipping, setShipping] = useState(0);
   const [totalPurchase, setTotalPurchase] = useState();
-  const [shipping, setShipping] = useState(20);
 
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
@@ -79,13 +79,22 @@ function App() {
     setSubTotalPurchase(totalPrice);
   }, [cart]);
 
+  /*Getting shipping price*/
   useEffect(() => {
-    if (subTotalPurchase <= 500) {
-      setTotalPurchase(subTotalPurchase + shipping);
-    } else {
-      setTotalPurchase(subTotalPurchase);
+    if (subTotalPurchase === 0) {
+      setShipping(0);
+    } else if (subTotalPurchase >= 1 && subTotalPurchase <= 499) {
+      setShipping(20);
+    } else if (subTotalPurchase >= 500) {
+      setShipping(0);
+      console.log("NO se cobra envio");
     }
-  }, [subTotalPurchase]);
+  }, [subTotalPurchase, cart]);
+
+  /*Getting total purchase*/
+  useEffect(() => {
+    setTotalPurchase(subTotalPurchase + shipping);
+  }, [subTotalPurchase, shipping]);
 
   /*Separate items for carousels*/
   useEffect(() => {
@@ -234,19 +243,13 @@ function App() {
               path="/cart"
               element={
                 <Cart
-                  spinner={spinner}
                   setSpinner={setSpinner}
                   setShowNavBar={setShowNavBar}
                   cart={cart}
                   setCart={setCart}
                   subTotalPurchase={subTotalPurchase}
-                  setSubTotalPurchase={setSubTotalPurchase}
                   totalPurchase={totalPurchase}
-                  setTotalPurchase={setTotalPurchase}
                   showNavBar={showNavBar}
-                  shipping={shipping}
-                  setShipping={setShipping}
-                  handleDrawerTwo={handleDrawerTwo}
                 />
               }
             />
@@ -259,6 +262,7 @@ function App() {
                   subTotalPurchase={subTotalPurchase}
                   totalPurchase={totalPurchase}
                   shipping={shipping}
+                  setShipping={setShipping}
                 />
               }
             />

@@ -6,18 +6,13 @@ import "../../App.css";
 import ProductDetail from "../NavBar/ProductDetail";
 
 const Cart = ({
-  spinner,
   setSpinner,
   setShowNavBar,
   cart,
   setCart,
   subTotalPurchase,
-  setSubTotalPurchase,
   totalPurchase,
-  setTotalPurchase,
   showNavBar,
-  shipping,
-  setShipping,
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -151,18 +146,10 @@ const Cart = ({
                     ${subTotalPurchaseFormat}
                   </p>
                 </div>
-                <div className="w-full flex justify-between pl-2 pr-4 pb-4 my-2 border-b border-zinc-300/50">
-                  <p className="font-normal text-lg text-zinc-60">
-                    Gastos de envío
-                  </p>
-                  <p className="font-normal text-lg text-zinc-800">
-                    {subTotalPurchase >= 500 ? "Gratis" : `$${shipping}`}
-                  </p>
-                </div>
                 <div className="w-full flex justify-between pl-2 pr-4 pb-4 my-2">
                   <p className=" font-bold text-lg text-zinc-60">Total</p>
                   <p className="font-bold text-lg text-zinc-800">
-                    ${totalPurchaseFormat}
+                    ${subTotalPurchaseFormat}
                   </p>
                 </div>
               </div>
@@ -175,8 +162,13 @@ const Cart = ({
                     type="button"
                     className="btnFinCompr py-1 md:py-2.5 px-1  md:px-5 w-9/12 md:w-full text-sm font-medium text-zinc-800 rounded-md border-2 border-gray-200"
                   >
-                    <p className="text-center">Finalizar Compra</p>
+                    <p className="text-center">Ir al Checkout</p>
                   </Link>
+                </div>
+                <div className="w-full flex justify-between pl-6 pt-2">
+                  <p className="font-thin text-sm text-zinc-60">
+                    *Los gastos de envío seran calculados al finalizar la compra
+                  </p>
                 </div>
                 <div className="w-full flex justify-center mt-2 pl-2 pr-4">
                   <Link
