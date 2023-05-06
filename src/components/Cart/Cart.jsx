@@ -70,20 +70,6 @@ const Cart = ({
     opcionesDeFormato
   );
 
-  /*Setting totalPurchase to look like "opcionesDeFormato" format*/
-  const tot = Number(totalPurchase);
-  const totalPurchaseFormat = tot.toLocaleString("es-ES", opcionesDeFormato);
-
-  const handleFinishPurchase = (e) => {
-    const timeoutId = setTimeout(() => {
-      handleDrawerTwo(e);
-    }, 100);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  };
-
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);

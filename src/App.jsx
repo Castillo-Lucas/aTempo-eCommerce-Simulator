@@ -50,6 +50,7 @@ function App() {
   const [subTotalPurchase, setSubTotalPurchase] = useState();
   const [shipping, setShipping] = useState(0);
   const [totalPurchase, setTotalPurchase] = useState();
+  const [orderConfirmation, setOrderConfirmation] = useState([]);
 
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
@@ -87,7 +88,6 @@ function App() {
       setShipping(20);
     } else if (subTotalPurchase >= 500) {
       setShipping(0);
-      console.log("NO se cobra envio");
     }
   }, [subTotalPurchase, cart]);
 
@@ -257,12 +257,13 @@ function App() {
               path="/checkout"
               element={
                 <CheckOut
-                  spinner={spinner}
-                  setSpinner={setSpinner}
+                  cart={cart}
+                  setCart={setCart}
                   subTotalPurchase={subTotalPurchase}
                   totalPurchase={totalPurchase}
                   shipping={shipping}
                   setShipping={setShipping}
+                  setOrderConfirmation={setOrderConfirmation}
                 />
               }
             />
@@ -271,7 +272,10 @@ function App() {
               element={
                 <OrderConfirmation
                   setShowNavBar={setShowNavBar}
+                  spinner={spinner}
                   setSpinner={setSpinner}
+                  orderConfirmation={orderConfirmation}
+                  setOrderConfirmation={setOrderConfirmation}
                 />
               }
             />

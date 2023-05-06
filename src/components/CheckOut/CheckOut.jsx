@@ -1,18 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import FormCheckOut from "./FormCheckOut";
 import Swal from "sweetalert2";
 import "../../App.css";
 
 const CheckOut = ({
+  cart,
+  setCart,
   subTotalPurchase,
   totalPurchase,
   shipping,
   setShipping,
+  setOrderConfirmation,
 }) => {
   const [confirm, setConfirm] = useState(false);
   const [shippingMethod, setShippingMethod] = useState("Home");
   const navigate = useNavigate();
+
+  const [identificationInfo, setIdentificationInfo] = useState([]);
+  const [shippingInfo, setShippingInfo] = useState([]);
+  const [paymentInfo, setPaymentInfo] = useState([]);
+  const [orderNumber, setOrderNumber] = useState();
+  const [currentDateTime, setCurrentDateTime] = useState([]);
+
+  useEffect(() => {
+    setOrderNumber(Math.floor(Math.random() * 90000) + 20000);
+
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+
+    const dateObject = {
+      day,
+      month,
+      year,
+    };
+
+    const timeObject = {
+      hour,
+      minutes,
+    };
+
+    setCurrentDateTime([dateObject, timeObject]);
+  }, []);
 
   /*Redirect to order confirmation section*/
   useEffect(() => {
@@ -32,6 +65,24 @@ const CheckOut = ({
         },
       }).then((result) => {
         if (result.isConfirmed) {
+          setOrderConfirmation([]);
+
+          const newOrderConfirmation = {
+            orderNumber: orderNumber,
+            currentDateTime: currentDateTime,
+            cart: cart,
+            totalPurchase: totalPurchase,
+            identificationInfo: identificationInfo,
+            shippingInfo: shippingInfo,
+            paymentInfo: paymentInfo,
+          };
+
+          setOrderConfirmation(newOrderConfirmation);
+          setCart([]);
+          setIdentificationInfo([]);
+          setShippingInfo([]);
+          setPaymentInfo([]);
+
           navigate("/orderConfirmation");
         }
         setConfirm(false);
@@ -69,6 +120,12 @@ const CheckOut = ({
             setShippingMethod={setShippingMethod}
             setShipping={setShipping}
             subTotalPurchase={subTotalPurchase}
+            identificationInfo={identificationInfo}
+            setIdentificationInfo={setIdentificationInfo}
+            shippingInfo={shippingInfo}
+            setShippingInfo={setShippingInfo}
+            paymentInfo={paymentInfo}
+            setPaymentInfo={setPaymentInfo}
           />
         </div>
 

@@ -9,15 +9,19 @@ const FormCheckOut = ({
   setShippingMethod,
   setShipping,
   subTotalPurchase,
+  identificationInfo,
+  setIdentificationInfo,
+  shippingInfo,
+  setShippingInfo,
+  paymentInfo,
+  setPaymentInfo,
 }) => {
   const [showIdentification, setShowIdentification] = useState(true);
   const [showShipping, setShowShipping] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [formValidation, setFormValidation] = useState([]);
 
-  const [identificationInfo, setIdentificationInfo] = useState([]);
-  const [shippingInfo, setShippingInfo] = useState([]);
-  const [paymentInfo, setPaymentInfo] = useState([]);
+  
 
   const handleChangeVisibility = (e, data) => {
     e.preventDefault();
