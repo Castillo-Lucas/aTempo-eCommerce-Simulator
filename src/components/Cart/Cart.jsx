@@ -16,7 +16,6 @@ const Cart = ({
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  /*Spinner*/
   useEffect(() => {
     setShowNavBar(false);
     setSpinner(true);

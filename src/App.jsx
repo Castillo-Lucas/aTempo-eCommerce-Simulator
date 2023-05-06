@@ -266,7 +266,15 @@ function App() {
                 />
               }
             />
-            <Route path="/orderConfirmation" element={<OrderConfirmation />} />
+            <Route
+              path="/orderConfirmation"
+              element={
+                <OrderConfirmation
+                  setShowNavBar={setShowNavBar}
+                  setSpinner={setSpinner}
+                />
+              }
+            />
 
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="*" element={<NotFound />} />
