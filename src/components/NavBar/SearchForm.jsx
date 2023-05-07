@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const SearchForm = ({ productList }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,6 +45,10 @@ const SearchForm = ({ productList }) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const handleCloseField = (e) => {
+    setSearchTerm("");
+  };
 
   return (
     <div className="my-auto col-span-1 lg:col-span-7">
@@ -126,9 +131,11 @@ const SearchForm = ({ productList }) => {
         >
           {filteredProducts.length >= 1 ? (
             filteredProducts.map((product) => (
-              <div
+              <NavLink
+                to={`/ItemDetail/${product.id}`}
                 key={product.id}
                 className="flex h-12 mb-3 pb-1.5 hover:bg-zinc-300 hover:cursor-pointer"
+                onClick={(e) => handleCloseField(e)}
               >
                 <img className="h-10" src={product.img1} alt="" />
                 <div className="w-4/5 overflow-hidden whitespace-no-wrap truncate pt-2.5">
@@ -138,7 +145,7 @@ const SearchForm = ({ productList }) => {
                 <div className="pt-2.5">
                   <p className="text-zinc-800 pl-4 ">${product.price}</p>
                 </div>
-              </div>
+              </NavLink>
             ))
           ) : (
             <p className="text-zinc-400 pl-2 text-sm">
