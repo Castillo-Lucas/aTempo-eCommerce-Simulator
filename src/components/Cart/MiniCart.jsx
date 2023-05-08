@@ -3,7 +3,7 @@ import "../../App.css";
 import ProductDetail from "./ProductDetail";
 import { Link } from "react-router-dom";
 
-const DrawerRight = ({
+const MiniCart = ({
   drawerTwo,
   handleDrawerTwo,
   cart,
@@ -183,4 +183,4 @@ const DrawerRight = ({
   );
 };
 
-export default DrawerRight;
+export default MiniCart;

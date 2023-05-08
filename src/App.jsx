@@ -10,7 +10,7 @@ import LayerOne from "./components/LayerOne";
 import LayerTwo from "./components/LayerTwo";
 import LayerThree from "./components/LayerThree";
 import NavBar from "./components/NavBar/NavBar";
-import DrawerRight from "./components/NavBar/DrawerRight";
+import MiniCart from "./components/Cart/MiniCart";
 import DrawerLeft from "./components/ItemList/DrawerLeft";
 import Home from "./components/HomePage/Home";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
@@ -145,7 +145,7 @@ function App() {
           layerThree={layerThree}
           handleSelectMegaMenu={handleSelectMegaMenu}
         />
-        <DrawerRight
+        <MiniCart
           drawerTwo={drawerTwo}
           handleDrawerTwo={handleDrawerTwo}
           cart={cart}

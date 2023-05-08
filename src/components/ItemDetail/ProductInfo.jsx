@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ItemCount from "../NavBar/ItemCount";
+import ItemCount from "../Cart/ItemCount";
 import ItemCountDetail from "./ItemCountDetail";
 
 const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Spinner from "../Spinner";
-import Logo from "../Logo";
 import "../../App.css";
-import ProductDetail from "../NavBar/ProductDetail";
+import ProductDetail from "./ProductDetail";
 
 const Cart = ({
   setSpinner,
