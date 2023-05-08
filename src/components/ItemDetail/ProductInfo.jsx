@@ -1,25 +1,9 @@
-import React, { useState } from "react";
-import ItemCount from "../Cart/ItemCount";
+import React from "react";
 import ItemCountDetail from "./ItemCountDetail";
 
 const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
-  const {
-    bestSeller,
-    brand,
-    category,
-    description,
-    discountPercentage,
-    discountPrice,
-    id,
-    model,
-    name,
-    newEntry,
-    nickname,
-    price,
-    product,
-    quantity,
-    stock,
-  } = currentProduct;
+  const { brand, discountPrice, model, price, product, quantity, stock } =
+    currentProduct;
 
   const ahorro = Math.round(price - discountPrice);
   const financVisa =

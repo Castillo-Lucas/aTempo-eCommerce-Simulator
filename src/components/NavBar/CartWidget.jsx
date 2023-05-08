@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./NavBarStyles.css";
+import { CartContext } from "../../context/CartContext";
 
 const CartWidget = ({ handleDrawerTwo, cart, setCart }) => {
+  const { carrito } = useContext(CartContext);
+
+  console.log(carrito);
+
   const [quantity, setQuantity] = useState();
   useEffect(() => {
     const quant = cart.map((quant) => quant.quantity);
@@ -13,8 +18,6 @@ const CartWidget = ({ handleDrawerTwo, cart, setCart }) => {
       setQuantity(suma);
     }
   }, [cart]);
-
-
 
   return (
     <div className="mr-4 lg:mr-0">
