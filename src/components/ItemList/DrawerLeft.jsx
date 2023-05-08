@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Filters from "./Filters";
 import DownNavBar from "../NavBar/DownNavBar";
-import { Link } from "react-router-dom";
 import MegaMenu from "../NavBar/MegaMenu";
 import Logo from "../Logo";
-import SearchForm from "../NavBar/SearchForm";
+import { FilterContext } from "../../context/FilterContext";
 
 const DrawerLeft = ({
   drawerOne,
@@ -12,18 +11,21 @@ const DrawerLeft = ({
   handleDrawerOne,
   productList,
   generarID,
-  setSelectedFiltersSort,
-  setSelectedFiltersForFilter,
-  selectedCategories,
-  setSelectedCategories,
-  selectedBrands,
-  setSelectedBrands,
-  brandList,
-  fromValue,
-  setFromValue,
-  toValue,
-  setToValue,
 }) => {
+  const {
+    setSelectedFiltersSort,
+    setSelectedFiltersForFilter,
+    selectedCategories,
+    setSelectedCategories,
+    selectedBrands,
+    setSelectedBrands,
+    brandList,
+    fromValue,
+    setFromValue,
+    toValue,
+    setToValue,
+  } = useContext(FilterContext);
+
   return (
     <div
       className={`fixed top-0 z-40 h-screen p-4 transition-transform -translate-x-full bg-zinc-50  w-80 

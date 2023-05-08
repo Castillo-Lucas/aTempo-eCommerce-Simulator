@@ -60,7 +60,7 @@ const Card = ({ products }) => {
           </div>
 
           {discountPrice >= 1 ? (
-            <div className="flex">
+            <div className="flex flex-col md:flex-row">
               <p className="text-zinc-800 text-start font-normal text-base px-1 line-through">
                 $<span>{price}</span>
               </p>

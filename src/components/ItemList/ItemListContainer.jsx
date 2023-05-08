@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import BannerFive from "./BannerFive";
 import Card from "./Card";
 import FilterSection from "./FilterSection";
@@ -6,28 +6,31 @@ import "../../App.css";
 import Pagination from "./Pagination";
 import Spinner from "../Spinner";
 import { useParams } from "react-router-dom";
+import { FilterContext } from "../../context/FilterContext";
 
 const ItemListContainer = ({
   handleDrawerOne,
   productList,
-  selectedFiltersSort,
-  setSelectedFiltersSort,
-  selectedFiltersForFilter,
-  setSelectedFiltersForFilter,
-  selectedCategories,
-  setSelectedCategories,
-  selectedBrands,
-  setSelectedBrands,
   spinner,
   setSpinner,
-  handleFilterClick,
-  brandList,
-  setBrandList,
-  fromValue,
-  setFromValue,
-  toValue,
-  setToValue,
 }) => {
+  const {
+    selectedFiltersSort,
+    setSelectedFiltersSort,
+    selectedFiltersForFilter,
+    setSelectedFiltersForFilter,
+    selectedCategories,
+    setSelectedCategories,
+    selectedBrands,
+    setSelectedBrands,
+    brandList,
+    setBrandList,
+    fromValue,
+    setFromValue,
+    toValue,
+    setToValue,
+  } = useContext(FilterContext);
+
   const [products, setProducts] = useState([]);
   const [selectbyURL, setSelectbyURL] = useState();
   const [categorybyURL, setCategorybyURL] = useState();

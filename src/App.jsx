@@ -24,7 +24,7 @@ import Nosotros from "./components/Nosotros";
 import HeaderCheckOut from "./components/HeaderCheckOut";
 import FooterCheckOut from "./components/FooterCheckOut";
 import CartContextProvider from "./context/CartContext";
-CartContextProvider;
+import FilterContextProvider from "./context/FilterContext";
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -39,13 +39,6 @@ function ScrollToTop({ children }) {
 
 function App() {
   const [productList, setProductList] = useState([]);
-  const [selectedFiltersSort, setSelectedFiltersSort] = useState([]);
-  const [selectedFiltersForFilter, setSelectedFiltersForFilter] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [brandList, setBrandList] = useState([]);
-  const [fromValue, setFromValue] = useState("");
-  const [toValue, setToValue] = useState("");
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
 
@@ -110,127 +103,104 @@ function App() {
   return (
     <div className="App p-0 m-0">
       <Router>
-        <CartContextProvider>
-          <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
-          <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
-          <LayerThree
-            layerThree={layerThree}
-            handleSelectMegaMenu={handleSelectMegaMenu}
-          />
-          <MiniCart
-            drawerTwo={drawerTwo}
-            handleDrawerTwo={handleDrawerTwo}
-            showNavBar={showNavBar}
-          />
-          <DrawerLeft
-            drawerOne={drawerOne}
-            drawerOneContent={drawerOneContent}
-            handleDrawerOne={handleDrawerOne}
-            productList={productList}
-            generarID={generarID}
-            setSelectedFiltersSort={setSelectedFiltersSort}
-            setSelectedFiltersForFilter={setSelectedFiltersForFilter}
-            selectedCategories={selectedCategories}
-            setSelectedCategories={setSelectedCategories}
-            selectedBrands={selectedBrands}
-            setSelectedBrands={setSelectedBrands}
-            brandList={brandList}
-            fromValue={fromValue}
-            setFromValue={setFromValue}
-            toValue={toValue}
-            setToValue={setToValue}
-          />
-
-          {showNavBar === true ? (
-            <NavBar
-              selectMegaMenu={selectMegaMenu}
-              handleDrawerOne={handleDrawerOne}
-              handleDrawerTwo={handleDrawerTwo}
+        <FilterContextProvider>
+          <CartContextProvider>
+            <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
+            <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
+            <LayerThree
+              layerThree={layerThree}
               handleSelectMegaMenu={handleSelectMegaMenu}
+            />
+            <MiniCart
+              drawerTwo={drawerTwo}
+              handleDrawerTwo={handleDrawerTwo}
+              showNavBar={showNavBar}
+            />
+            <DrawerLeft
+              drawerOne={drawerOne}
+              drawerOneContent={drawerOneContent}
+              handleDrawerOne={handleDrawerOne}
               productList={productList}
               generarID={generarID}
             />
-          ) : (
-            <HeaderCheckOut />
-          )}
 
-          <ScrollToTop>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    bestSellers={bestSellers}
-                    newProducts={newProducts}
-                    setShowNavBar={setShowNavBar}
-                  />
-                }
+            {showNavBar === true ? (
+              <NavBar
+                selectMegaMenu={selectMegaMenu}
+                handleDrawerOne={handleDrawerOne}
+                handleDrawerTwo={handleDrawerTwo}
+                handleSelectMegaMenu={handleSelectMegaMenu}
+                productList={productList}
+                generarID={generarID}
               />
-              <Route
-                path="/ItemListContainer/:category/:brand"
-                element={
-                  <ItemListContainer
-                    handleDrawerOne={handleDrawerOne}
-                    productList={productList}
-                    selectedFiltersSort={selectedFiltersSort}
-                    setSelectedFiltersSort={setSelectedFiltersSort}
-                    selectedFiltersForFilter={selectedFiltersForFilter}
-                    setSelectedFiltersForFilter={setSelectedFiltersForFilter}
-                    selectedCategories={selectedCategories}
-                    setSelectedCategories={setSelectedCategories}
-                    selectedBrands={selectedBrands}
-                    setSelectedBrands={setSelectedBrands}
-                    spinner={spinner}
-                    setSpinner={setSpinner}
-                    brandList={brandList}
-                    setBrandList={setBrandList}
-                    fromValue={fromValue}
-                    setFromValue={setFromValue}
-                    toValue={toValue}
-                    setToValue={setToValue}
-                  />
-                }
-              />
-              <Route
-                exact
-                path="/ItemDetail/:productId"
-                element={
-                  <ItemDetail
-                    productList={productList}
-                    bestSellers={bestSellers}
-                    newProducts={newProducts}
-                  />
-                }
-              />
-              <Route
-                path="/cart"
-                element={
-                  <Cart
-                    setSpinner={setSpinner}
-                    showNavBar={showNavBar}
-                    setShowNavBar={setShowNavBar}
-                  />
-                }
-              />
-              <Route path="/checkout" element={<CheckOut />} />
-              <Route
-                path="/orderConfirmation"
-                element={
-                  <OrderConfirmation
-                    setShowNavBar={setShowNavBar}
-                    spinner={spinner}
-                    setSpinner={setSpinner}
-                  />
-                }
-              />
+            ) : (
+              <HeaderCheckOut />
+            )}
 
-              <Route path="/nosotros" element={<Nosotros />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </ScrollToTop>
+            <ScrollToTop>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Home
+                      bestSellers={bestSellers}
+                      newProducts={newProducts}
+                      setShowNavBar={setShowNavBar}
+                    />
+                  }
+                />
+                <Route
+                  path="/ItemListContainer/:category/:brand"
+                  element={
+                    <ItemListContainer
+                      handleDrawerOne={handleDrawerOne}
+                      productList={productList}
+                      spinner={spinner}
+                      setSpinner={setSpinner}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/ItemDetail/:productId"
+                  element={
+                    <ItemDetail
+                      productList={productList}
+                      bestSellers={bestSellers}
+                      newProducts={newProducts}
+                    />
+                  }
+                />
+                <Route
+                  path="/cart"
+                  element={
+                    <Cart
+                      setSpinner={setSpinner}
+                      showNavBar={showNavBar}
+                      setShowNavBar={setShowNavBar}
+                    />
+                  }
+                />
+                <Route path="/checkout" element={<CheckOut />} />
+                <Route
+                  path="/orderConfirmation"
+                  element={
+                    <OrderConfirmation
+                      setShowNavBar={setShowNavBar}
+                      spinner={spinner}
+                      setSpinner={setSpinner}
+                    />
+                  }
+                />
 
-          {showNavBar ? <Footer /> : <FooterCheckOut />}
-        </CartContextProvider>
+                <Route path="/nosotros" element={<Nosotros />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ScrollToTop>
+
+            {showNavBar ? <Footer /> : <FooterCheckOut />}
+          </CartContextProvider>
+        </FilterContextProvider>
       </Router>
     </div>
   );
