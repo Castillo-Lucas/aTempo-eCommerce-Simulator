@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import "../../App.css";
 import ProductDetail from "./ProductDetail";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
-const MiniCart = ({
-  drawerTwo,
-  handleDrawerTwo,
-  cart,
-  setCart,
-  subTotalPurchase,
-  setSubTotalPurchase,
-  totalPurchase,
-  showNavBar,
-}) => {
+const MiniCart = ({ drawerTwo, handleDrawerTwo, showNavBar }) => {
+  const {
+    cart,
+    setCart,
+    opcionesDeFormato,
+    handleQuantityUpdater,
+    handleDelete,
+    subTotalPurchaseFormat,
+  } = useContext(CartContext);
+
   /*ID Generator*/
   const generarID = () => {
     const Id1 = Math.random().toString(36).substring(2);
@@ -20,39 +21,15 @@ const MiniCart = ({
     return Id1 + Id2;
   };
 
-  /*Item Deleter*/
+  //Item Deleter
   const handleDeleteItem = (id) => {
-    const newCart = cart.filter((item) => item.id !== id);
-    setCart(newCart);
+    handleDelete(id);
   };
 
+  //Quantity Updater
   const handleTotalPurchase = (currectProduct) => {
-    const itemIndex = cart.findIndex((item) => item.id === currectProduct.id);
-
-    if (itemIndex === -1) {
-      // If the product doesnt exist in the cart, its added with the amount indicated in the counter
-      setCart([...cart, { ...currentProduct }]);
-    } else {
-      // If the product exist in the cart, its quantity is updated
-      const updatedCart = [...cart];
-      setCart(updatedCart);
-    }
+    handleQuantityUpdater(currectProduct);
   };
-
-  /*Function that formats numbers to look like this: 333.33*/
-  const opcionesDeFormato = {
-    style: "decimal",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    useGrouping: true,
-  };
-
-  /*Setting subTotalPurchase to look like "opcionesDeFormato" format*/
-  const subTot = Number(subTotalPurchase);
-  const subTotalPurchaseFormat = subTot.toLocaleString(
-    "es-ES",
-    opcionesDeFormato
-  );
 
   const handleFinishPurchase = (e) => {
     const timeoutId = setTimeout(() => {

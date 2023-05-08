@@ -151,11 +151,6 @@ function App() {
           <MiniCart
             drawerTwo={drawerTwo}
             handleDrawerTwo={handleDrawerTwo}
-            cart={cart}
-            setCart={setCart}
-            subTotalPurchase={subTotalPurchase}
-            setSubTotalPurchase={setSubTotalPurchase}
-            totalPurchase={totalPurchase}
             showNavBar={showNavBar}
           />
           <DrawerLeft
@@ -185,8 +180,6 @@ function App() {
               handleSelectMegaMenu={handleSelectMegaMenu}
               productList={productList}
               generarID={generarID}
-              cart={cart}
-              setCart={setCart}
             />
           ) : (
             <HeaderCheckOut />
@@ -247,12 +240,8 @@ function App() {
                 element={
                   <Cart
                     setSpinner={setSpinner}
-                    setShowNavBar={setShowNavBar}
-                    cart={cart}
-                    setCart={setCart}
-                    subTotalPurchase={subTotalPurchase}
-                    totalPurchase={totalPurchase}
                     showNavBar={showNavBar}
+                    setShowNavBar={setShowNavBar}
                   />
                 }
               />

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import ItemCountDetail from "./ItemCountDetail";
+import { CartContext } from "../../context/CartContext";
 
-const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
+const ProductInfo = ({ currentProduct, setCurrentProduct }) => {
+  const { handleAddtoCart } = useContext(CartContext);
+
   const { brand, discountPrice, model, price, product, quantity, stock } =
     currentProduct;
 
@@ -25,20 +28,9 @@ const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
       ? Math.round(price / 3)
       : 0;
 
-  const handleAddtoCart = () => {
-    const itemIndex = cart.findIndex((item) => item.id === currentProduct.id);
-
-    if (itemIndex === -1) {
-      // If the product doesnt exist in the cart, its added with the amount indicated in the counter
-      setCart([...cart, { ...currentProduct }]);
-    } else {
-      // If the product exist in the cart, its quantity is updated
-      const updatedCart = [...cart];
-      updatedCart[itemIndex].quantity += 1;
-      setCart(updatedCart);
-    }
+  const handleAdd = () => {
+    handleAddtoCart(currentProduct);
   };
-
   return (
     <div className="flex flex-col justify-between col-span-12 md:row-span-6 md:col-span-6 lg:row-span-1 lg:col-span-5 border border-zinc-300/80 -mt-5 md:mt-0 px-4 md:px-6 xl:px-14 py-4">
       {/*Name*/}
@@ -486,7 +478,7 @@ const ProductInfo = ({ currentProduct, setCurrentProduct, cart, setCart }) => {
         <button
           type="button"
           className="buttonCard py-2.5 px-5 w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
-          onClick={handleAddtoCart}
+          onClick={handleAdd}
         >
           AGREGAR AL CARRITO
         </button>
