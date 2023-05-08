@@ -10,8 +10,6 @@ const TopNavBar = ({
   windowWidth,
   handleBurgerState,
   productList,
-  cart,
-  setCart,
 }) => {
   return (
     <div className="grid grid-cols-12 px-2 md:px-5 m-0 w-full">
@@ -46,8 +44,6 @@ const TopNavBar = ({
           {/*Cart Icon*/}
           <CartWidget
             handleDrawerTwo={handleDrawerTwo}
-            cart={cart}
-            setCart={setCart}
           />
         </div>
       </div>

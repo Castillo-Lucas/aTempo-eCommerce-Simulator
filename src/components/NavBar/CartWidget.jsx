@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./NavBarStyles.css";
 import { CartContext } from "../../context/CartContext";
 
-const CartWidget = ({ handleDrawerTwo, cart, setCart }) => {
-  const { carrito } = useContext(CartContext);
-
-  console.log(carrito);
+const CartWidget = ({ handleDrawerTwo }) => {
+  const { cart } = useContext(CartContext);
 
   const [quantity, setQuantity] = useState();
   useEffect(() => {

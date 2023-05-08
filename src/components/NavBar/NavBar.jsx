@@ -11,8 +11,6 @@ const NavBar = ({
   handleBurgerState,
   productList,
   generarID,
-  cart,
-  setCart
 }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -36,8 +34,6 @@ const NavBar = ({
           windowWidth={windowWidth}
           handleBurgerState={handleBurgerState}
           productList={productList}          
-          cart={cart}
-          setCart={setCart}
         />
 
         {/*Down NavBar*/}
