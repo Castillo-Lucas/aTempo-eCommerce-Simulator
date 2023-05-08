@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import FormCheckOut from "./FormCheckOut";
 import Swal from "sweetalert2";
 import "../../App.css";
+import { CartContext } from "../../context/CartContext";
 
-const CheckOut = ({
-  cart,
-  setCart,
-  subTotalPurchase,
-  totalPurchase,
-  shipping,
-  setShipping,
-  setOrderConfirmation,
-}) => {
+const CheckOut = () => {
+  const {
+    cart,
+    setCart,
+    subTotalPurchase,
+    shipping,
+    setShipping,
+    totalPurchase,
+    setOrderConfirmation,
+    opcionesDeFormato,
+    subTotalPurchaseFormat,
+  } = useContext(CartContext);
+
   const [confirm, setConfirm] = useState(false);
   const [shippingMethod, setShippingMethod] = useState("Home");
   const navigate = useNavigate();
@@ -90,21 +95,6 @@ const CheckOut = ({
       });
     }
   }, [confirm]);
-
-  /*Function that formats numbers to look like this: 333.33*/
-  const opcionesDeFormato = {
-    style: "decimal",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    useGrouping: true,
-  };
-
-  /*Setting subTotalPurchase to look like "opcionesDeFormato" format*/
-  const subTot = Number(subTotalPurchase);
-  const subTotalPurchaseFormat = subTot.toLocaleString(
-    "es-ES",
-    opcionesDeFormato
-  );
 
   /*Setting totalPurchase to look like "opcionesDeFormato" format*/
   const tot = Number(totalPurchase);

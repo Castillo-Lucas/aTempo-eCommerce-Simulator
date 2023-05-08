@@ -9,8 +9,6 @@ const CartContextProvider = ({ children }) => {
   const [totalPurchase, setTotalPurchase] = useState();
   const [orderConfirmation, setOrderConfirmation] = useState([]);
 
-  console.log(cart);
-
   //Cart Updater
   const handleAddtoCart = (currentProduct) => {
     const itemIndex = cart.findIndex((item) => item.id === currentProduct.id);

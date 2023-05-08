@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Spinner from "../Spinner";
 import ProductOrder from "./ProductOrder";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
-const OrderConfirmation = ({
-  setShowNavBar,
-  spinner,
-  setSpinner,
-  orderConfirmation,
-  setOrderConfirmation,
-}) => {
+const OrderConfirmation = ({ setShowNavBar, spinner, setSpinner }) => {
+  const { orderConfirmation } = useContext(CartContext);
+
   const {
     cart,
     identificationInfo,

@@ -48,11 +48,6 @@ function App() {
   const [toValue, setToValue] = useState("");
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [subTotalPurchase, setSubTotalPurchase] = useState();
-  const [shipping, setShipping] = useState(0);
-  const [totalPurchase, setTotalPurchase] = useState();
-  const [orderConfirmation, setOrderConfirmation] = useState([]);
 
   /*Layout Activators */
   const [drawerOne, setDrawerOne] = useState(false);
@@ -71,32 +66,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => setProductList(data));
   }, []);
-
-  /*Getting sub total purchase*/
-  useEffect(() => {
-    const arrtotalPirce = cart.map((prod) => prod.totalPurchase);
-    const totalPrice = arrtotalPirce.reduce(
-      (acumulador, valorActual) => acumulador + valorActual,
-      0
-    );
-    setSubTotalPurchase(totalPrice);
-  }, [cart]);
-
-  /*Getting shipping price*/
-  useEffect(() => {
-    if (subTotalPurchase === 0) {
-      setShipping(0);
-    } else if (subTotalPurchase >= 1 && subTotalPurchase <= 499) {
-      setShipping(20);
-    } else if (subTotalPurchase >= 500) {
-      setShipping(0);
-    }
-  }, [subTotalPurchase, cart]);
-
-  /*Getting total purchase*/
-  useEffect(() => {
-    setTotalPurchase(subTotalPurchase + shipping);
-  }, [subTotalPurchase, shipping]);
 
   /*Separate items for carousels*/
   useEffect(() => {
@@ -230,8 +199,6 @@ function App() {
                     productList={productList}
                     bestSellers={bestSellers}
                     newProducts={newProducts}
-                    cart={cart}
-                    setCart={setCart}
                   />
                 }
               />
@@ -245,20 +212,7 @@ function App() {
                   />
                 }
               />
-              <Route
-                path="/checkout"
-                element={
-                  <CheckOut
-                    cart={cart}
-                    setCart={setCart}
-                    subTotalPurchase={subTotalPurchase}
-                    totalPurchase={totalPurchase}
-                    shipping={shipping}
-                    setShipping={setShipping}
-                    setOrderConfirmation={setOrderConfirmation}
-                  />
-                }
-              />
+              <Route path="/checkout" element={<CheckOut />} />
               <Route
                 path="/orderConfirmation"
                 element={
@@ -266,8 +220,6 @@ function App() {
                     setShowNavBar={setShowNavBar}
                     spinner={spinner}
                     setSpinner={setSpinner}
-                    orderConfirmation={orderConfirmation}
-                    setOrderConfirmation={setOrderConfirmation}
                   />
                 }
               />

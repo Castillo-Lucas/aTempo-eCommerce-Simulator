@@ -14,8 +14,6 @@ const ItemDetail = ({
   productList,
   bestSellers,
   newProducts,
-  cart,
-  setCart,
 }) => {
   const [currentProduct, setCurrentProduct] = useState([]);
 
@@ -122,8 +120,6 @@ const ItemDetail = ({
           <ProductInfo
             currentProduct={currentProduct}
             setCurrentProduct={setCurrentProduct}
-            cart={cart}
-            setCart={setCart}
           />
         </div>
 
