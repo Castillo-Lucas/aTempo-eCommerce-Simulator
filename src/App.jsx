@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,6 +25,7 @@ import HeaderCheckOut from "./components/HeaderCheckOut";
 import FooterCheckOut from "./components/FooterCheckOut";
 import CartContextProvider from "./context/CartContext";
 import FilterContextProvider from "./context/FilterContext";
+import LayoutActivatorContextProvider from "./context/LayoutActivatorContext";
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -38,19 +39,10 @@ function ScrollToTop({ children }) {
 }
 
 function App() {
+  const [showNavBar, setShowNavBar] = useState(true);
   const [productList, setProductList] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
-
-  /*Layout Activators */
-  const [drawerOne, setDrawerOne] = useState(false);
-  const [drawerTwo, setDrawerTwo] = useState(false);
-  const [drawerOneContent, setDrawerOneContent] = useState("Filter");
-  const [layerTwo, setLayerTwo] = useState(false);
-  const [layerThree, setLayerThree] = useState(false);
-  const [selectMegaMenu, setSelectMegaMenu] = useState(false);
-  const [spinner, setSpinner] = useState(false);
-  const [showNavBar, setShowNavBar] = useState(true);
 
   /*Get Items*/
   useEffect(() => {
@@ -69,138 +61,78 @@ function App() {
     setNewProducts(newProduct);
   }, [productList]);
 
-  /*Function to open Drawer Left*/
-  const handleDrawerOne = (e, Data) => {
-    e.preventDefault(e);
-
-    setDrawerOne(!drawerOne);
-    setDrawerOneContent(Data);
-  };
-
-  /*Function to open Drawer Right*/
-  const handleDrawerTwo = (e) => {
-    e.preventDefault(e);
-
-    setDrawerTwo(!drawerTwo);
-    setLayerTwo(!layerTwo);
-  };
-
-  /*Function to open Mega Menu*/
-  const handleSelectMegaMenu = (e) => {
-    e.preventDefault(e);
-
-    setSelectMegaMenu(!selectMegaMenu);
-    setLayerThree(!layerThree);
-  };
-
-  /*ID Generator*/
-  const generarID = () => {
-    const Id1 = Math.random().toString(36).substring(2);
-    const Id2 = Date.now().toString(36);
-    return Id1 + Id2;
-  };
-
   return (
     <div className="App p-0 m-0">
       <Router>
-        <FilterContextProvider>
-          <CartContextProvider>
-            <LayerOne drawerOne={drawerOne} handleDrawerOne={handleDrawerOne} />
-            <LayerTwo layerTwo={layerTwo} handleDrawerTwo={handleDrawerTwo} />
-            <LayerThree
-              layerThree={layerThree}
-              handleSelectMegaMenu={handleSelectMegaMenu}
-            />
-            <MiniCart
-              drawerTwo={drawerTwo}
-              handleDrawerTwo={handleDrawerTwo}
-              showNavBar={showNavBar}
-            />
-            <DrawerLeft
-              drawerOne={drawerOne}
-              drawerOneContent={drawerOneContent}
-              handleDrawerOne={handleDrawerOne}
-              productList={productList}
-              generarID={generarID}
-            />
+        <LayoutActivatorContextProvider>
+          {" "}
+          <FilterContextProvider>
+            <CartContextProvider>
+              <LayerOne />
+              <LayerTwo />
+              <LayerThree />
+              <MiniCart showNavBar={showNavBar} />
+              <DrawerLeft productList={productList} />
 
-            {showNavBar === true ? (
-              <NavBar
-                selectMegaMenu={selectMegaMenu}
-                handleDrawerOne={handleDrawerOne}
-                handleDrawerTwo={handleDrawerTwo}
-                handleSelectMegaMenu={handleSelectMegaMenu}
-                productList={productList}
-                generarID={generarID}
-              />
-            ) : (
-              <HeaderCheckOut />
-            )}
+              {showNavBar === true ? (
+                <NavBar productList={productList} />
+              ) : (
+                <HeaderCheckOut />
+              )}
 
-            <ScrollToTop>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Home
-                      bestSellers={bestSellers}
-                      newProducts={newProducts}
-                      setShowNavBar={setShowNavBar}
-                    />
-                  }
-                />
-                <Route
-                  path="/ItemListContainer/:category/:brand"
-                  element={
-                    <ItemListContainer
-                      handleDrawerOne={handleDrawerOne}
-                      productList={productList}
-                      spinner={spinner}
-                      setSpinner={setSpinner}
-                    />
-                  }
-                />
-                <Route
-                  exact
-                  path="/ItemDetail/:productId"
-                  element={
-                    <ItemDetail
-                      productList={productList}
-                      bestSellers={bestSellers}
-                      newProducts={newProducts}
-                    />
-                  }
-                />
-                <Route
-                  path="/cart"
-                  element={
-                    <Cart
-                      setSpinner={setSpinner}
-                      showNavBar={showNavBar}
-                      setShowNavBar={setShowNavBar}
-                    />
-                  }
-                />
-                <Route path="/checkout" element={<CheckOut />} />
-                <Route
-                  path="/orderConfirmation"
-                  element={
-                    <OrderConfirmation
-                      setShowNavBar={setShowNavBar}
-                      spinner={spinner}
-                      setSpinner={setSpinner}
-                    />
-                  }
-                />
+              <ScrollToTop>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <Home
+                        bestSellers={bestSellers}
+                        newProducts={newProducts}
+                        setShowNavBar={setShowNavBar}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/ItemListContainer/:category/:brand"
+                    element={<ItemListContainer productList={productList} />}
+                  />
+                  <Route
+                    exact
+                    path="/ItemDetail/:productId"
+                    element={
+                      <ItemDetail
+                        productList={productList}
+                        bestSellers={bestSellers}
+                        newProducts={newProducts}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/cart"
+                    element={
+                      <Cart
+                        showNavBar={showNavBar}
+                        setShowNavBar={setShowNavBar}
+                      />
+                    }
+                  />
+                  <Route path="/checkout" element={<CheckOut />} />
+                  <Route
+                    path="/orderConfirmation"
+                    element={
+                      <OrderConfirmation setShowNavBar={setShowNavBar} />
+                    }
+                  />
 
-                <Route path="/nosotros" element={<Nosotros />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </ScrollToTop>
+                  <Route path="/nosotros" element={<Nosotros />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </ScrollToTop>
 
-            {showNavBar ? <Footer /> : <FooterCheckOut />}
-          </CartContextProvider>
-        </FilterContextProvider>
+              {showNavBar ? <Footer /> : <FooterCheckOut />}
+            </CartContextProvider>
+          </FilterContextProvider>
+        </LayoutActivatorContextProvider>
       </Router>
     </div>
   );

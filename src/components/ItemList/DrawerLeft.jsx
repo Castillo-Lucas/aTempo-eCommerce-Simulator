@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Filters from "./Filters";
 import DownNavBar from "../NavBar/DownNavBar";
 import MegaMenu from "../NavBar/MegaMenu";
 import Logo from "../Logo";
 import { FilterContext } from "../../context/FilterContext";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
+LayoutActivatorContext;
 
-const DrawerLeft = ({
-  drawerOne,
-  drawerOneContent,
-  handleDrawerOne,
-  productList,
-  generarID,
-}) => {
+const DrawerLeft = ({ productList, generarID }) => {
   const {
     setSelectedFiltersSort,
     setSelectedFiltersForFilter,
@@ -25,6 +21,10 @@ const DrawerLeft = ({
     toValue,
     setToValue,
   } = useContext(FilterContext);
+
+  const { drawerOne, drawerOneContent, handleDrawerOne } = useContext(
+    LayoutActivatorContext
+  );
 
   return (
     <div
@@ -86,7 +86,7 @@ const DrawerLeft = ({
               <Logo />
             </div>
 
-            <MegaMenu productList={productList} generarID={generarID} />
+            <MegaMenu productList={productList} />
             <DownNavBar />
           </div>
         ) : null}

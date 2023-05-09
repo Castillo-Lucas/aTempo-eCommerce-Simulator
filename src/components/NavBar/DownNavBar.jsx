@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import SearchForm from "./SearchForm";
-import Logo from "../Logo";
 
-const DownNavBar = ({
-  handleSelectMegaMenu,
-  windowWidth,
-  productList,
-  generarID,
-}) => {
+const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
   return (
     <div className={windowWidth <= 767 ? "hidden" : "px-5 z-40 pb-2"}>
       {/* List*/}

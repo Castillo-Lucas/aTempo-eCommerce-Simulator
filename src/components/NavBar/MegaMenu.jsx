@@ -5,7 +5,6 @@ const MegaMenu = ({
   selectMegaMenu,
   handleSelectMegaMenu,
   productList,
-  generarID,
   windowWidth,
 }) => {
   const [categories, setCategories] = useState([]);
@@ -36,6 +35,13 @@ const MegaMenu = ({
   const handleSubMegaMenuMobile = (e) => {
     setCatg(e.target.innerText);
     setSubMenuMobile(!subMenuMobile);
+  };
+
+  /*ID Generator*/
+  const generarID = () => {
+    const Id1 = Math.random().toString(36).substring(2);
+    const Id2 = Date.now().toString(36);
+    return Id1 + Id2;
   };
 
   return (

@@ -3,9 +3,11 @@ import Spinner from "../Spinner";
 import ProductOrder from "./ProductOrder";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const OrderConfirmation = ({ setShowNavBar, spinner, setSpinner }) => {
+const OrderConfirmation = ({ setShowNavBar }) => {
   const { orderConfirmation } = useContext(CartContext);
+  const { spinner, setSpinner } = useContext(LayoutActivatorContext);
 
   const {
     cart,

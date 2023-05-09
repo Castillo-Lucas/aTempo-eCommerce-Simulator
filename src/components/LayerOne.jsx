@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LayoutActivatorContext } from "../context/LayoutActivatorContext";
 
-
-const LayerOne = ({ drawerOne, handleDrawerOne }) => {
+const LayerOne = () => {
+  const { drawerOne, handleDrawerOne } = useContext(LayoutActivatorContext);
   return (
     <div
       className={`fixed z-30 min-h-full h-full bg-zinc-800/90 w-full   

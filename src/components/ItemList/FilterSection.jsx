@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "../../App.css";
 import Filters from "./Filters";
 import DrawerLeft from "./DrawerLeft";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const FilterSection = ({
-  handleDrawerOne,
+const FilterSection = ({  
   setSelectedFiltersSort,
   setSelectedFiltersForFilter,
   productList,
@@ -18,6 +18,7 @@ const FilterSection = ({
   toValue,
   setToValue,
 }) => {
+  const { handleDrawerOne } = useContext(LayoutActivatorContext);
   return (
     <div className="col-span-12 lg:col-span-2 px-2">
       {/*Mobile*/}

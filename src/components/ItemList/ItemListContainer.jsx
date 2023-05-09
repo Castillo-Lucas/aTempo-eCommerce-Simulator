@@ -7,13 +7,9 @@ import Pagination from "./Pagination";
 import Spinner from "../Spinner";
 import { useParams } from "react-router-dom";
 import { FilterContext } from "../../context/FilterContext";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const ItemListContainer = ({
-  handleDrawerOne,
-  productList,
-  spinner,
-  setSpinner,
-}) => {
+const ItemListContainer = ({ productList }) => {
   const {
     selectedFiltersSort,
     setSelectedFiltersSort,
@@ -30,6 +26,8 @@ const ItemListContainer = ({
     toValue,
     setToValue,
   } = useContext(FilterContext);
+
+  const { spinner, setSpinner } = useContext(LayoutActivatorContext);
 
   const [products, setProducts] = useState([]);
   const [selectbyURL, setSelectbyURL] = useState();
@@ -230,7 +228,6 @@ const ItemListContainer = ({
 
       <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-8 mb-3">
         <FilterSection
-          handleDrawerOne={handleDrawerOne}
           setSelectedFiltersSort={setSelectedFiltersSort}
           setSelectedFiltersForFilter={setSelectedFiltersForFilter}
           productList={productList}

@@ -3,8 +3,9 @@ import "../../App.css";
 import ProductDetail from "./ProductDetail";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const MiniCart = ({ drawerTwo, handleDrawerTwo, showNavBar }) => {
+const MiniCart = ({ showNavBar }) => {
   const {
     cart,
     setCart,
@@ -13,6 +14,8 @@ const MiniCart = ({ drawerTwo, handleDrawerTwo, showNavBar }) => {
     handleDelete,
     subTotalPurchaseFormat,
   } = useContext(CartContext);
+
+  const { drawerTwo, handleDrawerTwo } = useContext(LayoutActivatorContext);
 
   /*ID Generator*/
   const generarID = () => {

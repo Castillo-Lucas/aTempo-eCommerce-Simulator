@@ -4,7 +4,7 @@ import "../../App.css";
 import ProductDetail from "./ProductDetail";
 import { CartContext } from "../../context/CartContext";
 
-const Cart = ({ setSpinner, showNavBar, setShowNavBar }) => {
+const Cart = ({ showNavBar, setShowNavBar }) => {
   const {
     cart,
     setCart,
@@ -18,15 +18,6 @@ const Cart = ({ setSpinner, showNavBar, setShowNavBar }) => {
 
   useEffect(() => {
     setShowNavBar(false);
-    setSpinner(true);
-
-    const timeoutId = setTimeout(() => {
-      setSpinner(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
   }, []);
 
   //ID Generator

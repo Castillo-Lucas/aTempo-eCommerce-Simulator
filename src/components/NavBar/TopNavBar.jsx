@@ -1,16 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 import CartWidget from "./CartWidget";
 import SearchForm from "./SearchForm";
 import Logo from "../Logo";
+import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const TopNavBar = ({
-  handleDrawerOne,
-  handleDrawerTwo,
-  windowWidth,
-  handleBurgerState,
-  productList,
-}) => {
+const TopNavBar = ({ productList }) => {
+  const { handleDrawerOne } = useContext(LayoutActivatorContext);
   return (
     <div className="grid grid-cols-12 px-2 md:px-5 m-0 w-full">
       {/*Logo*/}
@@ -42,9 +37,7 @@ const TopNavBar = ({
           </svg>
 
           {/*Cart Icon*/}
-          <CartWidget
-            handleDrawerTwo={handleDrawerTwo}
-          />
+          <CartWidget />
         </div>
       </div>
       {/*Burger Menu */}
