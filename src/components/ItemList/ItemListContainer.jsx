@@ -8,8 +8,10 @@ import Spinner from "../Spinner";
 import { useParams } from "react-router-dom";
 import { FilterContext } from "../../context/FilterContext";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
+import { db } from "../../FirebaseSettings";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
-const ItemListContainer = ({ productList }) => {
+const ItemListContainer = () => {
   const {
     selectedFiltersSort,
     setSelectedFiltersSort,
@@ -27,8 +29,8 @@ const ItemListContainer = ({ productList }) => {
     setToValue,
   } = useContext(FilterContext);
 
+  const [productList, setProductList] = useState([]);
   const { spinner, setSpinner } = useContext(LayoutActivatorContext);
-
   const [products, setProducts] = useState([]);
   const [selectbyURL, setSelectbyURL] = useState();
   const [categorybyURL, setCategorybyURL] = useState();
@@ -36,11 +38,32 @@ const ItemListContainer = ({ productList }) => {
 
   const useId = useParams();
 
+  useEffect(() => {
+    const itemCollection = collection(db, "aTempoProducts");
+
+    getDocs(itemCollection)
+      .then((res) => {
+        const products = res.docs.map((product) => {
+          return product.data();
+        });
+
+        setProductList(products);
+      })
+      .catch((err) => console.log(err));
+  }, [useId]);
+
   /*Order products for first time according to "Position"*/
   const firstSort = productList.sort((a, b) => a.position - b.position);
 
   useEffect(() => {
     setProducts(firstSort);
+
+    //Spinner Activator
+    if (productList.length === 0) {
+      setSpinner(true);
+    } else if (productList.length >= 1) {
+      setSpinner(false);
+    }
   }, [productList]);
 
   /*Getting products according URL*/
@@ -205,19 +228,6 @@ const ItemListContainer = ({ productList }) => {
     }
   }, [fromValue, toValue]);
 
-  /*Spinner*/
-  useEffect(() => {
-    setSpinner(true);
-
-    const timeoutId = setTimeout(() => {
-      setSpinner(false);
-    }, 500);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
   return (
     <div>
       <div className={`${spinner ? "absolute" : "hidden"}`}>
@@ -243,9 +253,7 @@ const ItemListContainer = ({ productList }) => {
         />
 
         <div className="col-span-12 lg:col-span-10">
-          {spinner ? (
-            <p className="text-xl pl-4 pt-6">Buscando productos...</p>
-          ) : products.length >= 1 ? (
+          {spinner ? null : products.length >= 1 ? (
             <div>
               <div className="grid grid-cols-12 gap-4 md:gap-6 px-4">
                 {products.map((products) => (
