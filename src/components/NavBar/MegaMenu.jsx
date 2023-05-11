@@ -1,16 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { db } from "../../FirebaseSettings";
+import { getDocs, collection } from "firebase/firestore";
 
-const MegaMenu = ({
-  selectMegaMenu,
-  handleSelectMegaMenu,
-  productList,
-  windowWidth,
-}) => {
+const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu, windowWidth }) => {
+  const [productList, setProductList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [catg, setCatg] = useState("");
   const [brands, setBrands] = useState([]);
   const [subMenuMobile, setSubMenuMobile] = useState(false);
+
+  //Fetching products from Firebase
+  useEffect(() => {
+    const itemCollection = collection(db, "aTempoProducts");
+
+    getDocs(itemCollection)
+      .then((res) => {
+        const products = res.docs.map((product) => {
+          return product.data();
+        });
+
+        setProductList(products);
+      })
+      .catch((err) => {
+        navigate("/*");
+        setSpinner(false);
+      });
+  }, []);
 
   /*Get Categories*/
   useEffect(() => {
@@ -44,6 +60,10 @@ const MegaMenu = ({
     return Id1 + Id2;
   };
 
+  const handleClose = () => {
+    handleSelectMegaMenu();
+  };
+
   return (
     <div>
       {/*Desktop*/}
@@ -68,6 +88,7 @@ const MegaMenu = ({
                 <Link
                   to={`/ItemListContainer/${catg}/all`}
                   className="aMegaMenu pl-4 hover:cursor-pointer"
+                  onClick={handleClose}
                 >
                   {catg}
                 </Link>
@@ -87,6 +108,7 @@ const MegaMenu = ({
                 <Link
                   to={`/ItemListContainer/${catg}/${brand}`}
                   className="aMegaMenu pl-4  hover:cursor-pointe"
+                  onClick={handleClose}
                 >
                   {brand}
                 </Link>

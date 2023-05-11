@@ -4,7 +4,7 @@ import Filters from "./Filters";
 import DrawerLeft from "./DrawerLeft";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const FilterSection = ({  
+const FilterSection = ({
   setSelectedFiltersSort,
   setSelectedFiltersForFilter,
   productList,
@@ -18,9 +18,11 @@ const FilterSection = ({
   toValue,
   setToValue,
 }) => {
-  const { handleDrawerOne } = useContext(LayoutActivatorContext);
+  const { handleDrawerOne, spinner } = useContext(LayoutActivatorContext);
   return (
-    <div className="col-span-12 lg:col-span-2 px-2">
+    <div
+      className={`col-span-12 lg:col-span-2 px-2 ${spinner ? "h-screen" : ""}`}
+    >
       {/*Mobile*/}
       <div className="block lg:hidden px-4 pb-2 mb-8 border-b border-zinc-800">
         <button

@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import BannerFive from "./BannerFive";
 import Card from "./Card";
 import FilterSection from "./FilterSection";
 import "../../App.css";
 import Pagination from "./Pagination";
 import Spinner from "../Spinner";
-import { useParams } from "react-router-dom";
 import { FilterContext } from "../../context/FilterContext";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 import { db } from "../../FirebaseSettings";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
+  
   const {
     selectedFiltersSort,
     setSelectedFiltersSort,
@@ -28,59 +29,65 @@ const ItemListContainer = () => {
     toValue,
     setToValue,
   } = useContext(FilterContext);
+  const { spinner, setSpinner } = useContext(LayoutActivatorContext);
+  const navigate = useNavigate();
 
   const [productList, setProductList] = useState([]);
-  const { spinner, setSpinner } = useContext(LayoutActivatorContext);
   const [products, setProducts] = useState([]);
-  const [selectbyURL, setSelectbyURL] = useState();
-  const [categorybyURL, setCategorybyURL] = useState();
-  const [brandbyURL, setBrandbyURL] = useState();
 
   const useId = useParams();
 
+  //Fetching products from Firebase
   useEffect(() => {
+    //Spinner Activator
+    setSpinner(true);
+
+
+    let consult;
     const itemCollection = collection(db, "aTempoProducts");
 
-    getDocs(itemCollection)
+    if (useId.category === "catalogo") {
+      consult = itemCollection;
+    } else if (useId.category === "Ofertas") {
+      consult = query(itemCollection, where("discountPrice", "!=", ""));
+    } else if (useId.category === "Ultimos Ingresos") {
+      consult = query(itemCollection, where("newEntry", "!=", ""));
+    } else if (useId.brand !== "all") {
+      consult = query(
+        itemCollection,
+        where("category", "==", useId.category),
+        where("brand", "==", useId.brand)
+      );
+    } else if (
+      useId.category !== "catalogo" ||
+      useId.category !== "Ofertas" ||
+      useId.category !== "Ultimos Ingresos"
+    ) {
+      consult = query(itemCollection, where("category", "==", useId.category));
+    }
+
+    getDocs(consult)
       .then((res) => {
         const products = res.docs.map((product) => {
           return product.data();
         });
 
         setProductList(products);
+        setSpinner(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        navigate("/*");
+        setSpinner(false);
+      });
   }, [useId]);
 
-  /*Order products for first time according to "Position"*/
+  //Order products for first time according to "Position"
   const firstSort = productList.sort((a, b) => a.position - b.position);
-
   useEffect(() => {
     setProducts(firstSort);
-
-    //Spinner Activator
-    if (productList.length === 0) {
-      setSpinner(true);
-    } else if (productList.length >= 1) {
-      setSpinner(false);
-    }
   }, [productList]);
 
-  /*Getting products according URL*/
-  useEffect(() => {
-    if (
-      useId.category === "catalogo" ||
-      useId.category === "Ofertas" ||
-      useId.category === "Ultimos Ingresos"
-    ) {
-      setSelectbyURL(useId.category);
-    } else {
-      setCategorybyURL(useId.category);
-      setBrandbyURL(useId.brand);
-    }
-  }, [useId]);
-
-  /*Setting Categories*/
+  //Setting Brand List
   useEffect(() => {
     const categories = [
       ...new Set(productList.map((category) => category.category)),
@@ -107,7 +114,7 @@ const ItemListContainer = () => {
     }
   }, [products, productList]);
 
-  /*Order products according to "Ordenar Por" and Sort*/
+  //Order products according to "Ordenar Por" and Sort
   useEffect(() => {
     let orderedList = [...products];
 
@@ -128,7 +135,7 @@ const ItemListContainer = () => {
     setProducts(orderedList);
   }, [selectedFiltersSort]);
 
-  /*Order products according to "Ordenar Por" and Filter*/
+  //Order products according to "Ordenar Por" and Filter
   useEffect(() => {
     let orderedList = [...products];
     let filterByBestSeller = selectedFiltersForFilter.includes("Más Vendidos");
@@ -139,55 +146,24 @@ const ItemListContainer = () => {
 
     orderedList.sort((a, b) => a.position - b.position);
 
-    if (filterNewEntry || selectbyURL === "Ultimos Ingresos") {
+    if (filterNewEntry) {
       orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.newEntry);
     } else if (filterByBestSeller) {
       orderedList = orderedList.filter((prod) => prod.bestSeller);
     } else if (filterByFreeShipping) {
       orderedList = orderedList.filter((prod) => prod.price >= 500);
-    } else if (filterByOffers || selectbyURL === "Ofertas") {
+    } else if (filterByOffers) {
       orderedList = firstSort;
       orderedList = orderedList.filter((prod) => prod.discountPercentage >= 1);
-    } else if (selectbyURL === "catalogo") {
-      orderedList = firstSort;
     } else {
       orderedList = firstSort;
     }
 
     setProducts(orderedList);
-  }, [selectedFiltersForFilter, selectbyURL]);
+  }, [selectedFiltersForFilter]);
 
-  /*Order products according Category, Brand and URL*/
-  useEffect(() => {
-    const filteringCategory = productList.filter((producto) => {
-      return producto.category.includes(categorybyURL);
-    });
-
-    if (filteringCategory.length === 0) {
-      setProducts(firstSort);
-    } else {
-      setProducts(filteringCategory);
-    }
-
-    if (brandbyURL !== "all") {
-      const filteringCategory = productList.filter((producto) => {
-        return producto.category.includes(categorybyURL);
-      });
-
-      const filteringBrand = filteringCategory.filter((producto) => {
-        return producto.brand.includes(brandbyURL);
-      });
-
-      if (filteringBrand.length === 0) {
-        setProducts(firstSort);
-      } else {
-        setProducts(filteringBrand);
-      }
-    }
-  }, [categorybyURL, brandbyURL]);
-
-  /*Order products according to "Categorías"*/
+  //Order products according to "Categorías"
   useEffect(() => {
     const filteringCategory = productList.filter((producto) => {
       return selectedCategories.some((categoria) =>
@@ -202,7 +178,7 @@ const ItemListContainer = () => {
     }
   }, [selectedCategories]);
 
-  /*Order products according to "Marca"*/
+  //Order products according to "Marca"
   useEffect(() => {
     const filteringBrand = productList.filter((producto) => {
       return selectedBrands.some((brand) => producto.brand.includes(brand));
@@ -215,7 +191,7 @@ const ItemListContainer = () => {
     }
   }, [selectedBrands]);
 
-  /*Order products according to "Precio"*/
+  //Order products according to "Precio"
   useEffect(() => {
     const filteringPrice = products.filter((producto) => {
       return producto.price >= fromValue && producto.price <= toValue;
