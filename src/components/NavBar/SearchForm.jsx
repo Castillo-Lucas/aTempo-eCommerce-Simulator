@@ -1,11 +1,31 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { db } from "../../FirebaseSettings";
+import { getDocs, collection } from "firebase/firestore";
 
-const SearchForm = ({ productList }) => {
+const SearchForm = () => {
+  const [productList, setProductList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [magnifyingGlass, setMagnifyingGlass] = useState(false);
+
+  //Fetching products from Firebase
+  useEffect(() => {
+    const itemCollection = collection(db, "aTempoProducts");
+
+    getDocs(itemCollection)
+      .then((res) => {
+        const products = res.docs.map((product) => {
+          return product.data();
+        });
+
+        setProductList(products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     setProducts(productList);

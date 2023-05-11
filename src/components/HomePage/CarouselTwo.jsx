@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import Card from "../ItemList/Card";
+import { db } from "../../FirebaseSettings";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,7 +15,26 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
-const CarouselTwo = ({ newProducts }) => {
+const CarouselTwo = () => {
+  const [newProducts, setNewProducts] = useState([]);
+
+  //Fetching products from Firebase
+  useEffect(() => {
+    const itemCollection = collection(db, "aTempoProducts");
+    const consult = query(itemCollection, where("newEntry", "!=", ""));
+
+    getDocs(consult)
+      .then((res) => {
+        const products = res.docs.map((product) => {
+          return product.data();
+        });
+
+        setNewProducts(products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="lg:container lg:px-48 mx-auto py-4">
       <Swiper

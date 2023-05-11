@@ -40,26 +40,6 @@ function ScrollToTop({ children }) {
 
 function App() {
   const [showNavBar, setShowNavBar] = useState(true);
-  const [productList, setProductList] = useState([]);
-  const [bestSellers, setBestSellers] = useState([]);
-  const [newProducts, setNewProducts] = useState([]);
-
-  /*Get Items*/
-  useEffect(() => {
-    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1682176449/aTempo/Assets/aTempoProducts_no7idv.json`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setProductList(data));
-  }, []);
-
-  /*Separate items for carousels*/
-  useEffect(() => {
-    const bestSeller = productList.filter((producto) => producto.bestSeller);
-    const newProduct = productList.filter((producto) => producto.newEntry);
-
-    setBestSellers(bestSeller);
-    setNewProducts(newProduct);
-  }, [productList]);
 
   return (
     <div className="App p-0 m-0">
@@ -72,40 +52,24 @@ function App() {
               <LayerTwo />
               <LayerThree />
               <MiniCart showNavBar={showNavBar} />
-              <DrawerLeft productList={productList} />
+              <DrawerLeft />
 
-              {showNavBar === true ? (
-                <NavBar productList={productList} />
-              ) : (
-                <HeaderCheckOut />
-              )}
+              {showNavBar === true ? <NavBar /> : <HeaderCheckOut />}
 
               <ScrollToTop>
                 <Routes>
                   <Route
                     path="/"
-                    element={
-                      <Home
-                        bestSellers={bestSellers}
-                        newProducts={newProducts}
-                        setShowNavBar={setShowNavBar}
-                      />
-                    }
+                    element={<Home setShowNavBar={setShowNavBar} />}
                   />
                   <Route
                     path="/ItemListContainer/:category/:brand"
-                    element={<ItemListContainer productList={productList} />}
+                    element={<ItemListContainer />}
                   />
                   <Route
                     exact
                     path="/ItemDetail/:productId"
-                    element={
-                      <ItemDetail
-                        productList={productList}
-                        bestSellers={bestSellers}
-                        newProducts={newProducts}
-                      />
-                    }
+                    element={<ItemDetail />}
                   />
                   <Route
                     path="/cart"

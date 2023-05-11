@@ -8,12 +8,10 @@ import CarouselTwo from "./CarouselTwo";
 import Categories from "./Categories";
 import HeroImage from "./HeroImage";
 
-const Home = ({ bestSellers, newProducts, setShowNavBar }) => {
-
-    useEffect(() => {
-      setShowNavBar(true)
-
-    }, []);
+const Home = ({ setShowNavBar }) => {
+  useEffect(() => {
+    setShowNavBar(true);
+  }, []);
   return (
     <div className="h-fit w-full">
       <HeroImage />
@@ -27,11 +25,11 @@ const Home = ({ bestSellers, newProducts, setShowNavBar }) => {
         </p>
       </div>
 
-      <CarouselOne bestSellers={bestSellers} />
+      <CarouselOne />
 
       <BannerTwo />
 
-      <CarouselTwo newProducts={newProducts} />
+      <CarouselTwo />
 
       <BannerFour />
 

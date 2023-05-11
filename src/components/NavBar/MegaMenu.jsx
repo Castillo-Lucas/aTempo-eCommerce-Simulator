@@ -23,8 +23,7 @@ const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu, windowWidth }) => {
         setProductList(products);
       })
       .catch((err) => {
-        navigate("/*");
-        setSpinner(false);
+        console.log(err);
       });
   }, []);
 

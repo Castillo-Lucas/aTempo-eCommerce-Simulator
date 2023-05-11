@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CartWidget from "./CartWidget";
 import SearchForm from "./SearchForm";
 import Logo from "../Logo";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 
-const TopNavBar = ({ productList }) => {
+
+const TopNavBar = () => {
   const { handleDrawerOne } = useContext(LayoutActivatorContext);
+
+
   return (
     <div className="grid grid-cols-12 px-2 md:px-5 m-0 w-full">
       {/*Logo*/}
@@ -16,7 +19,7 @@ const TopNavBar = ({ productList }) => {
       <div className="lg:hidden col-span-3  md:col-span-5"></div>
 
       {/*Search Form*/}
-      <SearchForm productList={productList} />
+      <SearchForm />
 
       {/*Icons Section*/}
       <div className="my-auto col-span-2 md:col-span-2 ">

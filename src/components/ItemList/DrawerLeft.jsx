@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Filters from "./Filters";
 import DownNavBar from "../NavBar/DownNavBar";
 import MegaMenu from "../NavBar/MegaMenu";
 import Logo from "../Logo";
 import { FilterContext } from "../../context/FilterContext";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
-LayoutActivatorContext;
+import { db } from "../../FirebaseSettings";
+import { getDocs, collection } from "firebase/firestore";
 
-const DrawerLeft = ({ productList, generarID }) => {
+const DrawerLeft = () => {
   const {
     setSelectedFiltersSort,
     setSelectedFiltersForFilter,
@@ -25,6 +26,25 @@ const DrawerLeft = ({ productList, generarID }) => {
   const { drawerOne, drawerOneContent, handleDrawerOne } = useContext(
     LayoutActivatorContext
   );
+
+  const [productList, setProductList] = useState([]);
+
+  //Fetching products from Firebase
+  useEffect(() => {
+    const itemCollection = collection(db, "aTempoProducts");
+
+    getDocs(itemCollection)
+      .then((res) => {
+        const products = res.docs.map((product) => {
+          return product.data();
+        });
+
+        setProductList(products);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div
@@ -86,7 +106,7 @@ const DrawerLeft = ({ productList, generarID }) => {
               <Logo />
             </div>
 
-            <MegaMenu productList={productList} />
+            <MegaMenu />
             <DownNavBar />
           </div>
         ) : null}
