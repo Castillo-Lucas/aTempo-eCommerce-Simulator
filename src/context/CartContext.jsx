@@ -7,7 +7,7 @@ const CartContextProvider = ({ children }) => {
   const [subTotalPurchase, setSubTotalPurchase] = useState();
   const [shipping, setShipping] = useState(0);
   const [totalPurchase, setTotalPurchase] = useState();
-  const [orderConfirmation, setOrderConfirmation] = useState([]);
+  const [orderId, setOrderId] = useState();
 
   //Cart Updater
   const handleAddtoCart = (currentProduct) => {
@@ -94,8 +94,8 @@ const CartContextProvider = ({ children }) => {
     setShipping,
     totalPurchase,
     setTotalPurchase,
-    orderConfirmation,
-    setOrderConfirmation,
+    orderId,
+    setOrderId,
     handleAddtoCart,
     handleQuantityUpdater,
     handleDelete,

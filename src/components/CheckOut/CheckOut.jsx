@@ -4,6 +4,9 @@ import FormCheckOut from "./FormCheckOut";
 import Swal from "sweetalert2";
 import "../../App.css";
 import { CartContext } from "../../context/CartContext";
+import { db } from "../../FirebaseSettings";
+
+import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 
 const CheckOut = () => {
   const {
@@ -12,8 +15,8 @@ const CheckOut = () => {
     subTotalPurchase,
     shipping,
     setShipping,
+    setOrderId,
     totalPurchase,
-    setOrderConfirmation,
     opcionesDeFormato,
     subTotalPurchaseFormat,
   } = useContext(CartContext);
@@ -25,12 +28,9 @@ const CheckOut = () => {
   const [identificationInfo, setIdentificationInfo] = useState([]);
   const [shippingInfo, setShippingInfo] = useState([]);
   const [paymentInfo, setPaymentInfo] = useState([]);
-  const [orderNumber, setOrderNumber] = useState();
   const [currentDateTime, setCurrentDateTime] = useState([]);
 
   useEffect(() => {
-    setOrderNumber(Math.floor(Math.random() * 90000) + 20000);
-
     const now = new Date();
     const day = now.getDate();
     const month = now.getMonth() + 1;
@@ -70,19 +70,22 @@ const CheckOut = () => {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          setOrderConfirmation([]);
+          setOrderId();
 
           const newOrderConfirmation = {
-            orderNumber: orderNumber,
             currentDateTime: currentDateTime,
-            cart: cart,
+            items: cart,
             totalPurchase: totalPurchase,
             identificationInfo: identificationInfo,
             shippingInfo: shippingInfo,
             paymentInfo: paymentInfo,
           };
 
-          setOrderConfirmation(newOrderConfirmation);
+          const ordersCollection = collection(db, "orders");
+          addDoc(ordersCollection, newOrderConfirmation).then((res) => {
+            setOrderId(res.id);
+          });
+
           setCart([]);
           setIdentificationInfo([]);
           setShippingInfo([]);

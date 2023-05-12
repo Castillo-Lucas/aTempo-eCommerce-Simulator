@@ -188,7 +188,7 @@ const ProductDetail = ({
                 </td>
 
                 {/*Trash Icon*/}
-                <td className="w-1 px-6 py-4">
+                <td className="w-1 px-2 py-4">
                   <svg
                     width="15px"
                     height="15px"

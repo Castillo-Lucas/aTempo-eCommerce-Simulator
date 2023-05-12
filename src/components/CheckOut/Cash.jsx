@@ -6,8 +6,6 @@ const Cash = ({
   identificationInfo,
   setConfirm,
 }) => {
-  console.log(identificationInfo);
-
   const [paymentType, setPaymentType] = useState("cash");
 
   const handleContinuar = (e, data) => {
