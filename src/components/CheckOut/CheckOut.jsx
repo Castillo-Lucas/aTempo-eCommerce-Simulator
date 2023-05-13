@@ -81,10 +81,17 @@ const CheckOut = () => {
             paymentInfo: paymentInfo,
           };
 
+          //Saving purchase in colletion named "orders"
           const ordersCollection = collection(db, "orders");
           addDoc(ordersCollection, newOrderConfirmation).then((res) => {
             setOrderId(res.id);
           });
+
+          cart.map((prod) =>
+            updateDoc(doc(db, "aTempoProducts", prod.id), {
+              stock: prod.stock - prod.quantity,
+            })
+          );
 
           setCart([]);
           setIdentificationInfo([]);

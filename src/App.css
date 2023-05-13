@@ -422,6 +422,10 @@ input[type="checkbox"]:checked::before {
   height: 524px !important;
 }
 
+.paymentInfo{
+  width: 52% !important;
+}
+
 /*------------Not Found---------------*/
 .notFound {
   width: 500px !important;
@@ -678,6 +682,10 @@ input[type="checkbox"]:checked::before {
 
   .bodyCartInfo {
     min-height: 0px !important;
+  }
+
+  .paymentInfo{
+    width: 100% !important;
   }
 }
 

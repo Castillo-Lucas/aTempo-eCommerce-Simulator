@@ -12,7 +12,6 @@ import { db } from "../../FirebaseSettings";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
-  
   const {
     selectedFiltersSort,
     setSelectedFiltersSort,
@@ -36,12 +35,12 @@ const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
 
   const useId = useParams();
+  const [reloadData, setReloadData] = useState(false);
 
   //Fetching products from Firebase
-  useEffect(() => {
+  /*useEffect(() => {
     //Spinner Activator
     setSpinner(true);
-
 
     let consult;
     const itemCollection = collection(db, "aTempoProducts");
@@ -79,7 +78,15 @@ const ItemListContainer = () => {
         navigate("/*");
         setSpinner(false);
       });
-  }, [useId]);
+  }, [useId, reloadData]);*/
+
+  /*Get Items from an updated json to not consume them from firebase*/
+  useEffect(() => {
+    const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1682176449/aTempo/Assets/aTempoProducts_no7idv.json`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setProductList(data));
+  }, []);
 
   //Order products for first time according to "Position"
   const firstSort = productList.sort((a, b) => a.position - b.position);

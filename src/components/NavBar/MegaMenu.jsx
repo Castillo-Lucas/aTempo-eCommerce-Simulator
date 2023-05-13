@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ProductReaderContext } from "../../context/ProductReaderContext";
 import { db } from "../../FirebaseSettings";
 import { getDocs, collection } from "firebase/firestore";
 
 const MegaMenu = ({ selectMegaMenu, handleSelectMegaMenu, windowWidth }) => {
-  const [productList, setProductList] = useState([]);
+  const { productList } = useContext(ProductReaderContext);
+
   const [categories, setCategories] = useState([]);
   const [catg, setCatg] = useState("");
   const [brands, setBrands] = useState([]);
   const [subMenuMobile, setSubMenuMobile] = useState(false);
-
-  //Fetching products from Firebase
-  useEffect(() => {
-    const itemCollection = collection(db, "aTempoProducts");
-
-    getDocs(itemCollection)
-      .then((res) => {
-        const products = res.docs.map((product) => {
-          return product.data();
-        });
-
-        setProductList(products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   /*Get Categories*/
   useEffect(() => {

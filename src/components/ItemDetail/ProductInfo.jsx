@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import ItemCountDetail from "./ItemCountDetail";
 import { CartContext } from "../../context/CartContext";
 
-const ProductInfo = ({ currentProduct, setCurrentProduct }) => {
+const ProductInfo = ({
+  currentProduct,
+  setCurrentProduct,
+  handleShowModal,
+}) => {
   const { handleAddtoCart } = useContext(CartContext);
 
   const { brand, discountPrice, model, price, product, quantity, stock } =
@@ -59,7 +63,10 @@ const ProductInfo = ({ currentProduct, setCurrentProduct }) => {
 
       {/*Modal*/}
       <div className="md:flex justify-between mb-4">
-        <button className="flex mb-2 md:mb-0">
+        <button
+          className="flex mb-2 md:mb-0"
+          onClick={(e) => handleShowModal(e, "payment")}
+        >
           <svg
             width="30px"
             height="30px"
@@ -101,7 +108,10 @@ const ProductInfo = ({ currentProduct, setCurrentProduct }) => {
           </svg>
           <p className="font-normal text-zinc-800 ml-2 mt-1">Formas de pago</p>
         </button>
-        <button className="flex pr-4">
+        <button
+          className="flex pr-4"
+          onClick={(e) => handleShowModal(e, "shipping")}
+        >
           <svg
             height="30px"
             width="30px"

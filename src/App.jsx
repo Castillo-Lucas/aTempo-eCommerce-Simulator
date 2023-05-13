@@ -26,6 +26,8 @@ import FooterCheckOut from "./components/FooterCheckOut";
 import CartContextProvider from "./context/CartContext";
 import FilterContextProvider from "./context/FilterContext";
 import LayoutActivatorContextProvider from "./context/LayoutActivatorContext";
+import ProductReaderContextProvider from "./context/ProductReaderContext";
+ProductReaderContextProvider
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -47,54 +49,56 @@ function App() {
         <LayoutActivatorContextProvider>
           {" "}
           <FilterContextProvider>
-            <CartContextProvider>
-              <LayerOne />
-              <LayerTwo />
-              <LayerThree />
-              <MiniCart showNavBar={showNavBar} />
-              <DrawerLeft />
+            <ProductReaderContextProvider>
+              <CartContextProvider>
+                <LayerOne />
+                <LayerTwo />
+                <LayerThree />
+                <MiniCart showNavBar={showNavBar} />
+                <DrawerLeft />
 
-              {showNavBar === true ? <NavBar /> : <HeaderCheckOut />}
+                {showNavBar === true ? <NavBar /> : <HeaderCheckOut />}
 
-              <ScrollToTop>
-                <Routes>
-                  <Route
-                    path="/"
-                    element={<Home setShowNavBar={setShowNavBar} />}
-                  />
-                  <Route
-                    path="/ItemListContainer/:category/:brand"
-                    element={<ItemListContainer />}
-                  />
-                  <Route
-                    exact
-                    path="/ItemDetail/:productId"
-                    element={<ItemDetail />}
-                  />
-                  <Route
-                    path="/cart"
-                    element={
-                      <Cart
-                        showNavBar={showNavBar}
-                        setShowNavBar={setShowNavBar}
-                      />
-                    }
-                  />
-                  <Route path="/checkout" element={<CheckOut />} />
-                  <Route
-                    path="/orderConfirmation"
-                    element={
-                      <OrderConfirmation setShowNavBar={setShowNavBar} />
-                    }
-                  />
+                <ScrollToTop>
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={<Home setShowNavBar={setShowNavBar} />}
+                    />
+                    <Route
+                      path="/ItemListContainer/:category/:brand"
+                      element={<ItemListContainer />}
+                    />
+                    <Route
+                      exact
+                      path="/ItemDetail/:productId"
+                      element={<ItemDetail />}
+                    />
+                    <Route
+                      path="/cart"
+                      element={
+                        <Cart
+                          showNavBar={showNavBar}
+                          setShowNavBar={setShowNavBar}
+                        />
+                      }
+                    />
+                    <Route path="/checkout" element={<CheckOut />} />
+                    <Route
+                      path="/orderConfirmation"
+                      element={
+                        <OrderConfirmation setShowNavBar={setShowNavBar} />
+                      }
+                    />
 
-                  <Route path="/nosotros" element={<Nosotros />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </ScrollToTop>
+                    <Route path="/nosotros" element={<Nosotros />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </ScrollToTop>
 
-              {showNavBar ? <Footer /> : <FooterCheckOut />}
-            </CartContextProvider>
+                {showNavBar ? <Footer /> : <FooterCheckOut />}
+              </CartContextProvider>
+            </ProductReaderContextProvider>
           </FilterContextProvider>
         </LayoutActivatorContextProvider>
       </Router>

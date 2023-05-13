@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const ItemCount = ({
   stock,
@@ -8,7 +8,7 @@ const ItemCount = ({
   price,
   setTotalDiscount,
   discountPrice,
-  handleTotalPurchase
+  handleTotalPurchase,
 }) => {
   const [counter, setCounter] = useState(quantity);
 
@@ -23,7 +23,7 @@ const ItemCount = ({
     setTotalDiscount(calcDiscount);
 
     /*Update cart whit current modified product*/
-    handleTotalPurchase(currentProduct)
+    handleTotalPurchase(currentProduct);
   };
 
   /*Subtract the quantity of the selected product */
@@ -37,7 +37,7 @@ const ItemCount = ({
     setTotalDiscount(calcDiscount);
 
     /*Update cart whit current modified product*/
-    handleTotalPurchase(currentProduct)
+    handleTotalPurchase(currentProduct);
   };
 
   return (
@@ -45,29 +45,31 @@ const ItemCount = ({
       <button
         type="button"
         className={`${
-          counter === stock ? "cursor-auto " : " btnCounter"
-        } px-1.5 bg-zinc-50 border border-zinc-300 rounded-l-md`}
-        onClick={counter < stock ? handleAddCounter : undefined}
+          counter === 1 ? "cursor-auto " : " btnCounter"
+        } px-2 bg-zinc-50 border border-zinc-300 rounded-l-md `}
+        onClick={counter > 1 ? handleSubtractCounter : undefined}
       >
         <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
-          +
+          -
         </p>
       </button>
+
       <div
         type="button"
         className="p-2 bg-zinc-50 border border-zinc-300 hover:cursor-auto"
       >
         <p className="w-3 text-xs text-zinc-600 text-center">{counter}</p>
       </div>
+
       <button
         type="button"
         className={`${
-          counter === 1 ? "cursor-auto " : " btnCounter"
-        } px-2 bg-zinc-50 border border-zinc-300 rounded-r-md `}
-        onClick={counter > 1 ? handleSubtractCounter : undefined}
+          counter === stock ? "cursor-auto " : " btnCounter"
+        } px-1.5 bg-zinc-50 border border-zinc-300 rounded-r-md`}
+        onClick={counter < stock ? handleAddCounter : undefined}
       >
         <p className=" text-zinc-800 text-center font-normal text-lg btnCounterText">
-          -
+          +
         </p>
       </button>
     </div>

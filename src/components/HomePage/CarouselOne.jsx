@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../App.css";
 import Card from "../ItemList/Card";
 import { db } from "../../FirebaseSettings";
 import { getDocs, collection, query, where } from "firebase/firestore";
+import { ProductReaderContext } from "../../context/ProductReaderContext";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,25 +17,14 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
 const CarouselOne = () => {
+  const { productList } = useContext(ProductReaderContext);
   const [bestSellers, setBestSellers] = useState([]);
 
-  //Fetching products from Firebase
   useEffect(() => {
-    const itemCollection = collection(db, "aTempoProducts");
-    const consult = query(itemCollection, where("bestSeller", "!=", ""));
+    const filtered = productList.filter((producto) => producto.bestSeller);
 
-    getDocs(consult)
-      .then((res) => {
-        const products = res.docs.map((product) => {
-          return product.data();
-        });
-
-        setBestSellers(products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    setBestSellers(filtered);
+  }, [productList]);
 
   return (
     <div className="lg:container lg:px-48 mx-auto py-4">

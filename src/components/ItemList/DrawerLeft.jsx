@@ -5,6 +5,7 @@ import MegaMenu from "../NavBar/MegaMenu";
 import Logo from "../Logo";
 import { FilterContext } from "../../context/FilterContext";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
+import { ProductReaderContext } from "../../context/ProductReaderContext";
 import { db } from "../../FirebaseSettings";
 import { getDocs, collection } from "firebase/firestore";
 
@@ -27,24 +28,7 @@ const DrawerLeft = () => {
     LayoutActivatorContext
   );
 
-  const [productList, setProductList] = useState([]);
-
-  //Fetching products from Firebase
-  useEffect(() => {
-    const itemCollection = collection(db, "aTempoProducts");
-
-    getDocs(itemCollection)
-      .then((res) => {
-        const products = res.docs.map((product) => {
-          return product.data();
-        });
-
-        setProductList(products);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { productList } = useContext(ProductReaderContext);
 
   return (
     <div

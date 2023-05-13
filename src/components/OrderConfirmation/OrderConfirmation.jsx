@@ -28,8 +28,6 @@ const currentOrder = ({ setShowNavBar }) => {
     if (orderId !== undefined) {
       const itemCollection = collection(db, "orders");
       const refDoc = doc(itemCollection, orderId);
-      console.log(orderId);
-      console.log(refDoc);
 
       getDoc(refDoc)
         .then((res) => {
@@ -44,12 +42,6 @@ const currentOrder = ({ setShowNavBar }) => {
 
   useEffect(() => {
     setShowNavBar(true);
-
-    setTimeout(() => {
-      if (currentOrder.length !== 0) {
-      }
-      navigate("/*");
-    }, 10000);
 
     if (currentOrder.length !== 0) {
       if (
