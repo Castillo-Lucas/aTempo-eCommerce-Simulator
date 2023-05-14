@@ -27,7 +27,7 @@ import CartContextProvider from "./context/CartContext";
 import FilterContextProvider from "./context/FilterContext";
 import LayoutActivatorContextProvider from "./context/LayoutActivatorContext";
 import ProductReaderContextProvider from "./context/ProductReaderContext";
-ProductReaderContextProvider
+import InstitutionalPage from "./components/InstitutionalPage";
 
 /*Function to open the next page on top*/
 function ScrollToTop({ children }) {
@@ -91,7 +91,12 @@ function App() {
                       }
                     />
 
-                    <Route path="/nosotros" element={<Nosotros />} />
+                    <Route path="/nosotros/:sectionId" element={<Nosotros />} />
+                    <Route
+                      path="/institutional/:sectionId"
+                      element={<InstitutionalPage />}
+                    />
+
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </ScrollToTop>

@@ -18,8 +18,8 @@ const FooterCheckOut = () => {
       </div>
       {/*Firma*/}
       <div className="px-0 md:px-4 pb-2 py-1 bg-zinc-900 border-t border-zinc-600 flex justify-center">
-        <span className=" text-zinc-400 text-sm md:text-base">
-          © 2023 <a href="https://flowbite.com/">aTempo</a>. Desarollado por{" "}
+        <p className=" text-zinc-400 text-sm md:text-base">
+          © 2023 aTempo. Desarollado por{" "}
           <a
             href="https://www.linkedin.com/in/lucas-castillo-20a331193/"
             target={"_blank"}
@@ -27,7 +27,7 @@ const FooterCheckOut = () => {
           >
             Lucas Castillo
           </a>
-        </span>
+        </p>
       </div>
     </div>
   );

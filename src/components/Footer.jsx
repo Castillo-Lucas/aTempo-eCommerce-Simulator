@@ -11,33 +11,25 @@ const Footer = () => {
             <h2 className="mb-2 font-semibold tittleFooter">Contacto</h2>
             <ul className="">
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
-                  Av. Lorem Ipsum 3500, Córdoba
-                </a>
+                <p className="textFooter">Av. Lorem Ipsum 3500, Córdoba</p>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className=" textFooter">
-                  0810 326 5678
-                </a>
+                <p className=" textFooter">0810 326 5678</p>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
-                  351 262 5489
-                </a>
+                <p className="textFooter">351 262 5489</p>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
-                  info@atempo.com.ar
-                </a>
+                <p className="textFooter">info@atempo.com.ar</p>
               </li>
 
               {/*Social Icons*/}
               <div className="flex justify-start">
                 {/*Facebook*/}
-                <a href="#" className="mr-5 footerIcon">
+                <div className="mr-5 footerIcon">
                   <svg
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
@@ -50,9 +42,9 @@ const Footer = () => {
                     />
                   </svg>
                   <span className="sr-only">Facebook page</span>
-                </a>
+                </div>
                 {/*Instagram*/}
-                <a href="#" className="mr-5 footerIcon">
+                <div className="mr-5 footerIcon">
                   <svg
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
@@ -65,9 +57,9 @@ const Footer = () => {
                     />
                   </svg>
                   <span className="sr-only">Instagram page</span>
-                </a>
+                </div>
                 {/*Twitter*/}
-                <a href="#" className="mr-5 footerIcon">
+                <div className="mr-5 footerIcon">
                   <svg
                     className="w-5 h-5"
                     viewBox="0 0 24 24"
@@ -76,7 +68,7 @@ const Footer = () => {
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                   <span className="sr-only">Twitter page</span>
-                </a>
+                </div>
               </div>
             </ul>
           </div>
@@ -86,33 +78,48 @@ const Footer = () => {
             <h2 className="mb-2 font-semibold tittleFooter">Políticas</h2>
             <ul className="">
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/institutional/cambios y devoluciones"
+                  className="textFooter"
+                >
                   Cambios y devoluciones
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className=" textFooter">
+                <Link
+                  to="/institutional/envios y entregas"
+                  className=" textFooter"
+                >
                   Envíos y entregas
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/institutional/politicas de garantia"
+                  className="textFooter"
+                >
                   Políticas de garantía
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/institutional/terminos y condiciones"
+                  className="textFooter"
+                >
                   Terminos y condiciones
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/institutional/boton de arrepentimiento"
+                  className="textFooter"
+                >
                   Botón de arrepentimiento
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -122,35 +129,44 @@ const Footer = () => {
             <h2 className="mb-2 font-semibold tittleFooter">Compañía</h2>
             <ul className="">
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link to="/nosotros/nosotros" className="textFooter">
                   Nosotros
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/nosotros/preguntas frecuentes"
+                  className="textFooter"
+                >
                   Preguntas frecuentes
-                </a>
+                </Link>
               </li>
 
               <li className="mb-1 md:mb-3 hover:underline">
-                <a href="#" className="textFooter">
+                <Link
+                  to="/nosotros/trabaja con nosotros"
+                  className="textFooter"
+                >
                   Trabaja con nosotros
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           {/*Logo*/}
           <div className="hidden md:block col-span-8 md:col-span-4 lg:col-span-3">
-            <Link  to="/" className="">
+            <Link to="/" className="">
               <img
                 src="https://res.cloudinary.com/dthpuldpm/image/upload/v1679173118/aTempo/logo_o2vgxx.png"
                 className="logo "
                 alt="Logo"
               />
             </Link>
-            <Link to="/" className="logName self-center text-3xl whitespace-nowrap text-white">
+            <Link
+              to="/"
+              className="logName self-center text-3xl whitespace-nowrap text-white"
+            >
               aTempo
             </Link>
           </div>
@@ -159,8 +175,8 @@ const Footer = () => {
 
       {/*Firma*/}
       <div className="px-0 md:px-4 pb-2 bg-zinc-800 flex justify-center">
-        <span className=" text-zinc-400 text-sm md:text-base">
-          © 2023 <a href="https://flowbite.com/">aTempo</a>. Desarollado por{" "}
+        <p className=" text-zinc-400 text-sm md:text-base">
+          © 2023 aTempo. Desarollado por{" "}
           <a
             href="https://www.linkedin.com/in/lucas-castillo-20a331193/"
             target={"_blank"}
@@ -168,7 +184,7 @@ const Footer = () => {
           >
             Lucas Castillo
           </a>
-        </span>
+        </p>
       </div>
     </div>
   );

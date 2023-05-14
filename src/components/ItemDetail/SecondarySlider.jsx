@@ -50,9 +50,11 @@ const SecondarySlider = ({
             className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1"
           >
             <div
-              className={`${imageSelected === index ? "border-cyan-500" : ""} ${
-                isVertical ? "m-0.5" : "m-0"
-              } bg-zinc-50 border p-0.5 border-zinc-300/80`}
+              className={`${
+                imageSelected === index
+                  ? "border-cyan-500"
+                  : "border-zinc-300/80"
+              } bg-zinc-50 border p-0.5 `}
               onClick={(e) => handleSelectImage(e, index)}
             >
               <img src={img} alt="" className="hover:cursor-pointer" />

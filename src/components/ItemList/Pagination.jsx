@@ -63,8 +63,10 @@ const Pagination = ({
               {pageNumbers.map((page) => (
                 <li key={page}>
                   <button
-                    className={`px-3 py-2 leading-tight text-gray-500 bg-white border mx-0.5 border-gray-300 btnPagination ${
-                      page === currentPage && "border-cyan-500 bg-cyan-500/20"
+                    className={`px-3 py-2 leading-tight text-gray-500 border mx-0.5  btnPagination ${
+                      page === currentPage
+                        ? "border-cyan-500 bg-cyan-500/20"
+                        : "border-gray-300 bg-white"
                     }`}
                     onClick={(e) => handleOnSpecificPage(e, page)}
                   >

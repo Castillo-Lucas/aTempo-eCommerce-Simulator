@@ -68,7 +68,7 @@ const DownNavBar = ({ handleSelectMegaMenu, windowWidth }) => {
         </li>
         <li className="listMegaMenu py-2.5 md:py-0 md:mt-0 hover:cursor-pointer hover:bg-zinc-700 md:hover:bg-transparent">
           <Link
-            to="/nosotros"
+            to="/nosotros/nosotros"
             className="bottomNavList aMegaMenu text-sm md:text-base"
           >
             NOSOTROS
