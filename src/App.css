@@ -271,19 +271,19 @@ input[type="checkbox"]:checked::before {
 }
 
 .btnPaginationPrevNext {
-  padding-top: 8.5px !important;
+  padding-top: 7.5px !important;
   padding-bottom: 8.5px !important;
   transition: all 150ms ease-in-out;
 }
 
 .btnPaginationPrevNext:hover {
-  background-color: var(--color-palette-3);
-  color: var(--color-palette-4);
+  background-color: var(--color-palette-4);
+  color: var(--color-palette-5);
 }
 
 .btnPaginationPrevNext:active {
-  background-color: var(--color-palette-4);
-  color: var(--color-palette-5);
+  background-color: var(--color-palette-3);
+  color: var(--color-palette-4);
 }
 
 .btnPagination {
@@ -291,13 +291,13 @@ input[type="checkbox"]:checked::before {
 }
 
 .btnPagination:hover {
-  background-color: var(--color-palette-3);
-  color: var(--color-palette-4);
+  background-color: var(--color-palette-4);
+  color: var(--color-palette-5);
 }
 
 .btnPagination:active {
-  background-color: var(--color-palette-4);
-  color: var(--color-palette-5);
+  background-color: var(--color-palette-3);
+  color: var(--color-palette-4);
 }
 
 .drawerIn {

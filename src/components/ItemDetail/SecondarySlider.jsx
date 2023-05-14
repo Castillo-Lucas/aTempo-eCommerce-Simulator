@@ -12,7 +12,13 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation, Pagination, Keyboard, Autoplay } from "swiper";
 
-const SecondarySlider = ({ imagesWithSrc, generarID }) => {
+const SecondarySlider = ({
+  imagesWithSrc,
+  generarID,
+  handleSelectImage,
+  setThumbsSwiper,
+  imageSelected,
+}) => {
   const [isVertical, setIsVertical] = useState(false);
 
   useEffect(() => {
@@ -36,14 +42,20 @@ const SecondarySlider = ({ imagesWithSrc, generarID }) => {
         }}
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
         className="mySwiper lg:pt-2 secondaySlider"
+        onSwiper={setThumbsSwiper}
       >
-        {imagesWithSrc.map((img) => (
+        {imagesWithSrc.map((img, index) => (
           <SwiperSlide
             key={generarID()}
             className="w-28 mx-1 lg:mx-0 lg:-my-2 2xl:-my-1"
           >
-            <div className="bg-zinc-50 border border-zinc-300/80">
-              <img src={img} alt="" className="hover:cursor-pointer"/>
+            <div
+              className={`${imageSelected === index ? "border-cyan-500" : ""} ${
+                isVertical ? "m-0.5" : "m-0"
+              } bg-zinc-50 border p-0.5 border-zinc-300/80`}
+              onClick={(e) => handleSelectImage(e, index)}
+            >
+              <img src={img} alt="" className="hover:cursor-pointer" />
             </div>
           </SwiperSlide>
         ))}

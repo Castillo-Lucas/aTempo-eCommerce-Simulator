@@ -75,6 +75,15 @@ const ItemDetail = () => {
     setDataModal(data);
   };
 
+  //Swipper Select Function
+  const [imageSelected, setImageSelected] = useState(0);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const handleSelectImage = (e, data) => {
+    e.preventDefault();
+    setImageSelected(data);
+  };
+
   return (
     <div>
       {/*Modal*/}
@@ -551,12 +560,21 @@ const ItemDetail = () => {
 
             <div className="grid grid-cols-12 grid-rows-12 grid-flow-row md:grid-flow-col lg:grid-flow-row gap-4 ">
               {/*Main Slider*/}
-              <MainSlider imagesWithSrc={imagesWithSrc} generarID={generarID} />
+              <MainSlider
+                imagesWithSrc={imagesWithSrc}
+                generarID={generarID}
+                thumbsSwiper={thumbsSwiper}
+                handleSelectImage={handleSelectImage}
+                setImageSelected={setImageSelected}
+              />
 
               {/*Secondary Slider*/}
               <SecondarySlider
                 imagesWithSrc={imagesWithSrc}
                 generarID={generarID}
+                handleSelectImage={handleSelectImage}
+                setThumbsSwiper={setThumbsSwiper}
+                imageSelected={imageSelected}
               />
 
               {/*Product Info*/}

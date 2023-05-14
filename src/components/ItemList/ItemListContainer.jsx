@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import BannerFive from "./BannerFive";
 import Card from "./Card";
 import FilterSection from "./FilterSection";
@@ -10,6 +10,7 @@ import { FilterContext } from "../../context/FilterContext";
 import { LayoutActivatorContext } from "../../context/LayoutActivatorContext";
 import { db } from "../../FirebaseSettings";
 import { getDocs, collection, query, where } from "firebase/firestore";
+import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const {
@@ -219,7 +220,44 @@ const ItemListContainer = () => {
 
       <BannerFive />
 
-      <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-8 mb-3">
+      <div className="lg:container mx-auto 2xl:px-20  grid grid-cols-12 mt-4 lg:mt-6 mb-3">
+        {/*Breadcrumb */}
+        <nav
+          className="col-span-12 lg:pl-5 ml-4 lg:ml-0"
+          aria-label="Breadcrumb"
+        >
+          <ol className="inline-flex items-center space-x-1 md:space-x-3 mb-2 pl-1">
+            <li className="inline-flex items-center">
+              <Link
+                to="/"
+                className="inline-flex items-center text-sm font-medium text-zinc-800 hover:text-cyan-500"
+              >
+                Inicio
+              </Link>
+            </li>
+            <li>
+              <div className="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  className="w-6 h-6 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <p className="ml-1 text-sm font-medium text-zinc-800">
+                  {useId.category}
+                </p>
+              </div>
+            </li>
+          </ol>
+        </nav>
+
         <FilterSection
           setSelectedFiltersSort={setSelectedFiltersSort}
           setSelectedFiltersForFilter={setSelectedFiltersForFilter}
@@ -238,13 +276,7 @@ const ItemListContainer = () => {
         <div className="col-span-12 lg:col-span-10">
           {spinner ? null : products.length >= 1 ? (
             <div>
-              <div className="grid grid-cols-12 gap-4 md:gap-6 px-4">
-                {products.map((products) => (
-                  <Card key={products.id} products={products} />
-                ))}
-              </div>
-
-              <Pagination />
+              <ItemList products={products} />
             </div>
           ) : (
             <div className="container mx-auto flex justify-center md:py-10">
