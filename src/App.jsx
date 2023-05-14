@@ -21,6 +21,7 @@ import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmation"
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import Nosotros from "./components/Nosotros";
+import Login from "./components/Login";
 import HeaderCheckOut from "./components/HeaderCheckOut";
 import FooterCheckOut from "./components/FooterCheckOut";
 import CartContextProvider from "./context/CartContext";
@@ -96,6 +97,7 @@ function App() {
                       path="/institutional/:sectionId"
                       element={<InstitutionalPage />}
                     />
+                    <Route path="/login" element={<Login />} />
 
                     <Route path="*" element={<NotFound />} />
                   </Routes>

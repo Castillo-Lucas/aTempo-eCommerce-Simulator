@@ -24,7 +24,7 @@ const ProductReaderContextProvider = ({ children }) => {
       });
   }, [db]);*/
 
-  /*Get Items from an updated json to not consume them from firebase*/
+  /*Get elements from an updated json to not consume them from firebase by quota consumption*/
   useEffect(() => {
     const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1682176449/aTempo/Assets/aTempoProducts_no7idv.json`;
     fetch(url)

@@ -64,4 +64,4 @@ npm run dev
 ### Rendering Flow
 
 Here's an image that represents the rendering flow:
-!["renderFlow"](https://res.cloudinary.com/dthpuldpm/image/upload/v1683729021/aTempo/render_Flow_d08ehs.png)
+!["renderFlow"](https://res.cloudinary.com/dthpuldpm/image/upload/v1684093722/aTempo/renderFlow_sks0tt.png)

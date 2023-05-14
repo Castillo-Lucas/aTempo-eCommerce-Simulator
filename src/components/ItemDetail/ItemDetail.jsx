@@ -22,7 +22,7 @@ const ItemDetail = () => {
   const [currentProduct, setCurrentProduct] = useState([]);
 
   //Fetching products from Firebase
-  /*useEffect(() => {
+  useEffect(() => {
     // Spinner Activator
     setSpinner(true);
 
@@ -39,9 +39,9 @@ const ItemDetail = () => {
         navigate("/*");
         setSpinner(false);
       });
-  }, [useId]);*/
+  }, [useId]);
 
-  /*Get Items from an updated json to not consume them from firebase*/
+  /*Get Items from an updated json to not consume them from firebase
   useEffect(() => {
     const url = `https://res.cloudinary.com/dthpuldpm/raw/upload/v1682176449/aTempo/Assets/aTempoProducts_no7idv.json`;
     fetch(url)
@@ -50,7 +50,7 @@ const ItemDetail = () => {
         const product = data.find((prod) => prod.id === useId.productId);
         setCurrentProduct(product);
       });
-  }, []);
+  }, []);*/
 
   const { img1, img2, img3, img4, img5, img6 } = currentProduct;
 
