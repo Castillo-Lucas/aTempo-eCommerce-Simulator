@@ -23,6 +23,7 @@ const Payment = ({
     e.preventDefault();
     setPaymentMethod(data);
     setCardPosition("Front");
+    setPaymentInfo([]);
   };
 
   const handleCardPosition = (e, data) => {
@@ -143,9 +144,7 @@ const Payment = ({
           {paymentInfo.length >= 1 ? (
             <div className="flex justify-between">
               <div>
-                <p className="text-zinc-600">
-                  {paymentInfo[0].cardNumber}
-                </p>
+                <p className="text-zinc-600">{paymentInfo[0].cardNumber}</p>
                 <p className="text-zinc-600">DNI: {paymentInfo[0].DNI}</p>
                 <p className="text-zinc-600">
                   ({paymentInfo[0].areaNumber}) {paymentInfo[0].phoneNumber}

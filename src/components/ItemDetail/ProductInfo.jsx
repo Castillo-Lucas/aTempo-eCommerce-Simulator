@@ -487,8 +487,10 @@ const ProductInfo = ({
 
         <button
           type="button"
-          className="buttonCard py-2.5 px-5 w-full text-sm font-medium text-zinc-800 rounded-md border border-zinc-300/80"
-          onClick={handleAdd}
+          className={`${
+            stock < 1 ? "cursor-auto text-zinc-800/50" : "cursor-pointer buttonCard text-zinc-800"
+          } py-2.5 px-5 w-full text-sm font-medium rounded-md border border-zinc-300/80`}
+          onClick={stock < 1 ? null : handleAdd}
         >
           AGREGAR AL CARRITO
         </button>

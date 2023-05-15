@@ -14,6 +14,8 @@ const currentOrder = ({ setShowNavBar }) => {
   const [ultimosCuatroDigitos, setultimosCuatroDigitos] = useState();
   const [currentOrder, setSurrentOrder] = useState([]);
 
+  console.log(ultimosCuatroDigitos);
+
   const {
     items,
     identificationInfo,
@@ -22,6 +24,8 @@ const currentOrder = ({ setShowNavBar }) => {
     totalPurchase,
     currentDateTime,
   } = currentOrder;
+
+  console.log(currentOrder);
 
   //Fetching order from Firebase
   useEffect(() => {
@@ -42,7 +46,9 @@ const currentOrder = ({ setShowNavBar }) => {
 
   useEffect(() => {
     setShowNavBar(true);
+  }, []);
 
+  useEffect(() => {
     if (currentOrder.length !== 0) {
       if (
         paymentInfo[0].paymentType === "creditCard" ||
@@ -60,7 +66,7 @@ const currentOrder = ({ setShowNavBar }) => {
         setultimosCuatroDigitos(ultimosCuatroDigitos);
       }
     }
-  }, []);
+  }, [currentOrder]);
 
   /*Function that formats numbers to look like this: 333.33*/
   const opcionesDeFormato = {
